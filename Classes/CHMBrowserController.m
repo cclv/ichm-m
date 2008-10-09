@@ -69,7 +69,6 @@
 	UIBarButtonItem *segmentBarItem = [[[UIBarButtonItem alloc] initWithCustomView:rightBarControl] autorelease];
 	self.navigationItem.rightBarButtonItem = segmentBarItem;
 
-	self.title = [[CHMDocument CurrentDocument] docTitle];
     [super viewDidLoad];
 }
 
@@ -195,7 +194,6 @@
 	NSURL *url = [webView.request URL];
 	NSString *path = [self extractPathFromURL:url];
 	currentItem = [[[CHMDocument CurrentDocument] tocSource] itemForPath:path withStack:nil];
-	//self.title = [currentItem name];
 }
 
 #pragma mark dealloc
