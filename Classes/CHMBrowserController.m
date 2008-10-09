@@ -73,6 +73,11 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -148,6 +153,7 @@
 			[self navToIDX:sender];
 			break;
 	}
+	self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
 }
 
 - (void)navToIDX:(id)sender
@@ -156,7 +162,7 @@
 	IndexController* controller = [[[IndexController alloc]
 									initWithBrowserController:self
 								    idxSource:[doc idxItems]] autorelease];
-	[[self navigationController] pushViewController:controller animated:YES];
+	[[self navigationController] pushViewController:controller animated:NO];
 }
 
 - (void)navToTOC:(id)sender
@@ -171,7 +177,7 @@
 		for (LinkItem *p in enumerator) {
 			TableOfContentController *tocController = [[[TableOfContentController alloc] initWithBrowserController:self tocRoot:p] autorelease];
 			[[self navigationController] pushViewController:tocController animated:NO];
-		}	
+		}
 	}
 	else
 	{

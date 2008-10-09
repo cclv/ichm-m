@@ -77,7 +77,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	LinkItem *item = [rootItem childAtIndex:indexPath.row];
 	[browserController loadPath:[item path]];
-	[self.navigationController popToViewController:browserController animated:YES];
+	[self.navigationController popToViewController:browserController animated:NO];
 }
 
 /*
