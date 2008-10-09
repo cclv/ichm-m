@@ -28,6 +28,8 @@
 		C3EAB8230E9DCC3000268541 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EAB8210E9DCC3000268541 /* right.png */; };
 		C3EAB8240E9DCC3000268541 /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EAB8220E9DCC3000268541 /* left.png */; };
 		C3EAB82E0E9DDA8300268541 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3EAB82D0E9DDA8300268541 /* Localizable.strings */; };
+		C3EAB9AE0E9E2F0D00268541 /* IndexController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3EAB9AD0E9E2F0D00268541 /* IndexController.xib */; };
+		C3EAB9B20E9E2F3300268541 /* IndexController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EAB9B10E9E2F3300268541 /* IndexController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +67,9 @@
 		C3EAB8210E9DCC3000268541 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = right.png; path = images/right.png; sourceTree = "<group>"; };
 		C3EAB8220E9DCC3000268541 /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = left.png; path = images/left.png; sourceTree = "<group>"; };
 		C3EAB82B0E9DDA6D00268541 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C3EAB9AB0E9E2F0400268541 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/IndexController.xib; sourceTree = "<group>"; };
+		C3EAB9B00E9E2F3300268541 /* IndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexController.h; sourceTree = "<group>"; };
+		C3EAB9B10E9E2F3300268541 /* IndexController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +105,8 @@
 				C3230ABF0E9BB4A50011C900 /* CHMDocument.m */,
 				C39367E90E9CBBD3001EA28D /* CHMBrowserController.h */,
 				C39367EA0E9CBBD3001EA28D /* CHMBrowserController.m */,
+				C3EAB9B00E9E2F3300268541 /* IndexController.h */,
+				C3EAB9B10E9E2F3300268541 /* IndexController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -144,6 +151,7 @@
 				8D1107310486CEB800E47090 /* Info.plist */,
 				C393686B0E9CF1E1001EA28D /* TableOfContent.xib */,
 				C393686D0E9CF1EB001EA28D /* CHMBrowser.xib */,
+				C3EAB9AD0E9E2F0D00268541 /* IndexController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -235,6 +243,7 @@
 				C3EAB8230E9DCC3000268541 /* right.png in Resources */,
 				C3EAB8240E9DCC3000268541 /* left.png in Resources */,
 				C3EAB82E0E9DDA8300268541 /* Localizable.strings in Resources */,
+				C3EAB9AE0E9E2F0D00268541 /* IndexController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +264,7 @@
 				C39366820E9C86D9001EA28D /* ITSSProtocol.m in Sources */,
 				C393669E0E9C8B23001EA28D /* CHMTableOfContent.m in Sources */,
 				C39367EB0E9CBBD3001EA28D /* CHMBrowserController.m in Sources */,
+				C3EAB9B20E9E2F3300268541 /* IndexController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +309,14 @@
 				C3EAB82B0E9DDA6D00268541 /* English */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		C3EAB9AD0E9E2F0D00268541 /* IndexController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3EAB9AB0E9E2F0400268541 /* English */,
+			);
+			name = IndexController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

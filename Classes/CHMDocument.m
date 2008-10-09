@@ -227,6 +227,7 @@ static inline NSString * LCIDtoEncodingName(unsigned int lcid) {
 @implementation CHMDocument
 @synthesize homePath;
 @synthesize tocSource;
+@synthesize docTitle;
 
 static CHMDocument *currentDocument = nil;
 
@@ -293,6 +294,13 @@ static CHMDocument *currentDocument = nil;
 - (LinkItem*)tocItems
 {
 	return [tocSource rootItems];
+}
+
+- (LinkItem*)idxItems
+{
+	if (indexSource)
+		return [indexSource rootItems];
+	return nil;
 }
 #pragma mark chm_lib
 - (BOOL) exist: (NSString *)path

@@ -23,7 +23,7 @@
 #pragma mark init
 - (void)awakeFromNib
 {
-	self.title = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
+	self.title = NSLocalizedString(@"File List", @"File List");
 	[self setupFileList];
 	NSLog(@"init file list");
 	

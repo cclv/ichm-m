@@ -10,6 +10,7 @@
 #import "ITSSProtocol.h"
 #import "CHMDocument.h"
 #import "TableOfContentController.h"
+#import "IndexController.h"
 #import "CHMTableOfContent.h"
 
 @interface CHMBrowserController (Private)
@@ -51,20 +52,26 @@
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	segmentedControl.momentary = YES;
 	
-	defaultTintColor = [segmentedControl.tintColor retain];	// keep track of this for later
 	self.navigationItem.titleView = segmentedControl;
 	[self resetHistoryNavBar];
 
-	UIBarButtonItem *tocButton = [[[UIBarButtonItem alloc]
-								   initWithTitle:NSLocalizedString(@"TOC", @"TOC")
-								   style:UIBarButtonItemStyleBordered
-								   target:self
-								   action:@selector(navToTOC:)] autorelease];
-	self.navigationItem.rightBarButtonItem = tocButton;
+	UISegmentedControl *rightBarControl = [[UISegmentedControl alloc] initWithItems:
+													[NSArray arrayWithObjects:
+													   NSLocalizedString(@"TOC", @"TOC"),
+													   NSLocalizedString(@"IDX", @"IDX"),
+													   nil]];
+	[rightBarControl addTarget:self action:@selector(toTocOrIdx:) forControlEvents:UIControlEventValueChanged];
+	rightBarControl.frame = CGRectMake(0, 0, 90, 30);
+	rightBarControl.segmentedControlStyle = UISegmentedControlStyleBar;
+	rightBarControl.momentary = YES;
+	[rightBarControl setEnabled:[[CHMDocument CurrentDocument] idxItems] != nil forSegmentAtIndex:1];
+	
+	UIBarButtonItem *segmentBarItem = [[[UIBarButtonItem alloc] initWithCustomView:rightBarControl] autorelease];
+	self.navigationItem.rightBarButtonItem = segmentBarItem;
 
+	self.title = [[CHMDocument CurrentDocument] docTitle];
     [super viewDidLoad];
 }
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
@@ -129,18 +136,49 @@
 	[self resetHistoryNavBar];
 }
 
+- (void)toTocOrIdx:(id)sender
+{
+	UISegmentedControl* segCtl = sender;
+	// the segmented control was clicked, handle it here
+	switch ([segCtl selectedSegmentIndex]) {
+		case 0:
+			[self navToTOC:sender];
+			break;
+		case 1:
+			[self navToIDX:sender];
+			break;
+	}
+}
+
+- (void)navToIDX:(id)sender
+{
+	CHMDocument *doc = [CHMDocument CurrentDocument];
+	IndexController* controller = [[[IndexController alloc]
+									initWithBrowserController:self
+								    idxSource:[doc idxItems]] autorelease];
+	[[self navigationController] pushViewController:controller animated:YES];
+}
+
 - (void)navToTOC:(id)sender
 {
 	CHMDocument *doc = [CHMDocument CurrentDocument];
 	NSMutableArray *tocStack = [[NSMutableArray alloc] init];
 	[[doc tocSource] itemForPath:[currentItem path] 
 					  withStack:tocStack];
-	NSEnumerator *enumerator = [tocStack reverseObjectEnumerator];
-	for (LinkItem *p in enumerator) {
-		TableOfContentController *tocController = [[TableOfContentController alloc] initWithBrowserController:self tocRoot:p];
-		[[self navigationController] pushViewController:tocController animated:NO];
-		[tocController release];	
-	}	
+	if ([tocStack count])
+	{
+		NSEnumerator *enumerator = [tocStack reverseObjectEnumerator];
+		for (LinkItem *p in enumerator) {
+			TableOfContentController *tocController = [[[TableOfContentController alloc] initWithBrowserController:self tocRoot:p] autorelease];
+			[[self navigationController] pushViewController:tocController animated:NO];
+		}	
+	}
+	else
+	{
+		LinkItem *p = [doc tocItems];
+		TableOfContentController *tocController = [[[TableOfContentController alloc] initWithBrowserController:self tocRoot:p] autorelease];
+		[[self navigationController] pushViewController:tocController animated:NO];		
+	}
 }
 
 #pragma mark webviewdelegate
@@ -151,7 +189,7 @@
 	NSURL *url = [webView.request URL];
 	NSString *path = [self extractPathFromURL:url];
 	currentItem = [[[CHMDocument CurrentDocument] tocSource] itemForPath:path withStack:nil];
-	self.title = [currentItem name];
+	//self.title = [currentItem name];
 }
 
 #pragma mark dealloc

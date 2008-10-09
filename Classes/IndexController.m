@@ -1,41 +1,43 @@
 //
-//  TableOfContentController.m
+//  IndexController.m
 //  iChm
 //
-//  Created by Robin Lu on 10/7/08.
+//  Created by Robin Lu on 10/9/08.
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "TableOfContentController.h"
-#import "CHMDocument.h"
+#import "IndexController.h"
 #import "CHMBrowserController.h"
 #import "CHMTableOfContent.h"
 
 
-@implementation TableOfContentController
+@implementation IndexController
 
-- (id)initWithBrowserController: (CHMBrowserController*)controller tocRoot:(LinkItem*)root
+- (id)initWithBrowserController:(CHMBrowserController*)controller idxSource:(LinkItem*)root
 {
-	if (self = [super initWithNibName:@"TableOfContent"	bundle:nil]) {
+	if (self = [super initWithNibName:@"IndexController" bundle:nil]) {
 		browserController = controller;
 		[browserController retain];
 		rootItem = root;
 		
-		if (rootItem == [[CHMDocument CurrentDocument] tocItems])
-			self.title = NSLocalizedString(@"TOC", @"TOC");
-		else
-			self.title = [root name];
+		self.title = NSLocalizedString(@"IDX", @"IDX");
 		[rootItem retain];
 	}
-	return self;
+	return self;	
 }
-
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
     if (self = [super initWithStyle:style]) {
     }
     return self;
+}
+*/
+
+/*
+// Implement viewDidLoad to do additional setup after loading the view.
+- (void)viewDidLoad {
+    [super viewDidLoad];
 }
 */
 
@@ -58,26 +60,15 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
     // Configure the cell
-	LinkItem *item = [rootItem childAtIndex:indexPath.row];
+	LinkItem *item = [rootItem childAtIndex:[indexPath row]];
 	cell.text = [item name];
-	
-	if ([item numberOfChildren] > 0)
-		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-	LinkItem *item = [rootItem childAtIndex:indexPath.row];
-	TableOfContentController *tocController = [[TableOfContentController alloc] initWithBrowserController:browserController tocRoot:item];
-	[[self navigationController] pushViewController:tocController animated:YES];
-	[tocController release];	
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	LinkItem *item = [rootItem childAtIndex:indexPath.row];
 	[browserController loadPath:[item path]];
-	[self.navigationController popToViewController:browserController animated:YES];
+	[self.navigationController popToViewController:browserController animated:YES];	
 }
 
 /*
@@ -133,8 +124,8 @@
 */
 
 - (void)dealloc {
-	[browserController release];
 	[rootItem release];
+	[browserController release];
     [super dealloc];
 }
 

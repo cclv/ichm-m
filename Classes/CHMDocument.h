@@ -27,6 +27,7 @@ struct chmFile;
 }
 
 @property (readonly) NSString* homePath;
+@property (readonly) NSString* docTitle;
 @property (readonly) CHMTableOfContent* tocSource;
 
 + (CHMDocument*) CurrentDocument;
@@ -39,4 +40,5 @@ struct chmFile;
 
 - (NSString*)currentEncodingName;
 - (LinkItem*)tocItems;
+- (LinkItem*)idxItems;
 @end

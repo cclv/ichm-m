@@ -12,7 +12,6 @@
 
 @interface CHMBrowserController : UIViewController {
 	IBOutlet UIWebView *webView;
-	UIColor *defaultTintColor;
 	UISegmentedControl *segmentedControl;
 	
 	CHMDocument* chmHandle;
@@ -26,4 +25,7 @@
 - (void)loadURL:(NSURL *)url;
 - (void)loadPath:(NSString *)path;
 - (NSURL*)composeURL:(NSString *)path;
+
+- (void)navToTOC:(id)sender;
+- (void)navToIDX:(id)sender;
 @end
