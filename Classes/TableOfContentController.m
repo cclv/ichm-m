@@ -22,7 +22,7 @@
 		rootItem = root;
 		
 		if (rootItem == [[CHMDocument CurrentDocument] tocItems])
-			self.title = NSLocalizedString(@"TOC", @"TOC");
+			self.title = NSLocalizedString(@"Table Of Contents",@"Table Of Contents");
 		else
 			self.title = [root name];
 		[rootItem retain];
@@ -38,6 +38,19 @@
     return self;
 }
 */
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	/*
+	 Return the index titles for each of the sections (e.g. "A", "B", "C"...).
+	 Use key-value coding to get the value for the key @"letter" in each of the dictionaries in list.
+	 */
+	NSString *title;
+	if (rootItem == [[CHMDocument CurrentDocument] tocItems])
+		title = NSLocalizedString(@"Table Of Contents",@"Table Of Contents");
+	else
+		title = [rootItem name];
+	return title;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
