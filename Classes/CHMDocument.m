@@ -288,6 +288,10 @@ static CHMDocument *currentDocument = nil;
 	}
 }
 
+- (LinkItem*)tocItems
+{
+	return [tocSource rootItems];
+}
 #pragma mark chm_lib
 - (BOOL) exist: (NSString *)path
 {

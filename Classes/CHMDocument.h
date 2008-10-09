@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 struct chmFile;
 @class CHMTableOfContent;
+@class LinkItem;
 
 @interface CHMDocument : NSObject {
 	struct chmFile *chmFileHandle;
@@ -36,4 +37,5 @@ struct chmFile;
 - (NSString *)findHomeForPath: (NSString *)basePath;
 
 - (NSString*)currentEncodingName;
+- (LinkItem*)tocItems;
 @end

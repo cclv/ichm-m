@@ -27,6 +27,7 @@
 		C393686E0E9CF1EB001EA28D /* CHMBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = C393686D0E9CF1EB001EA28D /* CHMBrowser.xib */; };
 		C3EAB8230E9DCC3000268541 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EAB8210E9DCC3000268541 /* right.png */; };
 		C3EAB8240E9DCC3000268541 /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EAB8220E9DCC3000268541 /* left.png */; };
+		C3EAB82E0E9DDA8300268541 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3EAB82D0E9DDA8300268541 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		C39367EA0E9CBBD3001EA28D /* CHMBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHMBrowserController.m; sourceTree = "<group>"; };
 		C3EAB8210E9DCC3000268541 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = right.png; path = images/right.png; sourceTree = "<group>"; };
 		C3EAB8220E9DCC3000268541 /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = left.png; path = images/left.png; sourceTree = "<group>"; };
+		C3EAB82B0E9DDA6D00268541 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				C3230ABD0E9BB47C0011C900 /* chm_lib */,
 				28A0AAE50D9B0CCF005BE974 /* iChm_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				C3EAB82D0E9DDA8300268541 /* Localizable.strings */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				C393686E0E9CF1EB001EA28D /* CHMBrowser.xib in Resources */,
 				C3EAB8230E9DCC3000268541 /* right.png in Resources */,
 				C3EAB8240E9DCC3000268541 /* left.png in Resources */,
+				C3EAB82E0E9DDA8300268541 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +291,14 @@
 				C39367E60E9CBBA1001EA28D /* English */,
 			);
 			name = CHMBrowser.xib;
+			sourceTree = "<group>";
+		};
+		C3EAB82D0E9DDA8300268541 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3EAB82B0E9DDA6D00268541 /* English */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

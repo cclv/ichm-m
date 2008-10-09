@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-@class CHMDocument;
+@class CHMBrowserController;
+@class LinkItem;
 
 @interface TableOfContentController : UITableViewController {
-	CHMDocument *chmDocument;
+	CHMBrowserController *browserController;
+	LinkItem* rootItem;
 }
 
-- (id)initWithCHMDocument:(CHMDocument*)chmdoc;
+- (id)initWithBrowserController:(CHMBrowserController*)controller tocRoot:(LinkItem*)root;
 @end

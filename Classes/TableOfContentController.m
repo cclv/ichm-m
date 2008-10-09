@@ -7,17 +7,24 @@
 //
 
 #import "TableOfContentController.h"
+#import "CHMDocument.h"
+#import "CHMBrowserController.h"
+#import "CHMTableOfContent.h"
 
 
 @implementation TableOfContentController
 
-- (id)initWithCHMDocument:(CHMDocument*)chmdoc
+- (id)initWithBrowserController: (CHMBrowserController*)controller tocRoot:(LinkItem*)root
 {
-	self = [super initWithNibName:@"TableOfContent"	bundle:nil];
-	chmDocument = chmdoc;
-	[chmDocument retain];
+	if (self = [super initWithNibName:@"TableOfContent"	bundle:nil]) {
+		browserController = controller;
+		[browserController retain];
+		rootItem = root;
+		[rootItem retain];
+	}
 	return self;
 }
+
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -41,7 +48,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return [rootItem numberOfChildren];
 }
 
 
@@ -54,13 +61,24 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
     // Configure the cell
+	cell.text = [[rootItem childAtIndex:indexPath.row] name];
+	if ([[rootItem childAtIndex:indexPath.row] numberOfChildren] > 0)
+		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     return cell;
 }
 
-/*
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+	LinkItem *item = [rootItem childAtIndex:indexPath.row];
+	TableOfContentController *tocController = [[TableOfContentController alloc] initWithBrowserController:browserController tocRoot:item];
+	[[self navigationController] pushViewController:tocController animated:YES];
+	[tocController release];	
 }
-*/
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	LinkItem *item = [rootItem childAtIndex:indexPath.row];
+	[browserController loadPath:[item path]];
+	[self.navigationController popToViewController:browserController animated:YES];
+}
 
 /*
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -115,7 +133,8 @@
 */
 
 - (void)dealloc {
-	[chmDocument release];
+	[browserController release];
+	[rootItem release];
     [super dealloc];
 }
 

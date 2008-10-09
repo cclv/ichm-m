@@ -9,6 +9,7 @@
 #import "CHMBrowserController.h"
 #import "ITSSProtocol.h"
 #import "CHMDocument.h"
+#import "TableOfContentController.h"
 
 @interface CHMBrowserController (Private)
 
@@ -37,22 +38,27 @@
 // Implement viewDidLoad to do additional setup after loading the view.
 - (void)viewDidLoad {
 	// "Segmented" control to the right
-	segmentedControl = [[[UISegmentedControl alloc] initWithItems:
+	segmentedControl = [[UISegmentedControl alloc] initWithItems:
 											 [NSArray arrayWithObjects:
 											  [UIImage imageNamed:@"left.png"],
 											  [UIImage imageNamed:@"right.png"],
-											  nil]] autorelease];
+											  nil]];
 	[segmentedControl addTarget:self action:@selector(navHistory:) forControlEvents:UIControlEventValueChanged];
 	segmentedControl.frame = CGRectMake(0, 0, 90, 30);
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	segmentedControl.momentary = YES;
 	
 	defaultTintColor = [segmentedControl.tintColor retain];	// keep track of this for later
-	
-	UIBarButtonItem *segmentBarItem = [[[UIBarButtonItem alloc] initWithCustomView:segmentedControl] autorelease];
-	self.navigationItem.rightBarButtonItem = segmentBarItem;
-	
+	self.navigationItem.titleView = segmentedControl;
 	[self resetHistoryNavBar];
+
+	UIBarButtonItem *tocButton = [[[UIBarButtonItem alloc]
+								   initWithTitle:NSLocalizedString(@"TOC", @"")
+								   style:UIBarButtonItemStyleBordered
+								   target:self
+								   action:@selector(navToTOC:)] autorelease];
+	self.navigationItem.rightBarButtonItem = tocButton;
+
     [super viewDidLoad];
 }
 
@@ -114,6 +120,15 @@
 	[self resetHistoryNavBar];
 }
 
+- (void)navToTOC:(id)sender
+{
+	CHMDocument *doc = [CHMDocument CurrentDocument];
+	LinkItem* rootItem = [doc tocItems];
+	TableOfContentController *tocController = [[TableOfContentController alloc] initWithBrowserController:self tocRoot:rootItem];
+	[[self navigationController] pushViewController:tocController animated:YES];
+	[tocController release];	
+}
+
 #pragma mark webviewdelegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
@@ -122,6 +137,7 @@
 
 #pragma mark dealloc
 - (void)dealloc {
+	[segmentedControl release];
     [super dealloc];
 }
 
