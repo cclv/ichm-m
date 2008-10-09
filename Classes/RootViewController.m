@@ -75,7 +75,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic -- create and push a new view controller
 	NSString* filename = [fileList objectAtIndex:indexPath.row];
-	CHMDocument *doc = [[CHMDocument alloc] initWithFileName:filename];
+	CHMDocument *doc = [CHMDocument OpenDocument:filename];
 	//TableOfContentController *tocController = [[TableOfContentController alloc] initWithCHMDocument:doc];
 	//[[self navigationController] pushViewController:tocController animated:YES];
 	//[tocController release];

@@ -10,6 +10,11 @@
 #import "ITSSProtocol.h"
 #import "CHMDocument.h"
 
+@interface CHMBrowserController (Private)
+
+- (void)resetHistoryNavBar;
+
+@end
 
 @implementation CHMBrowserController
 
@@ -29,12 +34,27 @@
 }
 */
 
-/*
 // Implement viewDidLoad to do additional setup after loading the view.
 - (void)viewDidLoad {
+	// "Segmented" control to the right
+	segmentedControl = [[[UISegmentedControl alloc] initWithItems:
+											 [NSArray arrayWithObjects:
+											  [UIImage imageNamed:@"left.png"],
+											  [UIImage imageNamed:@"right.png"],
+											  nil]] autorelease];
+	[segmentedControl addTarget:self action:@selector(navHistory:) forControlEvents:UIControlEventValueChanged];
+	segmentedControl.frame = CGRectMake(0, 0, 90, 30);
+	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+	segmentedControl.momentary = YES;
+	
+	defaultTintColor = [segmentedControl.tintColor retain];	// keep track of this for later
+	
+	UIBarButtonItem *segmentBarItem = [[[UIBarButtonItem alloc] initWithCustomView:segmentedControl] autorelease];
+	self.navigationItem.rightBarButtonItem = segmentBarItem;
+	
+	[self resetHistoryNavBar];
     [super viewDidLoad];
 }
-*/
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -48,6 +68,11 @@
     // Release anything that's not essential, such as cached data
 }
 
+- (void)resetHistoryNavBar
+{
+	[segmentedControl setEnabled:[webView canGoBack] forSegmentAtIndex:0];
+	[segmentedControl setEnabled:[webView canGoForward] forSegmentAtIndex:1];
+}
 #pragma mark load page
 - (void)loadPath:(NSString *)path
 {
@@ -71,6 +96,28 @@
 	if (!url)
 		url = [NSURL URLWithString:[NSString stringWithFormat:@"itss://chm/%@", [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 	return url;
+}
+
+#pragma mark ui actions
+- (void)navHistory:(id)sender
+{
+	UISegmentedControl* segCtl = sender;
+	// the segmented control was clicked, handle it here
+	switch ([segCtl selectedSegmentIndex]) {
+		case 0:
+			[webView goBack];
+			break;
+		case 1:
+			[webView goForward];
+			break;
+	}
+	[self resetHistoryNavBar];
+}
+
+#pragma mark webviewdelegate
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+	[self resetHistoryNavBar];
 }
 
 #pragma mark dealloc

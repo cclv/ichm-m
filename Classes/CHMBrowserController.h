@@ -12,6 +12,8 @@
 
 @interface CHMBrowserController : UIViewController {
 	IBOutlet UIWebView *webView;
+	UIColor *defaultTintColor;
+	UISegmentedControl *segmentedControl;
 	
 	CHMDocument* chmHandle;
 }

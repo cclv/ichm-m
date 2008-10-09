@@ -27,7 +27,8 @@ struct chmFile;
 
 @property (readonly) NSString* homePath;
 
-- (id)initWithFileName:(NSString *)filename;
++ (CHMDocument*) CurrentDocument;
++ (CHMDocument*) OpenDocument: (NSString*)filename;
 
 - (BOOL) exist: (NSString *)path;
 - (NSData *)content: (NSString *)path;

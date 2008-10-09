@@ -36,7 +36,7 @@
 -(void)startLoading
 {
     NSURL *url = [[self request] URL];
-	CHMDocument *doc = [[self request] chmDoc];
+	CHMDocument *doc = [CHMDocument CurrentDocument];
 	NSString *encoding = [[self request] encodingName];
 	
 	if( !doc ) {

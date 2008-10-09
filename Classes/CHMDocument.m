@@ -217,6 +217,8 @@ static inline NSString * LCIDtoEncodingName(unsigned int lcid) {
 
 @interface CHMDocument (Private)
 
+- (id)initWithFileName:(NSString *)filename;
+
 - (BOOL)readFromFile:(NSString *)fileName;
 - (void)setupTOCSource;
 
@@ -224,6 +226,20 @@ static inline NSString * LCIDtoEncodingName(unsigned int lcid) {
 
 @implementation CHMDocument
 @synthesize homePath;
+static CHMDocument *currentDocument = nil;
+
++ (CHMDocument*) CurrentDocument
+{
+	return currentDocument;
+}
+
++ (CHMDocument*) OpenDocument: (NSString*)filename
+{
+	if (currentDocument != nil)
+		[currentDocument release];
+	currentDocument = [[CHMDocument alloc] initWithFileName:filename];
+	return currentDocument;
+}
 
 - (id)initWithFileName:(NSString *)filename
 {

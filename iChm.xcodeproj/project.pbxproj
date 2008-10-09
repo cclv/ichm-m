@@ -25,6 +25,8 @@
 		C393686A0E9CF1D7001EA28D /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39368690E9CF1D7001EA28D /* MainWindow.xib */; };
 		C393686C0E9CF1E1001EA28D /* TableOfContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = C393686B0E9CF1E1001EA28D /* TableOfContent.xib */; };
 		C393686E0E9CF1EB001EA28D /* CHMBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = C393686D0E9CF1EB001EA28D /* CHMBrowser.xib */; };
+		C3EAB8230E9DCC3000268541 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EAB8210E9DCC3000268541 /* right.png */; };
+		C3EAB8240E9DCC3000268541 /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EAB8220E9DCC3000268541 /* left.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,8 @@
 		C39367E60E9CBBA1001EA28D /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/CHMBrowser.xib; sourceTree = "<group>"; };
 		C39367E90E9CBBD3001EA28D /* CHMBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHMBrowserController.h; sourceTree = "<group>"; };
 		C39367EA0E9CBBD3001EA28D /* CHMBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHMBrowserController.m; sourceTree = "<group>"; };
+		C3EAB8210E9DCC3000268541 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = right.png; path = images/right.png; sourceTree = "<group>"; };
+		C3EAB8220E9DCC3000268541 /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = left.png; path = images/left.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C3EAB7D80E9DC59E00268541 /* images */,
 				C3230ABD0E9BB47C0011C900 /* chm_lib */,
 				28A0AAE50D9B0CCF005BE974 /* iChm_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -160,6 +165,15 @@
 				C3230ABA0E9BB46E0011C900 /* lzx.c */,
 			);
 			name = chm_lib;
+			sourceTree = "<group>";
+		};
+		C3EAB7D80E9DC59E00268541 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				C3EAB8210E9DCC3000268541 /* right.png */,
+				C3EAB8220E9DCC3000268541 /* left.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +229,8 @@
 				C39368680E9CF1C7001EA28D /* RootViewController.xib in Resources */,
 				C393686C0E9CF1E1001EA28D /* TableOfContent.xib in Resources */,
 				C393686E0E9CF1EB001EA28D /* CHMBrowser.xib in Resources */,
+				C3EAB8230E9DCC3000268541 /* right.png in Resources */,
+				C3EAB8240E9DCC3000268541 /* left.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
