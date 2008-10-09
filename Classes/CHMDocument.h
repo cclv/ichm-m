@@ -27,6 +27,7 @@ struct chmFile;
 }
 
 @property (readonly) NSString* homePath;
+@property (readonly) CHMTableOfContent* tocSource;
 
 + (CHMDocument*) CurrentDocument;
 + (CHMDocument*) OpenDocument: (NSString*)filename;

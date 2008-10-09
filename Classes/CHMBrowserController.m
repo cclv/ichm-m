@@ -10,14 +10,17 @@
 #import "ITSSProtocol.h"
 #import "CHMDocument.h"
 #import "TableOfContentController.h"
+#import "CHMTableOfContent.h"
 
 @interface CHMBrowserController (Private)
 
 - (void)resetHistoryNavBar;
-
+- (NSString*)extractPathFromURL:(NSURL*)url;
 @end
 
 @implementation CHMBrowserController
+
+@synthesize currentItem;
 
 // Override initWithNibName:bundle: to load the view using a nib file then perform additional customization that is not appropriate for viewDidLoad.
 -(id)initWithCHMDocument:(CHMDocument*)chmdoc
@@ -53,7 +56,7 @@
 	[self resetHistoryNavBar];
 
 	UIBarButtonItem *tocButton = [[[UIBarButtonItem alloc]
-								   initWithTitle:NSLocalizedString(@"TOC", @"")
+								   initWithTitle:NSLocalizedString(@"TOC", @"TOC")
 								   style:UIBarButtonItemStyleBordered
 								   target:self
 								   action:@selector(navToTOC:)] autorelease];
@@ -79,6 +82,12 @@
 	[segmentedControl setEnabled:[webView canGoBack] forSegmentAtIndex:0];
 	[segmentedControl setEnabled:[webView canGoForward] forSegmentAtIndex:1];
 }
+
+- (NSString*)extractPathFromURL:(NSURL*)url
+{
+	return [[[url absoluteString] substringFromIndex:11] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+
 #pragma mark load page
 - (void)loadPath:(NSString *)path
 {
@@ -123,16 +132,26 @@
 - (void)navToTOC:(id)sender
 {
 	CHMDocument *doc = [CHMDocument CurrentDocument];
-	LinkItem* rootItem = [doc tocItems];
-	TableOfContentController *tocController = [[TableOfContentController alloc] initWithBrowserController:self tocRoot:rootItem];
-	[[self navigationController] pushViewController:tocController animated:YES];
-	[tocController release];	
+	NSMutableArray *tocStack = [[NSMutableArray alloc] init];
+	[[doc tocSource] itemForPath:[currentItem path] 
+					  withStack:tocStack];
+	NSEnumerator *enumerator = [tocStack reverseObjectEnumerator];
+	for (LinkItem *p in enumerator) {
+		TableOfContentController *tocController = [[TableOfContentController alloc] initWithBrowserController:self tocRoot:p];
+		[[self navigationController] pushViewController:tocController animated:NO];
+		[tocController release];	
+	}	
 }
 
 #pragma mark webviewdelegate
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+- (void)webViewDidFinishLoad:(UIWebView *)webview
 {
 	[self resetHistoryNavBar];
+	
+	NSURL *url = [webView.request URL];
+	NSString *path = [self extractPathFromURL:url];
+	currentItem = [[[CHMDocument CurrentDocument] tocSource] itemForPath:path withStack:nil];
+	self.title = [currentItem name];
 }
 
 #pragma mark dealloc
@@ -140,6 +159,5 @@
 	[segmentedControl release];
     [super dealloc];
 }
-
 
 @end

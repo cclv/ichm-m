@@ -226,6 +226,8 @@ static inline NSString * LCIDtoEncodingName(unsigned int lcid) {
 
 @implementation CHMDocument
 @synthesize homePath;
+@synthesize tocSource;
+
 static CHMDocument *currentDocument = nil;
 
 + (CHMDocument*) CurrentDocument

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class CHMDocument;
-
+@class LinkItem;
 
 @interface CHMBrowserController : UIViewController {
 	IBOutlet UIWebView *webView;
@@ -16,7 +16,10 @@
 	UISegmentedControl *segmentedControl;
 	
 	CHMDocument* chmHandle;
+	LinkItem* currentItem;
 }
+
+@property (readonly) LinkItem* currentItem;
 
 -(id)initWithCHMDocument:(CHMDocument*)chmdoc;
 

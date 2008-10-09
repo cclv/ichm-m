@@ -20,6 +20,11 @@
 		browserController = controller;
 		[browserController retain];
 		rootItem = root;
+		
+		if (rootItem == [[CHMDocument CurrentDocument] tocItems])
+			self.title = NSLocalizedString(@"TOC", @"TOC");
+		else
+			self.title = [root name];
 		[rootItem retain];
 	}
 	return self;
@@ -61,9 +66,12 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
     // Configure the cell
-	cell.text = [[rootItem childAtIndex:indexPath.row] name];
-	if ([[rootItem childAtIndex:indexPath.row] numberOfChildren] > 0)
+	LinkItem *item = [rootItem childAtIndex:indexPath.row];
+	cell.text = [item name];
+	
+	if ([item numberOfChildren] > 0)
 		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+
     return cell;
 }
 
