@@ -55,6 +55,7 @@
 - (void)appendChild:(LinkItem *)item;
 - (LinkItem*)find_by_path:(NSString *)path withStack:(NSMutableArray*)stack;
 - (void)sort;
+- (void)removeAllChildren;
 @end
 
 @interface ScoredLinkItem : LinkItem

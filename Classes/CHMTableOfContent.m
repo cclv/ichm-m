@@ -134,6 +134,11 @@
 	[_children removeObjectsAtIndexes:set];
 	[set release];
 }
+
+- (void)removeAllChildren
+{
+	[_children removeAllObjects];
+}
 @end
 
 @interface CHMTableOfContent (Private)
