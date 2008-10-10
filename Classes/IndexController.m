@@ -66,7 +66,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	LinkItem *item = [rootItem childAtIndex:indexPath.row];
+	LinkItem *item = [[rootItem childAtIndex:indexPath.section] childAtIndex:indexPath.row];
 	[browserController loadPath:[item path]];
 	[self.navigationController popToViewController:browserController animated:NO];
 }
