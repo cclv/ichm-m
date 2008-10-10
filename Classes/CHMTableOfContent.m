@@ -254,7 +254,7 @@ NULL, /* getParameterEntity */
 
 - (void)new_item
 {
-	curItem = [[LinkItem alloc] init];
+	curItem = [[[LinkItem alloc] init] autorelease];
 	LinkItem * parent = [itemStack lastObject];
 	[parent appendChild:curItem];
 }
@@ -394,6 +394,42 @@ static void elementDidEnd( CHMTableOfContent *context, const xmlChar *name )
 {
 	relScore = score;
 	return [self initWithName:name Path:path];
+}
+
+@end
+
+@implementation CHMIndex
+
+- (id)initWithData:(NSData *)data encodingName:(NSString*)encodingName
+{
+	if (self = [super initWithData:data encodingName:encodingName])
+	{
+		[rootItems sort];
+		LinkItem *new_root = [[LinkItem alloc] initWithName:@"root"	Path:@"/"];
+		LinkItem *currentSection = nil;
+		for (LinkItem* item in [rootItems children])
+		{
+			if ([item numberOfChildren] > 0)
+				[item setName:[NSString stringWithFormat:@"%@, %@", [item name], [[item childAtIndex:0] name]]];
+			
+			NSString *title = [[[item name] substringToIndex:1] uppercaseString];
+			if ([title localizedCaseInsensitiveCompare:@"a"] < 0)
+			{
+				title = @"#";
+				if (currentSection != nil)
+					currentSection = [new_root childAtIndex:0];
+			}
+			if (currentSection == nil || ![[currentSection name] isEqualToString:title ])
+			{
+				currentSection = [[[LinkItem alloc] initWithName:title Path:@""] autorelease];
+				[new_root appendChild:currentSection];
+			}
+			[currentSection appendChild:item];
+		}
+		[rootItems release];
+		rootItems = new_root;
+	}
+	return self;
 }
 
 @end

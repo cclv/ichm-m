@@ -10,6 +10,7 @@
 struct chmFile;
 @class CHMTableOfContent;
 @class LinkItem;
+@class CHMIndex;
 
 @interface CHMDocument : NSObject {
 	struct chmFile *chmFileHandle;
@@ -21,7 +22,7 @@ struct chmFile;
     NSString *indexPath;
 	
 	CHMTableOfContent *tocSource ;
-	CHMTableOfContent *indexSource ;
+	CHMIndex *indexSource ;
 
 	NSString* encodingName;
 }
@@ -29,6 +30,7 @@ struct chmFile;
 @property (readonly) NSString* homePath;
 @property (readonly) NSString* docTitle;
 @property (readonly) CHMTableOfContent* tocSource;
+@property (readonly) CHMIndex* indexSource;
 
 + (CHMDocument*) CurrentDocument;
 + (CHMDocument*) OpenDocument: (NSString*)filename;

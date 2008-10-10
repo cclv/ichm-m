@@ -227,6 +227,7 @@ static inline NSString * LCIDtoEncodingName(unsigned int lcid) {
 @implementation CHMDocument
 @synthesize homePath;
 @synthesize tocSource;
+@synthesize indexSource;
 @synthesize docTitle;
 
 static CHMDocument *currentDocument = nil;
@@ -281,13 +282,10 @@ static CHMDocument *currentDocument = nil;
 	if (indexPath && [indexPath length] > 0) 
 	{
 		NSData * tocData = [self content:indexPath];
-		CHMTableOfContent* newTOC = [[CHMTableOfContent alloc] initWithData:tocData encodingName:[self currentEncodingName]];
-		CHMTableOfContent* oldTOC = indexSource;
+		CHMIndex* newTOC = [[CHMIndex alloc] initWithData:tocData encodingName:[self currentEncodingName]];
+		if (indexSource)
+			[indexSource release];
 		indexSource = newTOC;
-		[indexSource sort];
-		
-		if(oldTOC)
-			[oldTOC release];
 	}
 }
 

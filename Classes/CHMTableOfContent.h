@@ -66,3 +66,8 @@
 
 - (id)initWithName:(NSString *)name Path:(NSString *)path Score:(float)score;
 @end
+
+@interface CHMIndex : CHMTableOfContent
+{
+}
+@end

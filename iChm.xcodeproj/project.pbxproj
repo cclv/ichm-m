@@ -90,23 +90,11 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C393669C0E9C8B23001EA28D /* CHMTableOfContent.h */,
-				C393669D0E9C8B23001EA28D /* CHMTableOfContent.m */,
-				C39366880E9C878D001EA28D /* lcid.h */,
-				C39366800E9C86D9001EA28D /* ITSSProtocol.h */,
-				C39366810E9C86D9001EA28D /* ITSSProtocol.m */,
+				C3EABB080E9E624400268541 /* chm */,
 				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* iChmAppDelegate.h */,
 				1D3623250D0F684500981E51 /* iChmAppDelegate.m */,
-				C3230A8D0E9BB1820011C900 /* TableOfContentController.h */,
-				C3230A8E0E9BB1820011C900 /* TableOfContentController.m */,
-				C3230ABE0E9BB4A50011C900 /* CHMDocument.h */,
-				C3230ABF0E9BB4A50011C900 /* CHMDocument.m */,
-				C39367E90E9CBBD3001EA28D /* CHMBrowserController.h */,
-				C39367EA0E9CBBD3001EA28D /* CHMBrowserController.m */,
-				C3EAB9B00E9E2F3300268541 /* IndexController.h */,
-				C3EAB9B10E9E2F3300268541 /* IndexController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -185,6 +173,26 @@
 				C3EAB8220E9DCC3000268541 /* left.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		C3EABB080E9E624400268541 /* chm */ = {
+			isa = PBXGroup;
+			children = (
+				C393669C0E9C8B23001EA28D /* CHMTableOfContent.h */,
+				C393669D0E9C8B23001EA28D /* CHMTableOfContent.m */,
+				C39366880E9C878D001EA28D /* lcid.h */,
+				C39366800E9C86D9001EA28D /* ITSSProtocol.h */,
+				C39366810E9C86D9001EA28D /* ITSSProtocol.m */,
+				C3230A8D0E9BB1820011C900 /* TableOfContentController.h */,
+				C3230A8E0E9BB1820011C900 /* TableOfContentController.m */,
+				C3230ABE0E9BB4A50011C900 /* CHMDocument.h */,
+				C3230ABF0E9BB4A50011C900 /* CHMDocument.m */,
+				C39367E90E9CBBD3001EA28D /* CHMBrowserController.h */,
+				C39367EA0E9CBBD3001EA28D /* CHMBrowserController.m */,
+				C3EAB9B00E9E2F3300268541 /* IndexController.h */,
+				C3EAB9B10E9E2F3300268541 /* IndexController.m */,
+			);
+			name = chm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

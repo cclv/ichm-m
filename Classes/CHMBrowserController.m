@@ -152,7 +152,7 @@
 			[self navToIDX:sender];
 			break;
 	}
-	self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 }
 
 - (void)navToIDX:(id)sender
@@ -160,7 +160,7 @@
 	CHMDocument *doc = [CHMDocument CurrentDocument];
 	IndexController* controller = [[[IndexController alloc]
 									initWithBrowserController:self
-								    idxSource:[doc idxItems]] autorelease];
+								    idxSource:[[doc indexSource] rootItems] ] autorelease];
 	[[self navigationController] pushViewController:controller animated:NO];
 }
 

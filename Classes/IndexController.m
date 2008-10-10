@@ -42,12 +42,12 @@
 */
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [rootItem numberOfChildren];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [rootItem numberOfChildren];
+	return [[rootItem childAtIndex:section] numberOfChildren];
 }
 
 
@@ -60,7 +60,7 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
     // Configure the cell
-	LinkItem *item = [rootItem childAtIndex:[indexPath row]];
+	LinkItem *item = [[rootItem childAtIndex:indexPath.section] childAtIndex:indexPath.row];
 	cell.text = [item name];
     return cell;
 }
@@ -71,6 +71,13 @@
 	[self.navigationController popToViewController:browserController animated:NO];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section { 
+	return [[rootItem childAtIndex:section] name];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView { 
+	return [[rootItem children] valueForKey:@"name"]; 
+}
 /*
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
