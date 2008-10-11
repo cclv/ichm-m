@@ -12,6 +12,7 @@
 #import "TableOfContentController.h"
 #import "IndexController.h"
 #import "CHMTableOfContent.h"
+#import "iChmAppDelegate.h"
 
 @interface CHMBrowserController (Private)
 
@@ -64,6 +65,7 @@
 	rightBarControl.frame = CGRectMake(0, 0, 90, 30);
 	rightBarControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	rightBarControl.momentary = YES;
+	[rightBarControl setEnabled:[[CHMDocument CurrentDocument] tocSource] != nil forSegmentAtIndex:0];
 	[rightBarControl setEnabled:[[CHMDocument CurrentDocument] idxItems] != nil forSegmentAtIndex:1];
 	
 	UIBarButtonItem *segmentBarItem = [[[UIBarButtonItem alloc] initWithCustomView:rightBarControl] autorelease];
@@ -198,6 +200,13 @@
 	NSURL *url = [webView.request URL];
 	NSString *path = [self extractPathFromURL:url];
 	currentItem = [[[CHMDocument CurrentDocument] tocSource] itemForPath:path withStack:nil];
+
+	if (currentItem)
+	{
+		iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+		NSDictionary *pref = [NSDictionary dictionaryWithObject:[currentItem path] forKey:@"last path"];
+		[appDelegate setPreference:pref ForFile:[CHMDocument CurrentDocument].fileName];	
+	}
 }
 
 #pragma mark dealloc

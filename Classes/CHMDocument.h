@@ -14,7 +14,7 @@ struct chmFile;
 
 @interface CHMDocument : NSObject {
 	struct chmFile *chmFileHandle;
-	NSString *filePath;
+	NSString *fileName;
 	
     NSString *docTitle;
     NSString *homePath;
@@ -27,6 +27,7 @@ struct chmFile;
 	NSString* encodingName;
 }
 
+@property (readonly) NSString* fileName;
 @property (readonly) NSString* homePath;
 @property (readonly) NSString* docTitle;
 @property (readonly) CHMTableOfContent* tocSource;

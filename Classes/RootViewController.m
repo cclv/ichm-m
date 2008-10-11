@@ -69,7 +69,16 @@
 	//[tocController release];
 	CHMBrowserController *browserController = [[CHMBrowserController alloc] initWithCHMDocument:doc];
 	[[self navigationController] pushViewController:browserController animated:YES];
-	[browserController loadPath:[doc homePath]];
+	
+	iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+	NSDictionary *pref = [appDelegate getPreferenceForFile:filename];
+	NSString *docPath = [doc homePath];
+	if (pref && [pref objectForKey:@"last path"] )
+	{
+		docPath = [pref objectForKey:@"last path"];
+	}
+	[browserController loadPath:docPath];
+	
 	[browserController release];
 	[doc release];
 }

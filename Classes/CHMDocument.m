@@ -219,7 +219,7 @@ static inline NSString * LCIDtoEncodingName(unsigned int lcid) {
 
 - (id)initWithFileName:(NSString *)filename;
 
-- (BOOL)readFromFile:(NSString *)fileName;
+- (BOOL)readFromFile:(NSString *)path;
 - (void)setupTOCSource;
 
 @end
@@ -229,6 +229,7 @@ static inline NSString * LCIDtoEncodingName(unsigned int lcid) {
 @synthesize tocSource;
 @synthesize indexSource;
 @synthesize docTitle;
+@synthesize fileName;
 
 static CHMDocument *currentDocument = nil;
 
@@ -247,18 +248,18 @@ static CHMDocument *currentDocument = nil;
 
 - (id)initWithFileName:(NSString *)filename
 {
+	fileName = filename;
+	[fileName retain];
 	NSString* docDir = [NSString stringWithFormat:@"%@/Documents", NSHomeDirectory()];
 	[self readFromFile:[NSString stringWithFormat:@"%@/%@", docDir, filename]];
 	return self;
 }
 
-- (BOOL)readFromFile:(NSString *)fileName{
-    NSLog( @"CHMDocument:readFromFile:%@", fileName );
-	if(filePath) [filePath release];
-	filePath = fileName;
-	[filePath retain];
+- (BOOL)readFromFile:(NSString *)path{
+    NSLog( @"CHMDocument:readFromFile:%@", path );
+	NSString* filePath = path;
 	
-    chmFileHandle = chm_open( [fileName fileSystemRepresentation] );
+    chmFileHandle = chm_open( [filePath fileSystemRepresentation] );
     if( !chmFileHandle ) return NO;
 	
 	
@@ -272,11 +273,9 @@ static CHMDocument *currentDocument = nil;
 	{
 		NSData * tocData = [self content:tocPath];
 		CHMTableOfContent* newTOC = [[CHMTableOfContent alloc] initWithData:tocData encodingName:[self currentEncodingName]];
-		CHMTableOfContent* oldTOC = tocSource;
+		if (tocSource)
+			[tocSource release];
 		tocSource = newTOC;
-		
-		if(oldTOC)
-			[oldTOC release];
 	}
 	
 	if (indexPath && [indexPath length] > 0) 
@@ -507,6 +506,14 @@ static CHMDocument *currentDocument = nil;
 - (NSString*)currentEncodingName
 {
 	return encodingName;
+}
+
+#pragma mark dealloc
+- (void)dealloc {
+	[fileName release];
+	[tocSource release];
+	[indexSource release];
+    [super dealloc];
 }
 
 @end

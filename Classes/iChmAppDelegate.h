@@ -14,11 +14,14 @@
     UINavigationController *navigationController;
 	
 	NSMutableArray *fileList;
+	NSMutableDictionary *filePreferences;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 @property (readonly) NSArray* fileList;
 
+- (id) getPreferenceForFile:(NSString*)filename;
+- (void) setPreference:(id)pref ForFile:(NSString*)filename;
 @end
 
