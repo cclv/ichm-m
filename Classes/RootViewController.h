@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface RootViewController : UITableViewController {
-	NSMutableArray *fileList;
 }
 
 @end

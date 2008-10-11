@@ -12,10 +12,13 @@
     
     UIWindow *window;
     UINavigationController *navigationController;
+	
+	NSMutableArray *fileList;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (readonly) NSArray* fileList;
 
 @end
 

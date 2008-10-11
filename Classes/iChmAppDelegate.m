@@ -10,15 +10,36 @@
 #import "ITSSProtocol.h"
 #import "RootViewController.h"
 
+@interface iChmAppDelegate (Private)
+- (void)setupFileList;
+@end
+
 
 @implementation iChmAppDelegate
 
 @synthesize window;
 @synthesize navigationController;
+@synthesize fileList;
 
+- (void)setupFileList
+{
+	fileList = [[NSMutableArray alloc] init];
+	NSString* docDir = [NSString stringWithFormat:@"%@/Documents", NSHomeDirectory()];
+	NSDirectoryEnumerator *direnum = [[NSFileManager defaultManager]
+									  enumeratorAtPath:docDir];
+	NSString *pname;
+	while (pname = [direnum nextObject])
+	{
+		if ([[pname pathExtension] isEqualToString:@"chm"])
+		{
+			[fileList addObject:pname];
+		}
+	}
+}
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 	[NSURLProtocol registerClass:[ITSSProtocol class]];
+	[self setupFileList];
 	
 	// Configure and show the window
 	[window addSubview:[navigationController view]];
@@ -35,6 +56,7 @@
 - (void)dealloc {
 	[navigationController release];
 	[window release];
+	[fileList release];
 	[super dealloc];
 }
 

@@ -14,7 +14,7 @@
 
 @interface RootViewController (Private)
 
-- (void)setupFileList;
+- (NSArray*) fileList;
 
 @end
 
@@ -24,27 +24,15 @@
 - (void)awakeFromNib
 {
 	self.title = NSLocalizedString(@"File List", @"File List");
-	[self setupFileList];
 	NSLog(@"init file list");
 	
 }
 
-- (void)setupFileList
+- (NSArray*) fileList
 {
-	fileList = [[NSMutableArray alloc] init];
-	NSString* docDir = [NSString stringWithFormat:@"%@/Documents", NSHomeDirectory()];
-	NSDirectoryEnumerator *direnum = [[NSFileManager defaultManager]
-									  enumeratorAtPath:docDir];
-	NSString *pname;
-	while (pname = [direnum nextObject])
-	{
-		if ([[pname pathExtension] isEqualToString:@"chm"])
-		{
-			[fileList addObject:pname];
-		}
-	}
+	iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+	return [appDelegate fileList];
 }
-
 #pragma mark tableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1 ;
@@ -52,7 +40,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [fileList count];
+    return [[self fileList] count];
 }
 
 
@@ -66,7 +54,7 @@
     }
     
     // Set up the cell
-	cell.text = [fileList objectAtIndex:indexPath.row];
+	cell.text = [[self fileList] objectAtIndex:indexPath.row];
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
@@ -74,7 +62,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic -- create and push a new view controller
-	NSString* filename = [fileList objectAtIndex:indexPath.row];
+	NSString* filename = [[self fileList] objectAtIndex:indexPath.row];
 	CHMDocument *doc = [CHMDocument OpenDocument:filename];
 	//TableOfContentController *tocController = [[TableOfContentController alloc] initWithCHMDocument:doc];
 	//[[self navigationController] pushViewController:tocController animated:YES];
@@ -167,7 +155,6 @@
 
 
 - (void)dealloc {
-	[fileList release];
     [super dealloc];
 }
 
