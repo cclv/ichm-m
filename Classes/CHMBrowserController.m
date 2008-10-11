@@ -37,7 +37,7 @@
 // Implement loadView to create a view hierarchy programmatically.
 - (void)loadView {
 }
-*/
+ */
 
 // Implement viewDidLoad to do additional setup after loading the view.
 - (void)viewDidLoad {
@@ -69,6 +69,11 @@
 	UIBarButtonItem *segmentBarItem = [[[UIBarButtonItem alloc] initWithCustomView:rightBarControl] autorelease];
 	self.navigationItem.rightBarButtonItem = segmentBarItem;
 
+	self.view.autoresizesSubviews = YES;
+	self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+	webView.autoresizesSubviews = YES;
+	webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+
     [super viewDidLoad];
 }
 
@@ -79,9 +84,8 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview

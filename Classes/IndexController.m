@@ -27,7 +27,7 @@
 		indexSource = root;
 		searchSource = [[LinkItem alloc] initWithName:@"root"	Path:@"/"];
 		
-		self.title = NSLocalizedString(@"IDX", @"IDX");
+		self.title = NSLocalizedString(@"Index", @"Index");
 		[indexSource retain];
 	}
 	return self;	
@@ -48,6 +48,11 @@
 	searchBar.frame = newFrame;
 	self.tableView.tableHeaderView = searchBar;
     [super viewDidLoad];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return YES;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
