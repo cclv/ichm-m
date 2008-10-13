@@ -11,4 +11,5 @@
 @interface RootViewController : UITableViewController {
 }
 
+- (IBAction)startFileManager:(id)sender;
 @end

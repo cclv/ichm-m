@@ -11,6 +11,7 @@
 #import "CHMDocument.h"
 #import "TableOfContentController.h"
 #import "CHMBrowserController.h"
+#import "FileManagerController.h"
 
 @interface RootViewController (Private)
 
@@ -167,6 +168,10 @@
     [super dealloc];
 }
 
-
+#pragma mark actions
+- (IBAction)startFileManager:(id)sender
+{
+	FileManagerController *controller = [[[FileManagerController alloc] init] autorelease];
+	[self.navigationController pushViewController:controller animated:YES];
+}
 @end
-
