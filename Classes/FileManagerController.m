@@ -9,10 +9,18 @@
 #import "FileManagerController.h"
 #import "HTTPServer.h"
 
+@interface FileManagerController (Private)
+- (NSString*)setupDocroot;
+
+@end
+
+
 @implementation FileManagerController
 
 - (id)init {
 	[self initWithNibName:@"FileManager" bundle:nil];
+	NSString * docroot = [self setupDocroot];
+
 	httpServer = [[HTTPServer alloc] init];
 	[httpServer setType:@"_http._tcp."];
 	
@@ -20,7 +28,7 @@
 	[httpServer setPort:80];
 #endif
 	[httpServer setName:@"iChm"];
-	[httpServer setDocumentRoot:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+	[httpServer setDocumentRoot:[NSURL fileURLWithPath:docroot]];
 	
 	NSError *error;
 	BOOL success = [httpServer start:&error];
@@ -30,6 +38,30 @@
 		NSLog(@"Error starting HTTP Server: %@", error);
 	}
 	return self;
+}
+
+- (NSString*)setupDocroot
+{
+	NSString* docroot =[NSString stringWithFormat:@"%@/docroot", [[NSBundle mainBundle] sharedSupportPath]];
+	NSLog(docroot);
+	NSFileManager *manager = [NSFileManager defaultManager];
+	NSError *error;
+	if(![manager removeItemAtPath:docroot error:&error])
+	{
+		NSLog([NSString stringWithFormat:@"Can not remove old docroot: %@", error ]);
+	}
+	
+	NSArray * localizations = [[NSBundle mainBundle] preferredLocalizations];
+	NSString *localizedName = [localizations objectAtIndex:0];
+	NSString* localizedDocroot = [NSString stringWithFormat:@"%@/localized_docroot/%@.lproj", 
+								  [[NSBundle mainBundle] sharedSupportPath],
+								  localizedName];
+	if (![manager createSymbolicLinkAtPath:docroot pathContent: localizedDocroot])
+	{
+		NSLog([NSString stringWithFormat:@"Can not create docroot: %@", error]);
+		return nil;
+	}
+	return docroot;
 }
 
 /*
