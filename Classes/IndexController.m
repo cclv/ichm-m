@@ -122,6 +122,7 @@
 - (void)dealloc {
 	[indexSource release];
 	[browserController release];
+	[searchSource release];
     [super dealloc];
 }
 

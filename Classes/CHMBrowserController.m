@@ -190,6 +190,7 @@
 		TableOfContentController *tocController = [[[TableOfContentController alloc] initWithBrowserController:self tocRoot:p] autorelease];
 		[[self navigationController] pushViewController:tocController animated:NO];		
 	}
+	[tocStack release];
 }
 
 #pragma mark webviewdelegate
