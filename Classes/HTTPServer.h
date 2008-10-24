@@ -12,7 +12,7 @@
 	id delegate;
 	
 	// HTTP server configuration
-	NSURL *documentRoot;
+	NSString *documentRoot;
 	Class connectionClass;
 	
 	// NSNetService and related variables
@@ -29,8 +29,8 @@
 - (id)delegate;
 - (void)setDelegate:(id)newDelegate;
 
-- (NSURL *)documentRoot;
-- (void)setDocumentRoot:(NSURL *)value;
+- (NSString *)documentRoot;
+- (void)setDocumentRoot:(NSString *)value;
 
 - (Class)connectionClass;
 - (void)setConnectionClass:(Class)value;

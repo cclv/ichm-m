@@ -98,11 +98,11 @@
  * Thus requests for /index.html will be referencing the index.html file within the document root directory.
  * All file requests are relative to this document root.
 **/
-- (NSURL *)documentRoot {
+- (NSString *)documentRoot {
     return documentRoot;
 }
 
-- (void)setDocumentRoot:(NSURL *)value
+- (void)setDocumentRoot:(NSString *)value
 {
     if(![documentRoot isEqual:value])
 	{

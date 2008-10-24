@@ -881,23 +881,23 @@ static NSMutableArray *recentNonces;
 		relativePath = [relativePath substringFromIndex:1];
 	}
 	
-	NSURL *url;
+	NSString *fullPath;
 	
 	if([relativePath hasSuffix:@"/"])
 	{
 		NSString *completedRelativePath = [relativePath stringByAppendingString:@"index.html"];
-		url = [NSURL URLWithString:completedRelativePath relativeToURL:[server documentRoot]];
+		fullPath = [NSString stringWithFormat:@"%@/%@", [server documentRoot], completedRelativePath];
 	}
 	else
 	{
-		url = [NSURL URLWithString:relativePath relativeToURL:[server documentRoot]];
+		fullPath = [NSString stringWithFormat:@"%@/%@", [server documentRoot], relativePath];
 	}
 	
 	// Watch out for sneaky requests with ".." in the path
 	// For example, the following request: "../Documents/TopSecret.doc"
-	if(![[url path] hasPrefix:[[server documentRoot] path]]) return nil;
+	if (![[fullPath stringByStandardizingPath] hasPrefix:[server documentRoot]]) return nil;
 	
-	return [[url path] stringByStandardizingPath];
+	return [fullPath stringByStandardizingPath];
 }
 
 /**

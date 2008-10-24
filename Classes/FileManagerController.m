@@ -25,7 +25,7 @@
 	
 	[httpServer setPort:8080];
 	[httpServer setName:@"iChm"];
-	[httpServer setDocumentRoot:[NSURL fileURLWithPath:docroot]];
+	[httpServer setDocumentRoot:docroot];
 	
 	NSError *error;
 	BOOL success = [httpServer start:&error];
@@ -39,7 +39,7 @@
 
 - (NSString*)setupDocroot
 {
-	NSString* docroot =[NSString stringWithFormat:@"%@/docroot", [[NSBundle mainBundle] sharedSupportPath]];
+	NSString* docroot =[NSString stringWithFormat:@"%@/tmp/docroot", NSHomeDirectory()];
 	NSLog(docroot);
 	NSFileManager *manager = [NSFileManager defaultManager];
 	NSError *error;
@@ -47,18 +47,15 @@
 	{
 		NSLog([NSString stringWithFormat:@"Can not remove old docroot: %@", error ]);
 	}
+	[manager createDirectoryAtPath:docroot attributes:nil];
 	
 	NSArray * localizations = [[NSBundle mainBundle] preferredLocalizations];
 	NSString *localizedName = [localizations objectAtIndex:0];
 	NSString* localizedDocroot = [NSString stringWithFormat:@"%@/localized_docroot/%@.lproj", 
 								  [[NSBundle mainBundle] sharedSupportPath],
 								  localizedName];
-	if (![manager createSymbolicLinkAtPath:docroot pathContent: localizedDocroot])
-	{
-		NSLog([NSString stringWithFormat:@"Can not create docroot: %@", error]);
-		return nil;
-	}
-	
+	[manager copyItemAtPath:[NSString stringWithFormat:@"%@/%@", localizedDocroot, @"index.html"]
+					 toPath:[NSString stringWithFormat:@"%@/%@", docroot, @"index.html"] error:&error];
 	//link scripts directory
 	NSString *scriptsPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], @"scripts"];
 	NSString *destPath = [NSString stringWithFormat:@"%@/scripts", docroot];
