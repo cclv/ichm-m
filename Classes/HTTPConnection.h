@@ -62,6 +62,7 @@
 - (NSObject<HTTPResponse> *)httpResponseForURI:(NSString *)path;
 
 - (void)redirectoTo:(NSString*)path;
+- (void)sendString:(NSString*)text mimeType:(NSString*)mimeType;
 
 - (void)handleVersionNotSupported:(NSString *)version;
 - (void)handleAuthenticationFailed;

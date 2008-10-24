@@ -9,6 +9,7 @@
 #import "FileResource.h"
 #import "RegexKitLite.h"
 #import "HTTPConnection.h"
+#import "iChmAppDelegate.h"
 
 @implementation FileResource
 
@@ -50,7 +51,7 @@
 	NSString* path = [(NSString*)CFURLCopyPath(url) autorelease];
 	if ([method isEqualToString:@"GET"])
 	{
-		if ([path caseInsensitiveCompare:@"/files"])
+		if (NSOrderedSame == [path caseInsensitiveCompare:@"/files"])
 			[self actionList];
 		else
 			[self actionShow];
@@ -65,6 +66,19 @@
 
 - (void)actionList
 {
+	NSMutableString *output = [[NSMutableString alloc] init];
+	[output appendString:@"["];
+	iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+	NSArray *filelist = [appDelegate fileList];
+	for(NSString* file in filelist)
+	{
+		[output appendFormat:@"{'name':'%@'},", file];
+	}
+	NSRange range = NSMakeRange([output length] - 1, 1);
+	[output replaceCharactersInRange:range withString:@"]"];
+	
+	[connection sendString:output mimeType:nil];
+	[output release];
 }
 
 - (void)actionShow
@@ -80,6 +94,10 @@
 	NSFileManager *fm = [NSFileManager defaultManager];
 	NSError *error;
 	[fm moveItemAtPath:tmpfile toPath:filePath error:&error];
+	
+	iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate reloadFileList];
+
 	[connection redirectoTo:@"/"];
 }
 	

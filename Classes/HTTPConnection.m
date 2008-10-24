@@ -1048,12 +1048,36 @@ static NSMutableArray *recentNonces;
 	[asyncSocket writeData:responseData withTimeout:WRITE_ERROR_TIMEOUT tag:HTTP_FINAL_RESPONSE];
 	
 	CFRelease(response);
+	[responseData autorelease];
+	
+	// Close connection as soon as the error message is sent
+	[asyncSocket disconnectAfterWriting];	
+}
+
+/* send text */
+- (void)sendString:(NSString*)text mimeType:(NSString*)mimeType
+{
+	if (nil == mimeType)
+		mimeType = @"text/plain";
+	
+	CFHTTPMessageRef response = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 200, NULL, kCFHTTPVersion1_1);
+	NSString *content = text;
+	NSString *length = [NSString stringWithFormat:@"%d", [content length]];
+	CFHTTPMessageSetHeaderFieldValue(response, CFSTR("Content-Length"), (CFStringRef)length);
+	NSString* contentType = [NSString stringWithFormat:@"%@; charset=utf-8", mimeType];
+	CFHTTPMessageSetHeaderFieldValue(response, CFSTR("Content-Type"), (CFStringRef)contentType );
+
+	NSData *responseData = (NSData *)CFHTTPMessageCopySerializedMessage(response);
+	[asyncSocket writeData:responseData withTimeout:WRITE_HEAD_TIMEOUT tag:HTTP_FINAL_RESPONSE];
+	
+	[asyncSocket writeData:[content dataUsingEncoding:NSUTF8StringEncoding] withTimeout:WRITE_BODY_TIMEOUT tag:HTTP_FINAL_RESPONSE];
+	
+	CFRelease(response);
+	[responseData autorelease];
 	
 	// Close connection as soon as the error message is sent
 	[asyncSocket disconnectAfterWriting];
-	
 }
-
 /* handle request body */
 - (void)handleHTTPRequestBody:(NSData*)data tag:(long)tag
 {

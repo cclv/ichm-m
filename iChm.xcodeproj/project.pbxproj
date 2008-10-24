@@ -44,6 +44,7 @@
 		C3EAB9AE0E9E2F0D00268541 /* IndexController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3EAB9AD0E9E2F0D00268541 /* IndexController.xib */; };
 		C3EAB9B20E9E2F3300268541 /* IndexController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EAB9B10E9E2F3300268541 /* IndexController.m */; };
 		C3F11F440EA86E14004B4B46 /* FileResource.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F11F430EA86E14004B4B46 /* FileResource.m */; };
+		C3F9E53F0EB1C18600DD0D7A /* jquery.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = C3F9E5330EB1C05A00DD0D7A /* jquery.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,6 +55,16 @@
 			dstSubfolderSpec = 12;
 			files = (
 				C3E8822D0EA4479300DE82FB /* index.html in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3F9E53E0EB1C13500DD0D7A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = scripts;
+			dstSubfolderSpec = 7;
+			files = (
+				C3F9E53F0EB1C18600DD0D7A /* jquery.js in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +134,7 @@
 		C3EAB9B10E9E2F3300268541 /* IndexController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexController.m; sourceTree = "<group>"; };
 		C3F11F420EA86E14004B4B46 /* FileResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileResource.h; sourceTree = "<group>"; };
 		C3F11F430EA86E14004B4B46 /* FileResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileResource.m; sourceTree = "<group>"; };
+		C3F9E5330EB1C05A00DD0D7A /* jquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = jquery.js; path = web/jquery.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +267,7 @@
 		C32D58D30EA3AA6D002D02DC /* FileManager */ = {
 			isa = PBXGroup;
 			children = (
+				C3F9E5330EB1C05A00DD0D7A /* jquery.js */,
 				C3E8820E0EA4421000DE82FB /* index.html */,
 			);
 			name = FileManager;
@@ -318,6 +331,7 @@
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 				C3E882300EA447BE00DE82FB /* CopyFiles */,
+				C3F9E53E0EB1C13500DD0D7A /* CopyFiles */,
 			);
 			buildRules = (
 			);

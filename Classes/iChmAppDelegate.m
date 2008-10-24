@@ -41,6 +41,13 @@ static NSString *filePreferencesIdentity = @"FilePreferences";
 	}
 }
 
+- (void)reloadFileList
+{
+	if (fileList)
+		[fileList release];
+	[self setupFileList];
+}
+
 - (void)setupFilePreferences
 {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

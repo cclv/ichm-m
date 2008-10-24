@@ -23,6 +23,7 @@
 
 - (id) getPreferenceForFile:(NSString*)filename;
 - (void) setPreference:(id)pref ForFile:(NSString*)filename;
+- (void)reloadFileList;
 @end
 
 // for moving around the UITableViewIndex

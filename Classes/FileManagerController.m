@@ -61,6 +61,15 @@
 		NSLog([NSString stringWithFormat:@"Can not create docroot: %@", error]);
 		return nil;
 	}
+	
+	//link scripts directory
+	NSString *scriptsPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], @"scripts"];
+	NSString *destPath = [NSString stringWithFormat:@"%@/scripts", docroot];
+	if (![manager createSymbolicLinkAtPath:destPath pathContent: scriptsPath])
+	{
+		NSLog([NSString stringWithFormat:@"Can not create scripts path: %@", error]);
+		return nil;
+	}	
 	return docroot;
 }
 
