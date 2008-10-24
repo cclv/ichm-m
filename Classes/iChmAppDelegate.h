@@ -25,3 +25,6 @@
 - (void) setPreference:(id)pref ForFile:(NSString*)filename;
 @end
 
+// for moving around the UITableViewIndex
+static BOOL tableViewIndexMoveIn(id self, SEL _cmd);
+static BOOL tableViewIndexMoveOut(id self, SEL _cmd);

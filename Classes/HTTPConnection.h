@@ -7,6 +7,7 @@
 
 @class AsyncSocket;
 @class HTTPServer;
+@class FileResource;
 @protocol HTTPResponse;
 
 
@@ -18,18 +19,30 @@
 	HTTPServer *server;
 	
 	CFHTTPMessageRef request;
+	NSMutableDictionary *params;
+	int bodyReadCount;
+	int bodyLength;
+	NSData *remainBody;
+	NSFileHandle *tmpUploadFileHandle;
+	
 	int numHeaderLines;
+	NSString *requestBoundry;
 	
 	NSString *nonce;
 	int lastNC;
 	
 	NSObject<HTTPResponse> *httpResponse;
 	
+	FileResource *resource;
+	
 	NSMutableArray *ranges;
 	NSMutableArray *ranges_headers;
 	NSString *ranges_boundry;
 	int rangeIndex;
 }
+
+@property (readonly) NSDictionary* params;
+@property (readonly) CFHTTPMessageRef request;
 
 - (id)initWithAsyncSocket:(AsyncSocket *)newSocket forServer:(HTTPServer *)myServer;
 
@@ -48,11 +61,14 @@
 
 - (NSObject<HTTPResponse> *)httpResponseForURI:(NSString *)path;
 
+- (void)redirectoTo:(NSString*)path;
+
 - (void)handleVersionNotSupported:(NSString *)version;
 - (void)handleAuthenticationFailed;
 - (void)handleResourceNotFound;
 - (void)handleInvalidRequest:(NSData *)data;
 - (void)handleUnknownMethod:(NSString *)method;
+- (void)handleHTTPRequestBody:(NSData*)data tag:(long)tag;
 
 - (NSData *)preprocessResponse:(CFHTTPMessageRef)response;
 - (NSData *)preprocessErrorResponse:(CFHTTPMessageRef)response;

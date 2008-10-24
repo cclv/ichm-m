@@ -6,6 +6,9 @@
 #import "DDNumber.h"
 #import "DDRange.h"
 #import "DDData.h"
+#import "RegexKitLite.h"
+
+#import "FileResource.h"
 
 
 // Define chunk size used to read files from disk
@@ -24,8 +27,13 @@
 #define LIMIT_MAX_HEADER_LINE_LENGTH  8190
 #define LIMIT_MAX_HEADER_LINES         100
 
+#define BODY_BUFFER_SIZE 8190
+
 // Define the various tags we'll use to differentiate what it is we're currently doing
 #define HTTP_REQUEST                       15
+#define HTTP_REQUEST_BODY				   16
+#define HTTP_REQUEST_BODY_MULTIPART_HEAD   17
+#define HTTP_REQUEST_BODY_MULTIPART		   18
 #define HTTP_PARTIAL_RESPONSE              24
 #define HTTP_PARTIAL_RESPONSE_HEADER       25
 #define HTTP_PARTIAL_RESPONSE_BODY         26
@@ -47,6 +55,9 @@
 @interface HTTPConnection (PrivateAPI)
 - (CFHTTPMessageRef)prepareUniRangeResponse:(UInt64)contentLength;
 - (CFHTTPMessageRef)prepareMultiRangeResponse:(UInt64)contentLength;
+
+- (void)handleMultipartHeader:(NSData*)body;
+- (void)handleMultipartBody:(NSData*)body;
 @end
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,6 +65,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation HTTPConnection
+
+@synthesize params;
+@synthesize request;
 
 static NSMutableArray *recentNonces;
 
@@ -113,6 +127,15 @@ static NSMutableArray *recentNonces;
 		
 		numHeaderLines = 0;
 		
+		bodyReadCount = 0;
+		bodyLength = 0;
+		remainBody = nil;
+		tmpUploadFileHandle = nil;
+		requestBoundry = nil;
+
+		resource = nil;
+		params = [[NSMutableDictionary alloc] init];
+		
 		// And now that we own the socket, and we have our CFHTTPMessage object (for requests) ready,
 		// we can start reading the HTTP requests...
 		[asyncSocket readDataToData:[AsyncSocket CRLFData]
@@ -133,10 +156,14 @@ static NSMutableArray *recentNonces;
 	[asyncSocket release];
 	
 	if(request) CFRelease(request);
+	if(requestBoundry) [requestBoundry release];
 	
 	[nonce release];
 	
 	[httpResponse release];
+	
+	[resource release];
+	[params release];
 	
 	[ranges release];
 	[ranges_headers release];
@@ -598,6 +625,14 @@ static NSMutableArray *recentNonces;
 		return;
 	}
 	
+	//Check Resources
+	if ([FileResource canHandle:request])
+	{
+		resource = [[FileResource alloc] initWithConnection:self];
+		[resource handleRequest];
+		return;
+	}
+	
 	// Check HTTP method
 	NSString *method = [(NSString *)CFHTTPMessageCopyRequestMethod(request) autorelease];
     if(![method isEqualToString:@"GET"] && ![method isEqualToString:@"HEAD"])
@@ -1000,6 +1035,184 @@ static NSMutableArray *recentNonces;
 	CFRelease(response);
 }
 
+/* handle redirection */
+- (void)redirectoTo:(NSString*)path
+{
+	CFHTTPMessageRef response = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 302, NULL, kCFHTTPVersion1_1);
+	NSString *content = [NSString stringWithFormat:@"<html><body>You are being <a href=\"%@\">redirected</a>.</body></html>", path];
+	NSString *length = [NSString stringWithFormat:@"%d", [content length]];
+	CFHTTPMessageSetHeaderFieldValue(response, CFSTR("Content-Length"), (CFStringRef)length);
+	CFHTTPMessageSetHeaderFieldValue(response, CFSTR("Content-Type"), CFSTR("text/html; charset=utf-8"));
+	CFHTTPMessageSetHeaderFieldValue(response, CFSTR("Location"), (CFStringRef)path);	
+	NSData *responseData = (NSData *)CFHTTPMessageCopySerializedMessage(response);
+	[asyncSocket writeData:responseData withTimeout:WRITE_ERROR_TIMEOUT tag:HTTP_FINAL_RESPONSE];
+	
+	CFRelease(response);
+	
+	// Close connection as soon as the error message is sent
+	[asyncSocket disconnectAfterWriting];
+	
+}
+
+/* handle request body */
+- (void)handleHTTPRequestBody:(NSData*)data tag:(long)tag
+{
+	long newTag = HTTP_REQUEST_BODY;
+	
+	if (nil == data)
+	{
+		// init body info
+		NSDictionary* header = (NSDictionary*)CFHTTPMessageCopyAllHeaderFields(request);
+		NSString* contentType = [header objectForKey:@"Content-Type"];
+		if (nil != contentType)
+		{
+			// checkout boundary
+			NSError *error;
+			NSRange searchRange = NSMakeRange(0, [contentType length]);
+			NSRange matchedRange = NSMakeRange(NSNotFound, 0);
+			matchedRange = [contentType rangeOfRegex:@"\\Amultipart/form-data.*boundary=\"?([^\";,]+)\"?"
+											 options: RKLCaseless
+											 inRange:searchRange
+											 capture:1
+											   error:&error];
+			if (matchedRange.location != NSNotFound)
+			{
+				requestBoundry = [NSString stringWithFormat:@"%@%@", @"--", [contentType substringWithRange:matchedRange]];
+				[requestBoundry retain];
+				newTag = HTTP_REQUEST_BODY_MULTIPART_HEAD;
+			}
+		}
+		[header release];
+	}
+	else
+	{
+		switch (tag) {
+			case HTTP_REQUEST_BODY_MULTIPART_HEAD:
+				[self handleMultipartHeader:data];
+				newTag = HTTP_REQUEST_BODY_MULTIPART;
+				break;
+			case HTTP_REQUEST_BODY_MULTIPART:
+				[self handleMultipartBody:data];
+				newTag = HTTP_REQUEST_BODY_MULTIPART;
+			default:
+				break;
+		}
+		bodyReadCount += [data length];
+	}
+	
+	int readLength = BODY_BUFFER_SIZE;
+	int remain = bodyLength - bodyReadCount;
+	if (readLength > remain)
+		readLength = remain;
+	
+	if (readLength > 0)
+		[asyncSocket readDataToLength:readLength withTimeout:READ_TIMEOUT tag:newTag];
+	else
+		[self replyToHTTPRequest];
+}
+
+/* parsing head info for multipart body */
+- (void)handleMultipartHeader:(NSData*)body
+{
+	NSString * EOL = @"\015\012";
+	// check boundary
+	NSRange range = NSMakeRange(0, [requestBoundry length] + [EOL length]);
+	NSString *bHead = [NSString stringWithUTF8String:(const char *)[[body subdataWithRange:range] bytes]];
+	if (![bHead isEqualToString:[NSString stringWithFormat:@"%@%@", requestBoundry, EOL]])
+	{
+		NSLog(@"bad content body");
+		return;
+	}
+	
+	// read head
+	range = NSMakeRange([requestBoundry length] + [EOL length], [body length]- [requestBoundry length] - [EOL length]);
+	const char* bytes = [[body subdataWithRange:range] bytes];
+	int length = range.length;
+	const char* deol = "\015\012\015\012";
+	const char *headEnd = strstr(bytes, deol);
+	NSString *bodyHeader = [[NSString alloc] initWithBytes:bytes length:(headEnd - bytes) encoding:NSASCIIStringEncoding];
+	NSRange matchedRange = NSMakeRange(NSNotFound, 0);
+	NSRange searchRange = NSMakeRange(0, [bodyHeader length]);
+	NSError *error;
+	matchedRange = [bodyHeader rangeOfRegex:@"Content-Disposition:.* filename=(?:\"((?:\\\\.|[^\\\"])*)\"|([^;]*))"
+									options: RKLCaseless
+									inRange:searchRange
+									capture:1
+									  error:&error];
+	
+	NSString *filename = [bodyHeader substringWithRange:matchedRange];
+	
+	matchedRange = [bodyHeader rangeOfRegex:@"Content-Disposition:.* name=\"?([^\\\";]*)\"?"
+									options: RKLCaseless
+									inRange:searchRange
+									capture:1
+									  error:&error];
+	NSString *key = [bodyHeader substringWithRange:matchedRange];
+	
+	[params setObject:filename forKey:key];
+	CFUUIDRef theUUID = CFUUIDCreate(NULL);
+	NSString *tmpName = [NSString stringWithFormat:@"%@/%@", NSTemporaryDirectory(), (NSString *)CFUUIDCreateString(NULL, theUUID)];
+	NSFileManager *fm = [NSFileManager defaultManager];
+	[fm createFileAtPath:tmpName contents:[NSData data] attributes:nil];
+	tmpUploadFileHandle = [NSFileHandle fileHandleForWritingAtPath:tmpName];
+	[tmpUploadFileHandle retain];
+	CFRelease(theUUID);
+	[params setObject:tmpName forKey:@"tmpfilename"];
+	[bodyHeader release];
+	
+	length = length - (headEnd - bytes + strlen(deol));
+	bytes = headEnd + strlen(deol);
+	NSData *fileContent = [NSData dataWithBytesNoCopy:(void*)bytes length:length];
+
+	[self handleMultipartBody:fileContent];
+}
+
+- (void)handleMultipartBody:(NSData*)body
+{
+	if (nil == tmpUploadFileHandle)
+		return;
+	
+	static NSString* deol = @"\015\012";
+	NSString *terminator = [NSString stringWithFormat:@"%@%@", deol, requestBoundry];
+	NSMutableData *data = [[NSMutableData alloc] init];
+	if (remainBody)
+		[data appendData:remainBody];
+	[data appendData:body];
+	
+	const char* bytes = [data bytes];
+	const char* cterminator = [terminator UTF8String];
+	const char* candidate = memchr(bytes, '\015', [data length]);
+	const char* contentEnd = NULL;
+	int taillen = [data length] + bytes - candidate;
+	while (candidate && taillen >= [terminator length]) {
+		contentEnd = strnstr(candidate, cterminator, [terminator length]);
+		if (contentEnd)
+			break;
+		candidate = memchr(candidate+1, '\015', taillen - 1);
+		taillen = [data length] + bytes - candidate;
+	}
+	if (NULL != contentEnd)
+	{
+		NSRange range = NSMakeRange(0, contentEnd - bytes);
+		NSData* content = [data subdataWithRange:range];
+		[tmpUploadFileHandle writeData:content];
+		[tmpUploadFileHandle release];
+		tmpUploadFileHandle = nil;
+	}
+	else
+	{
+		NSRange range = NSMakeRange(0, [data length] - [terminator length]);
+		NSData* content = [data subdataWithRange:range];
+		range = NSMakeRange([data length] - [terminator length], [terminator length]);
+		if (remainBody)
+			[remainBody release];
+		remainBody = [data subdataWithRange:range];
+		[remainBody retain];
+		
+		[tmpUploadFileHandle writeData:content];
+	}	
+}
+
 /**
  * This method is called immediately prior to sending the response headers.
  * This method adds standard header fields, and then converts the response to an NSData object.
@@ -1106,37 +1319,48 @@ static NSMutableArray *recentNonces;
 **/
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData*)data withTag:(long)tag
 {
-	// Append the header line to the http message
-	BOOL result = CFHTTPMessageAppendBytes(request, [data bytes], [data length]);
-	if(!result)
+	if (!CFHTTPMessageIsHeaderComplete(request))
 	{
-		// We have a received a malformed request
-		[self handleInvalidRequest:data];
-	}
-	else if(!CFHTTPMessageIsHeaderComplete(request))
-	{
-		// We don't have a complete header yet
-		// That is, we haven't yet received a CRLF on a line by itself, indicating the end of the header
-		if(++numHeaderLines > LIMIT_MAX_HEADER_LINES)
+		// Append the header line to the http message
+		BOOL result = CFHTTPMessageAppendBytes(request, [data bytes], [data length]);
+		if(!result)
 		{
-			// Reached the maximum amount of header lines in a single HTTP request
-			// This could be an attempted DOS attack
-			[asyncSocket disconnect];
+			// We have a received a malformed request
+			[self handleInvalidRequest:data];
+		}
+		else if(!CFHTTPMessageIsHeaderComplete(request))
+		{
+			// We don't have a complete header yet
+			// That is, we haven't yet received a CRLF on a line by itself, indicating the end of the header
+			if(++numHeaderLines > LIMIT_MAX_HEADER_LINES)
+			{
+				// Reached the maximum amount of header lines in a single HTTP request
+				// This could be an attempted DOS attack
+				[asyncSocket disconnect];
+			}
+			else
+			{
+				[asyncSocket readDataToData:[AsyncSocket CRLFData]
+								withTimeout:READ_TIMEOUT
+								  maxLength:LIMIT_MAX_HEADER_LINE_LENGTH
+										tag:HTTP_REQUEST];
+			}
 		}
 		else
 		{
-			[asyncSocket readDataToData:[AsyncSocket CRLFData]
-							withTimeout:READ_TIMEOUT
-							  maxLength:LIMIT_MAX_HEADER_LINE_LENGTH
-									tag:HTTP_REQUEST];
+			NSDictionary* header = (NSDictionary*)CFHTTPMessageCopyAllHeaderFields(request);
+			NSString* lenstr = (NSString*)[header objectForKey:@"Content-Length"];
+			if (nil != lenstr)
+			{
+				bodyLength = [lenstr intValue];
+				bodyReadCount = 0;
+			}
+			[self handleHTTPRequestBody:nil tag:tag];
+			[header release];
 		}
 	}
-	else
-	{
-		// We have an entire HTTP request from the client
-		// Now we need to reply to it
-		[self replyToHTTPRequest];
-	}
+	else // handle request body
+		[self handleHTTPRequestBody:data tag:tag];
 }
 
 /**

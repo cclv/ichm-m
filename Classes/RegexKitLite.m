@@ -576,7 +576,11 @@ static NSArray *rkl_splitArray(RKLCacheSlot *cacheSlot, id *exception, int32_t *
   id          *splitStrings     = NULL;
 
   if((stackUsed + splitStringsSize) < RKL_STACK_LIMIT) { if((splitStrings = alloca(splitStringsSize)) == NULL) { goto exitNow; } stackUsed += splitStringsSize; }
+#ifdef TARGET_OS_IPHONE
+  else { if((splitStrings = rkl_realloc(&scratchBuffer[1], splitStringsSize, 1)) == NULL) { goto exitNow; } }
+#elif
   else { if((splitStrings = rkl_realloc(&scratchBuffer[1], splitStringsSize, (NSUInteger)NSScannedOption)) == NULL) { goto exitNow; } }
+#endif	
 
 #ifdef __OBJC_GC__ 
   if(rkl_collectingEnabled() == YES) { // I just don't trust the GC system with the faster CF way of doing things...  It never seems to work quite the way you expect it to.

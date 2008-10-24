@@ -9,6 +9,28 @@
 #import "IndexController.h"
 #import "CHMBrowserController.h"
 #import "CHMTableOfContent.h"
+#import "MovableTableViewIndex.h"
+
+#pragma mark hack for UITableViewIndex
+static BOOL tableViewIndexMoveIn(id self, SEL _cmd) {
+	UIView *index = (UIView *)self;
+	
+	[UIView beginAnimations:nil context:nil];
+	index.center = CGPointMake(index.center.x - 30, index.center.y);
+	[UIView commitAnimations];
+	
+    return YES;
+}
+
+static BOOL tableViewIndexMoveOut(id self, SEL _cmd) {
+	UIView *index = (UIView *)self;
+	
+	[UIView beginAnimations:nil context:nil];
+	index.center = CGPointMake(index.center.x + 30, index.center.y);
+	[UIView commitAnimations];
+	
+    return YES;
+}
 
 @interface IndexController (Private)
 - (void) moveOutIndexView;
@@ -136,22 +158,18 @@
 - (void) moveOutIndexView
 {
 	for (UIView *view in self.tableView.subviews) {
-		if ( [view isKindOfClass:[UITableViewIndex class]] )
-		{
-			[UIView beginAnimations:nil context:nil];
-			view.center = CGPointMake(view.center.x + 30, view.center.y);
-			[UIView commitAnimations];
+		if ( [view respondsToSelector:@selector(moveIndexOut)] ) {
+			MovableTableViewIndex *index = (MovableTableViewIndex *)view;
+			[index moveIndexOut];
 		}
 	}	
 }
 - (void) moveInIndexView
 {
 	for (UIView *view in self.tableView.subviews) {
-		if ( [view isKindOfClass:[UITableViewIndex class]] )
-		{
-			[UIView beginAnimations:nil context:nil];
-			view.center = CGPointMake(view.center.x - 30, view.center.y);
-			[UIView commitAnimations];
+		if ( [view respondsToSelector:@selector(moveIndexIn)] ) {
+			MovableTableViewIndex *index = (MovableTableViewIndex *)view;
+			[index moveIndexIn];
 		}
 	}
 }

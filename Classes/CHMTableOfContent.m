@@ -201,20 +201,6 @@ NULL, /* getParameterEntity */
 	return self;
 }
 
-- (id)initWithTOC:(CHMTableOfContent*)toc filterByPredicate:(NSPredicate*)predicate
-{
-	rootItems = [[LinkItem alloc] initWithName:@"root"	Path:@"/"];
-	NSMutableArray *children = [rootItems children];
-	if (toc)
-	{
-		LinkItem * items = [toc rootItems];
-		NSArray *src_children = [items children];
-		NSArray *results = [src_children filteredArrayUsingPredicate:predicate];
-		[children addObjectsFromArray:results];
-	}
-	return self;
-}
-
 - (void) dealloc
 {
 	[rootItems release];

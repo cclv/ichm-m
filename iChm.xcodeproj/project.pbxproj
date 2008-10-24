@@ -43,6 +43,7 @@
 		C3EAB82E0E9DDA8300268541 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3EAB82D0E9DDA8300268541 /* Localizable.strings */; };
 		C3EAB9AE0E9E2F0D00268541 /* IndexController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3EAB9AD0E9E2F0D00268541 /* IndexController.xib */; };
 		C3EAB9B20E9E2F3300268541 /* IndexController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EAB9B10E9E2F3300268541 /* IndexController.m */; };
+		C3F11F440EA86E14004B4B46 /* FileResource.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F11F430EA86E14004B4B46 /* FileResource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -72,6 +73,7 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3065E140EADBF5B007A08A6 /* MovableTableViewIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovableTableViewIndex.h; sourceTree = "<group>"; };
 		C3230A8A0E9BB1410011C900 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/TableOfContent.xib; sourceTree = "<group>"; };
 		C3230A8D0E9BB1820011C900 /* TableOfContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableOfContentController.h; sourceTree = "<group>"; };
 		C3230A8E0E9BB1820011C900 /* TableOfContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableOfContentController.m; sourceTree = "<group>"; };
@@ -119,6 +121,8 @@
 		C3EAB9AB0E9E2F0400268541 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/IndexController.xib; sourceTree = "<group>"; };
 		C3EAB9B00E9E2F3300268541 /* IndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexController.h; sourceTree = "<group>"; };
 		C3EAB9B10E9E2F3300268541 /* IndexController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexController.m; sourceTree = "<group>"; };
+		C3F11F420EA86E14004B4B46 /* FileResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileResource.h; sourceTree = "<group>"; };
+		C3F11F430EA86E14004B4B46 /* FileResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileResource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +153,7 @@
 				1D3623250D0F684500981E51 /* iChmAppDelegate.m */,
 				C32D584A0EA39532002D02DC /* FileManagerController.h */,
 				C32D584B0EA39532002D02DC /* FileManagerController.m */,
+				C3065E140EADBF5B007A08A6 /* MovableTableViewIndex.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 		C32D57EE0EA38F57002D02DC /* httpserver */ = {
 			isa = PBXGroup;
 			children = (
+				C3F11F8B0EA8872A004B4B46 /* resources */,
 				C32D57EF0EA38F82002D02DC /* AsyncSocket.h */,
 				C32D57F00EA38F82002D02DC /* AsyncSocket.m */,
 				C32D57F10EA38F82002D02DC /* DDData.h */,
@@ -290,6 +296,15 @@
 				C3EAB9B10E9E2F3300268541 /* IndexController.m */,
 			);
 			name = chm;
+			sourceTree = "<group>";
+		};
+		C3F11F8B0EA8872A004B4B46 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				C3F11F420EA86E14004B4B46 /* FileResource.h */,
+				C3F11F430EA86E14004B4B46 /* FileResource.m */,
+			);
+			name = resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,6 +397,7 @@
 				C32D58060EA38F83002D02DC /* HTTPServer.m in Sources */,
 				C32D584C0EA39532002D02DC /* FileManagerController.m in Sources */,
 				C3E8820A0EA43DBE00DE82FB /* RegexKitLite.m in Sources */,
+				C3F11F440EA86E14004B4B46 /* FileResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +475,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robin Lu";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -467,6 +485,7 @@
 				INFOPLIST_FILE = Info.plist;
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = iChm;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B29628F0-B56B-45EB-9E2F-962DBEB3EFFA";
 			};
 			name = Debug;
 		};
@@ -474,12 +493,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robin Lu";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iChm_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = iChm;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B29628F0-B56B-45EB-9E2F-962DBEB3EFFA";
 			};
 			name = Release;
 		};
