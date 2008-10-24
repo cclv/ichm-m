@@ -14,7 +14,6 @@
 
 @end
 
-
 @implementation FileManagerController
 
 - (id)init {
@@ -24,9 +23,7 @@
 	httpServer = [[HTTPServer alloc] init];
 	[httpServer setType:@"_http._tcp."];
 	
-#ifndef TARGET_IPHONE_SIMULATOR
-	[httpServer setPort:80];
-#endif
+	[httpServer setPort:8080];
 	[httpServer setName:@"iChm"];
 	[httpServer setDocumentRoot:[NSURL fileURLWithPath:docroot]];
 	
@@ -96,7 +93,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 3;
 }
 
 
@@ -109,12 +106,28 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
     // Configure the cell
-	cell.text =  NSLocalizedString(@"Server address:",@"Server address:");
+	if (indexPath.row == 0)
+		cell.text =  NSLocalizedString(@"Use your browser to connect to:",@"Use your browser to connect to:");
+	else if (indexPath.row == 1)
+	{
+		if ([httpServer port] == 80)
+			cell.text = [NSString stringWithFormat:@"http://%@", [httpServer hostName]];
+		else
+			cell.text = [NSString stringWithFormat:@"http://%@:%d", [httpServer hostName], [httpServer port]];
+			
+		cell.textColor = [UIColor blueColor];
+		cell.textAlignment = UITextAlignmentCenter;
+		cell.font = [UIFont boldSystemFontOfSize:20];
+	}
+	else
+	{
+		cell.text = NSLocalizedString(@"Then, upload!",@"Then, upload!");
+	}
     return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	return NSLocalizedString(@"Server is running",@"Server is running");
+	return NSLocalizedString(@"Service is running...",@"Service is running...");
 }
 /*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

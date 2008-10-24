@@ -55,4 +55,5 @@
 
 - (int)numberOfHTTPConnections;
 
+- (NSString*)hostName;
 @end
