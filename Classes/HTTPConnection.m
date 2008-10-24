@@ -1138,6 +1138,7 @@ static NSMutableArray *recentNonces;
 /* parsing head info for multipart body */
 - (void)handleMultipartHeader:(NSData*)body
 {
+	NSLog(@"parsing multipart header");
 	NSString * EOL = @"\015\012";
 	// check boundary
 	NSRange range = NSMakeRange(0, [requestBoundry length] + [EOL length]);
@@ -1175,12 +1176,14 @@ static NSMutableArray *recentNonces;
 	
 	[params setObject:filename forKey:key];
 	CFUUIDRef theUUID = CFUUIDCreate(NULL);
-	NSString *tmpName = [NSString stringWithFormat:@"%@/%@", NSTemporaryDirectory(), (NSString *)CFUUIDCreateString(NULL, theUUID)];
+	CFStringRef uuidString = CFUUIDCreateString(NULL, theUUID);
+	NSString *tmpName = [NSString stringWithFormat:@"%@/%@", NSTemporaryDirectory(), (NSString *)uuidString];
 	NSFileManager *fm = [NSFileManager defaultManager];
 	[fm createFileAtPath:tmpName contents:[NSData data] attributes:nil];
 	tmpUploadFileHandle = [NSFileHandle fileHandleForWritingAtPath:tmpName];
 	[tmpUploadFileHandle retain];
 	CFRelease(theUUID);
+	CFRelease(uuidString);
 	[params setObject:tmpName forKey:@"tmpfilename"];
 	[bodyHeader release];
 	
@@ -1234,7 +1237,8 @@ static NSMutableArray *recentNonces;
 		[remainBody retain];
 		
 		[tmpUploadFileHandle writeData:content];
-	}	
+	}
+	[data release];
 }
 
 /**
