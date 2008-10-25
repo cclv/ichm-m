@@ -74,8 +74,15 @@
 	{
 		[output appendFormat:@"{'name':'%@'},", file];
 	}
-	NSRange range = NSMakeRange([output length] - 1, 1);
-	[output replaceCharactersInRange:range withString:@"]"];
+	if ([output length] > 1)
+	{
+		NSRange range = NSMakeRange([output length] - 1, 1);
+		[output replaceCharactersInRange:range withString:@"]"];
+	}
+	else
+	{
+		[output appendString:@"]"];
+	}
 	
 	[connection sendString:output mimeType:nil];
 	[output release];
