@@ -12,6 +12,7 @@
 #import "TableOfContentController.h"
 #import "CHMBrowserController.h"
 #import "FileManagerController.h"
+#import "HTTPServer.h"
 
 @interface RootViewController (Private)
 
@@ -26,7 +27,8 @@
 {
 	self.title = NSLocalizedString(@"File List", @"File List");
 	NSLog(@"init file list");
-	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+			 selector:@selector(uploadingFinished:) name:HTTPUploadingFinishedNotification object:nil];
 }
 
 - (NSArray*) fileList
@@ -174,4 +176,11 @@
 	FileManagerController *controller = [[[FileManagerController alloc] init] autorelease];
 	[self.navigationController pushViewController:controller animated:YES];
 }
+
+#pragma mark notification
+- (void)uploadingFinished:(NSNotification*)notification
+{
+	[self.tableView reloadData];
+}
+
 @end

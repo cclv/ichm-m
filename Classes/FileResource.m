@@ -9,6 +9,7 @@
 #import "FileResource.h"
 #import "RegexKitLite.h"
 #import "HTTPConnection.h"
+#import "HTTPServer.h"
 #import "iChmAppDelegate.h"
 
 @implementation FileResource
@@ -104,6 +105,7 @@
 	
 	iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
 	[appDelegate reloadFileList];
+	[[NSNotificationCenter defaultCenter] postNotificationName:HTTPUploadingFinishedNotification object:filename];
 
 	[connection redirectoTo:@"/"];
 }

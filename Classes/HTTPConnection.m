@@ -1081,6 +1081,9 @@ static NSMutableArray *recentNonces;
 /* handle request body */
 - (void)handleHTTPRequestBody:(NSData*)data tag:(long)tag
 {
+	if (bodyLength == 0)
+		return;
+	
 	long newTag = HTTP_REQUEST_BODY;
 	
 	if (nil == data)
@@ -1128,7 +1131,10 @@ static NSMutableArray *recentNonces;
 	int remain = bodyLength - bodyReadCount;
 	if (readLength > remain)
 		readLength = remain;
-	
+
+	NSString* progress = [NSString stringWithFormat:@"%f", 1.0 - remain * 1.0 / bodyLength];
+	[[NSNotificationCenter defaultCenter] postNotificationName:HTTPUploadingProgressNotification object:progress];
+
 	if (readLength > 0)
 		[asyncSocket readDataToLength:readLength withTimeout:READ_TIMEOUT tag:newTag];
 	else
@@ -1173,8 +1179,9 @@ static NSMutableArray *recentNonces;
 									capture:1
 									  error:&error];
 	NSString *key = [bodyHeader substringWithRange:matchedRange];
-	
 	[params setObject:filename forKey:key];
+	[[NSNotificationCenter defaultCenter] postNotificationName:HTTPUploadingStartNotification object:filename];
+	
 	CFUUIDRef theUUID = CFUUIDCreate(NULL);
 	CFStringRef uuidString = CFUUIDCreateString(NULL, theUUID);
 	NSString *tmpName = [NSString stringWithFormat:@"%@/%@", NSTemporaryDirectory(), (NSString *)uuidString];
@@ -1378,12 +1385,16 @@ static NSMutableArray *recentNonces;
 		{
 			NSDictionary* header = (NSDictionary*)CFHTTPMessageCopyAllHeaderFields(request);
 			NSString* lenstr = (NSString*)[header objectForKey:@"Content-Length"];
+			bodyLength = 0;
 			if (nil != lenstr)
 			{
 				bodyLength = [lenstr intValue];
 				bodyReadCount = 0;
 			}
-			[self handleHTTPRequestBody:nil tag:tag];
+			if (bodyLength == 0)
+				[self replyToHTTPRequest];
+			else
+				[self handleHTTPRequestBody:nil tag:tag];
 			[header release];
 		}
 	}

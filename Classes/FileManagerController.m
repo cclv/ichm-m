@@ -34,6 +34,13 @@
 	{
 		NSLog(@"Error starting HTTP Server: %@", error);
 	}
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+			 selector:@selector(uploadingStarted:) name:HTTPUploadingStartNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+			 selector:@selector(updateUploadingStatus:) name:HTTPUploadingStartNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+			 selector:@selector(uploadingFinished:) name:HTTPUploadingFinishedNotification object:nil];
 	return self;
 }
 
@@ -184,9 +191,38 @@
 */
 
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];	
     [super dealloc];
 }
 
+#pragma mark notifications
+- (void)uploadingStarted:(NSNotification*)notification
+{
+	NSString* filename = [notification object];
+	
+	NSString *label = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Uploading",@"Uploading"), filename];
+	[fileNameLabel setText:label];
+	
+	CGRect newFrame = CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, uploadNoticeView.frame.size.height);
+	uploadNoticeView.backgroundColor = [UIColor clearColor];
+	uploadNoticeView.frame = newFrame;
+	self.tableView.tableFooterView = uploadNoticeView;
+	[self.tableView.tableFooterView setHidden:NO];
+}
+
+- (void)updateUploadingStatus:(NSNotification*)notification
+{
+	float progress = [(NSString*)[notification object] floatValue];
+	[uploadProgress setProgress:progress];
+}
+
+- (void)uploadingFinished:(NSNotification*)notification
+{
+	NSString* filename = [notification object];
+	[uploadProgress setProgress:1.0];
+	[uploadProgress setHidden:YES];
+	[fileNameLabel setText:[NSString stringWithFormat:@"%@ %@", filename, NSLocalizedString(@"Uploaded",@"Uploaded")]];
+}
 
 @end
 

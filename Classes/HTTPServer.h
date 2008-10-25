@@ -1,5 +1,9 @@
 #import <Foundation/Foundation.h>
 
+#define HTTPUploadingStartNotification @"UploadingStarted"
+#define HTTPUploadingProgressNotification @"UploadingProgress"
+#define HTTPUploadingFinishedNotification @"UploadingFinished"
+
 @class AsyncSocket;
 
 

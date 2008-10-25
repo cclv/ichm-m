@@ -12,4 +12,5 @@
 }
 
 - (IBAction)startFileManager:(id)sender;
+- (void)uploadingFinished:(NSNotification*)notification;
 @end

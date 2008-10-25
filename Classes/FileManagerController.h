@@ -11,6 +11,11 @@
 
 @interface FileManagerController : UITableViewController {
 	HTTPServer *httpServer;
+	IBOutlet UILabel *fileNameLabel;
+	IBOutlet UIProgressView *uploadProgress;
+	IBOutlet UIView *uploadNoticeView;
 }
-
+- (void)uploadingStarted:(NSNotification*)notification;
+- (void)updateUploadingStatus:(NSNotification*)notification;
+- (void)uploadingFinished:(NSNotification*)notification;
 @end
