@@ -64,8 +64,8 @@
 		NSArray *segs = [path componentsSeparatedByString:@"/"];
 		if ([segs count] >= 2)
 		{
-			NSString *filename = [segs objectAtIndex:2];
-			[self actionDelete:filename];
+			int fileId = [[segs objectAtIndex:2] intValue] ;
+			[self actionDelete:fileId];
 		}
 	}
 	else if (([method isEqualToString:@"POST"]))
@@ -77,9 +77,12 @@
 	[method release];
 }
 
-- (void)actionDelete:(NSString*)filename
+- (void)actionDelete:(int)fileId
 {
 	NSString* docDir = [NSString stringWithFormat:@"%@/Documents", NSHomeDirectory()];
+	iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+	NSArray *filelist = [appDelegate fileList];
+	NSString *filename = [filelist objectAtIndex:fileId];
 	NSString *filePath = [NSString stringWithFormat:@"%@/%@", docDir, filename];
 	NSFileManager *fm = [NSFileManager defaultManager];
 	NSError *error;
@@ -87,8 +90,10 @@
 	{
 		NSLog(@"%@ can not be removed because:%@", filePath, error);
 	}
-	iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
 	[appDelegate reloadFileList];
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:HTTPFileDeletedNotification object:filename];
+
 	[connection redirectoTo:@"/"];	
 }
 
@@ -98,9 +103,10 @@
 	[output appendString:@"["];
 	iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
 	NSArray *filelist = [appDelegate fileList];
-	for(NSString* file in filelist)
+	for(int i = 0; i<[filelist count]; ++i)
 	{
-		[output appendFormat:@"{'name':'%@'},", file];
+		NSString* file = [filelist objectAtIndex:i];
+		[output appendFormat:@"{'name':'%@', 'id':%d},", file, i];
 	}
 	if ([output length] > 1)
 	{

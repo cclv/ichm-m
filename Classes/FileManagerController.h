@@ -18,4 +18,5 @@
 - (void)uploadingStarted:(NSNotification*)notification;
 - (void)updateUploadingStatus:(NSNotification*)notification;
 - (void)uploadingFinished:(NSNotification*)notification;
+- (void)fileDeleted:(NSNotification*)notification;
 @end

@@ -13,4 +13,5 @@
 
 - (IBAction)startFileManager:(id)sender;
 - (void)uploadingFinished:(NSNotification*)notification;
+- (void)fileDeleted:(NSNotification*)notification;
 @end

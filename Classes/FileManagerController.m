@@ -41,6 +41,16 @@
 			 selector:@selector(updateUploadingStatus:) name:HTTPUploadingProgressNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
 			 selector:@selector(uploadingFinished:) name:HTTPUploadingFinishedNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+			 selector:@selector(fileDeleted:) name:HTTPFileDeletedNotification object:nil];
+	
+	CGRect newFrame = CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, uploadNoticeView.frame.size.height);
+	[fileNameLabel setText:@""];
+	uploadNoticeView.backgroundColor = [UIColor clearColor];
+	uploadNoticeView.frame = newFrame;
+	[uploadProgress setHidden:YES];
+	self.tableView.tableFooterView = uploadNoticeView;
+	
 	return self;
 }
 
@@ -201,10 +211,6 @@
 	NSString *label = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Uploading",@"Uploading"), filename];
 	[fileNameLabel setText:label];
 	
-	CGRect newFrame = CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, uploadNoticeView.frame.size.height);
-	uploadNoticeView.backgroundColor = [UIColor clearColor];
-	uploadNoticeView.frame = newFrame;
-	self.tableView.tableFooterView = uploadNoticeView;
 	[uploadProgress setHidden:NO];
 }
 
@@ -221,8 +227,17 @@
 		return;
 	[uploadProgress setProgress:1.0];
 	[uploadProgress setHidden:YES];
-	[fileNameLabel setText:[NSString stringWithFormat:@"%@ %@", filename, NSLocalizedString(@"Uploaded",@"Uploaded")]];
+	[fileNameLabel setText:[NSString stringWithFormat:@"%@ %@", filename, NSLocalizedString(@"uploaded",@"uploaded")]];
 }
 
+- (void)fileDeleted:(NSNotification*)notification
+{
+	NSString* filename = [notification object];
+	if ([filename length] == 0)
+		return;
+	[uploadProgress setProgress:1.0];
+	[uploadProgress setHidden:YES];
+	[fileNameLabel setText:[NSString stringWithFormat:@"%@ %@", filename, NSLocalizedString(@"deleted",@"deleted")]];	
+}
 @end
 

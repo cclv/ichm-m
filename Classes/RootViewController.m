@@ -29,6 +29,8 @@
 	NSLog(@"init file list");
 	[[NSNotificationCenter defaultCenter] addObserver:self
 			 selector:@selector(uploadingFinished:) name:HTTPUploadingFinishedNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+			 selector:@selector(fileDeleted:) name:HTTPFileDeletedNotification object:nil];
 }
 
 - (NSArray*) fileList
@@ -183,4 +185,8 @@
 	[self.tableView reloadData];
 }
 
+- (void)fileDeleted:(NSNotification*)notification
+{
+	[self.tableView reloadData];
+}
 @end

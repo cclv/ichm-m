@@ -22,7 +22,7 @@
 
 - (void)handleRequest;
 - (void)actionList;
-- (void)actionDelete:(NSString*)fileName;
+- (void)actionDelete:(int)fileName;
 - (void)actionShow;
 - (void)actionNew;
 @end
