@@ -38,7 +38,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self
 			 selector:@selector(uploadingStarted:) name:HTTPUploadingStartNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
-			 selector:@selector(updateUploadingStatus:) name:HTTPUploadingStartNotification object:nil];
+			 selector:@selector(updateUploadingStatus:) name:HTTPUploadingProgressNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
 			 selector:@selector(uploadingFinished:) name:HTTPUploadingFinishedNotification object:nil];
 	return self;
@@ -97,7 +97,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 2;
 }
 
 
@@ -122,10 +122,6 @@
 		cell.textColor = [UIColor blueColor];
 		cell.textAlignment = UITextAlignmentCenter;
 		cell.font = [UIFont boldSystemFontOfSize:20];
-	}
-	else
-	{
-		cell.text = NSLocalizedString(@"Then, upload!",@"Then, upload!");
 	}
     return cell;
 }
@@ -199,6 +195,8 @@
 - (void)uploadingStarted:(NSNotification*)notification
 {
 	NSString* filename = [notification object];
+	if ([filename length] == 0)
+		return;
 	
 	NSString *label = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Uploading",@"Uploading"), filename];
 	[fileNameLabel setText:label];
@@ -207,7 +205,7 @@
 	uploadNoticeView.backgroundColor = [UIColor clearColor];
 	uploadNoticeView.frame = newFrame;
 	self.tableView.tableFooterView = uploadNoticeView;
-	[self.tableView.tableFooterView setHidden:NO];
+	[uploadProgress setHidden:NO];
 }
 
 - (void)updateUploadingStatus:(NSNotification*)notification
@@ -219,6 +217,8 @@
 - (void)uploadingFinished:(NSNotification*)notification
 {
 	NSString* filename = [notification object];
+	if ([filename length] == 0)
+		return;
 	[uploadProgress setProgress:1.0];
 	[uploadProgress setHidden:YES];
 	[fileNameLabel setText:[NSString stringWithFormat:@"%@ %@", filename, NSLocalizedString(@"Uploaded",@"Uploaded")]];
