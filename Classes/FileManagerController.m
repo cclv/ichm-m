@@ -18,8 +18,10 @@
 
 - (id)init {
 	[self initWithNibName:@"FileManager" bundle:nil];
+	serverIsRunning = NO;
+	
 	NSString * docroot = [self setupDocroot];
-
+	
 	httpServer = [[HTTPServer alloc] init];
 	[httpServer setType:@"_http._tcp."];
 	
@@ -28,13 +30,14 @@
 	[httpServer setDocumentRoot:docroot];
 	
 	NSError *error;
-	BOOL success = [httpServer start:&error];
+	serverIsRunning = [httpServer start:&error];
 	
-	if(!success)
+	if(!serverIsRunning)
 	{
 		NSLog(@"Error starting HTTP Server: %@", error);
 	}
-	
+		
+	// setup notification
 	[[NSNotificationCenter defaultCenter] addObserver:self
 			 selector:@selector(uploadingStarted:) name:HTTPUploadingStartNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -44,6 +47,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self
 			 selector:@selector(fileDeleted:) name:HTTPFileDeletedNotification object:nil];
 	
+	// setup view footer
 	CGRect newFrame = CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, uploadNoticeView.frame.size.height);
 	[fileNameLabel setText:@""];
 	uploadNoticeView.backgroundColor = [UIColor clearColor];
@@ -172,11 +176,14 @@
 */
 
 
-/*
 - (void)viewWillAppear:(BOOL)animated {
+	if(!serverIsRunning)
+	{
+		NSError *error;
+		serverIsRunning = [httpServer start:&error];
+	}
     [super viewWillAppear:animated];
 }
-*/
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -186,10 +193,15 @@
 - (void)viewWillDisappear:(BOOL)animated {
 }
 */
-/*
+
 - (void)viewDidDisappear:(BOOL)animated {
+	if (serverIsRunning)
+	{
+		[httpServer stop];
+		serverIsRunning = NO;
+	}
 }
-*/
+
 /*
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

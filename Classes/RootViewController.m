@@ -31,6 +31,7 @@
 			 selector:@selector(uploadingFinished:) name:HTTPUploadingFinishedNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
 			 selector:@selector(fileDeleted:) name:HTTPFileDeletedNotification object:nil];
+	fileManagerController = nil;
 }
 
 - (NSArray*) fileList
@@ -169,14 +170,16 @@
 
 
 - (void)dealloc {
+	[fileManagerController release];
     [super dealloc];
 }
 
 #pragma mark actions
 - (IBAction)startFileManager:(id)sender
 {
-	FileManagerController *controller = [[[FileManagerController alloc] init] autorelease];
-	[self.navigationController pushViewController:controller animated:YES];
+	if (nil == fileManagerController)
+		fileManagerController = [[FileManagerController alloc] init];
+	[self.navigationController pushViewController:fileManagerController animated:YES];
 }
 
 #pragma mark notification

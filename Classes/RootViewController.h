@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class FileManagerController;
 
 @interface RootViewController : UITableViewController {
+	FileManagerController *fileManagerController;
 }
 
 - (IBAction)startFileManager:(id)sender;

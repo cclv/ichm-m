@@ -14,6 +14,8 @@
 	IBOutlet UILabel *fileNameLabel;
 	IBOutlet UIProgressView *uploadProgress;
 	IBOutlet UIView *uploadNoticeView;
+	
+	BOOL serverIsRunning;
 }
 - (void)uploadingStarted:(NSNotification*)notification;
 - (void)updateUploadingStatus:(NSNotification*)notification;
