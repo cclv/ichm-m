@@ -1062,7 +1062,7 @@ static NSMutableArray *recentNonces;
 	
 	CFHTTPMessageRef response = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 200, NULL, kCFHTTPVersion1_1);
 	NSString *content = text;
-	NSString *length = [NSString stringWithFormat:@"%d", [content length]];
+	NSString *length = [NSString stringWithFormat:@"%d", [[content dataUsingEncoding:NSUTF8StringEncoding] length]];
 	CFHTTPMessageSetHeaderFieldValue(response, CFSTR("Content-Length"), (CFStringRef)length);
 	NSString* contentType = [NSString stringWithFormat:@"%@; charset=utf-8", mimeType];
 	CFHTTPMessageSetHeaderFieldValue(response, CFSTR("Content-Type"), (CFStringRef)contentType );
@@ -1114,6 +1114,9 @@ static NSMutableArray *recentNonces;
 	else
 	{
 		switch (tag) {
+			case HTTP_REQUEST_BODY:
+				[self parsePostBody:data];
+				break;
 			case HTTP_REQUEST_BODY_MULTIPART_HEAD:
 				[self handleMultipartHeader:data];
 				newTag = HTTP_REQUEST_BODY_MULTIPART;
@@ -1141,6 +1144,19 @@ static NSMutableArray *recentNonces;
 		[self replyToHTTPRequest];
 }
 
+/* parse post body for parameters */
+- (void)parsePostBody:(NSData*)data
+{
+	NSString *body = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+	NSArray* paramstr = [body componentsSeparatedByString:@"&"];
+	
+	for (NSString* pair in paramstr)
+	{
+		NSArray* keyvalue = [pair componentsSeparatedByString:@"="];
+		[params setObject:[keyvalue objectAtIndex:1] forKey:[[keyvalue objectAtIndex:0] lowercaseString]];
+	}	
+}
+
 /* parsing head info for multipart body */
 - (void)handleMultipartHeader:(NSData*)body
 {
@@ -1161,7 +1177,7 @@ static NSMutableArray *recentNonces;
 	int length = range.length;
 	const char* deol = "\015\012\015\012";
 	const char *headEnd = strstr(bytes, deol);
-	NSString *bodyHeader = [[NSString alloc] initWithBytes:bytes length:(headEnd - bytes) encoding:NSASCIIStringEncoding];
+	NSString *bodyHeader = [[NSString alloc] initWithBytes:bytes length:(headEnd - bytes) encoding:NSUTF8StringEncoding];
 	NSRange matchedRange = NSMakeRange(NSNotFound, 0);
 	NSRange searchRange = NSMakeRange(0, [bodyHeader length]);
 	NSError *error;

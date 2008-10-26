@@ -71,6 +71,8 @@
 - (void)handleUnknownMethod:(NSString *)method;
 - (void)handleHTTPRequestBody:(NSData*)data tag:(long)tag;
 
+- (void)parsePostBody:(NSData*)data;
+
 - (NSData *)preprocessResponse:(CFHTTPMessageRef)response;
 - (NSData *)preprocessErrorResponse:(CFHTTPMessageRef)response;
 

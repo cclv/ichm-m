@@ -48,8 +48,10 @@
 - (void)handleRequest
 {
 	CFURLRef url = CFHTTPMessageCopyRequestURL(request);
-	NSString *method = [(NSString *)CFHTTPMessageCopyRequestMethod(request) autorelease];
+	NSString *method = (NSString *)CFHTTPMessageCopyRequestMethod(request);
 	NSString* path = [(NSString*)CFURLCopyPath(url) autorelease];
+	NSString *_method = [parameters objectForKey:@"_method"];
+	
 	if ([method isEqualToString:@"GET"])
 	{
 		if (NSOrderedSame == [path caseInsensitiveCompare:@"/files"])
@@ -57,12 +59,37 @@
 		else
 			[self actionShow];
 	}
+	else if (([method isEqualToString:@"POST"]) && _method && [[_method lowercaseString] isEqualToString:@"delete"])
+	{
+		NSArray *segs = [path componentsSeparatedByString:@"/"];
+		if ([segs count] >= 2)
+		{
+			NSString *filename = [segs objectAtIndex:2];
+			[self actionDelete:filename];
+		}
+	}
 	else if (([method isEqualToString:@"POST"]))
 	{
 		[self actionNew];
 	}
 	
 	CFRelease(url);
+	[method release];
+}
+
+- (void)actionDelete:(NSString*)filename
+{
+	NSString* docDir = [NSString stringWithFormat:@"%@/Documents", NSHomeDirectory()];
+	NSString *filePath = [NSString stringWithFormat:@"%@/%@", docDir, filename];
+	NSFileManager *fm = [NSFileManager defaultManager];
+	NSError *error;
+	if(![fm removeItemAtPath:filePath error:&error])
+	{
+		NSLog(@"%@ can not be removed because:%@", filePath, error);
+	}
+	iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate reloadFileList];
+	[connection redirectoTo:@"/"];	
 }
 
 - (void)actionList

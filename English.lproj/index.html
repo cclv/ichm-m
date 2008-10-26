@@ -11,17 +11,19 @@
 	<body>
 		<form action="/files" enctype="multipart/form-data" method="post">
 			<input id="newfile" name="newfile" size="30" type="file" />
-			<input name="commit" type="submit" value="上传" />
+			<input name="commit" type="submit" value="Upload" />
 		</form>
-		<ul id="filelist">
-		</ul>
+		<table>
+			<tbody id="filelist">
+			</tbody>
+		</table>
 		<script type="text/javascript" charset="utf-8">
 		console.log("scripting");
 		$.getJSON("/files",
 		function(data){
 		  console.log(data);
 		  $.each(data, function(i,item){
-		  $("<li>" + item.name + "</li>").appendTo("#filelist");
+		  $("<tr><td>" + item.name + "</td>" + "<td><form action='/files/" + encodeURI(item.name) + "' method='post'><input name='_method' value='delete' type='hidden'/><input name=\"commit\" type=\"submit\" value=\"Del\" /></td>" + "</tr>").appendTo("#filelist");
 		  });
 		});
 		</script>
