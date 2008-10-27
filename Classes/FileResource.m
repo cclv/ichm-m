@@ -85,6 +85,7 @@
 	if ([filelist count] > fileId)
 	{
 		NSString *filename = [filelist objectAtIndex:fileId];
+		[filename retain];
 		NSString *filePath = [NSString stringWithFormat:@"%@/%@", docDir, filename];
 		NSFileManager *fm = [NSFileManager defaultManager];
 		NSError *error;
@@ -92,9 +93,10 @@
 		{
 			NSLog(@"%@ can not be removed because:%@", filePath, error);
 		}
-		[[NSNotificationCenter defaultCenter] postNotificationName:HTTPFileDeletedNotification object:filename];
 
 		[appDelegate reloadFileList];		
+		[[NSNotificationCenter defaultCenter] postNotificationName:HTTPFileDeletedNotification object:filename];
+		[filename release];
 	}
 
 	[connection redirectoTo:@"/"];	
