@@ -36,6 +36,12 @@
 		C393686A0E9CF1D7001EA28D /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39368690E9CF1D7001EA28D /* MainWindow.xib */; };
 		C393686C0E9CF1E1001EA28D /* TableOfContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = C393686B0E9CF1E1001EA28D /* TableOfContent.xib */; };
 		C393686E0E9CF1EB001EA28D /* CHMBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = C393686D0E9CF1EB001EA28D /* CHMBrowser.xib */; };
+		C3BFD1660EB594D800ED86F1 /* titlebg.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BFD1650EB594D800ED86F1 /* titlebg.png */; };
+		C3BFD1810EB5A9DA00ED86F1 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BFD17F0EB5A9DA00ED86F1 /* bg.png */; };
+		C3BFD1820EB5A9DA00ED86F1 /* theadbg.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BFD1800EB5A9DA00ED86F1 /* theadbg.png */; };
+		C3BFD1830EB5A9E200ED86F1 /* bg.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = C3BFD17F0EB5A9DA00ED86F1 /* bg.png */; };
+		C3BFD1840EB5A9E200ED86F1 /* theadbg.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = C3BFD1800EB5A9DA00ED86F1 /* theadbg.png */; };
+		C3BFD1850EB5A9E200ED86F1 /* titlebg.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = C3BFD1650EB594D800ED86F1 /* titlebg.png */; };
 		C3E8820A0EA43DBE00DE82FB /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E882090EA43DBE00DE82FB /* RegexKitLite.m */; };
 		C3E8822D0EA4479300DE82FB /* index.html in CopyFiles */ = {isa = PBXBuildFile; fileRef = C3E8820E0EA4421000DE82FB /* index.html */; };
 		C3EAB8230E9DCC3000268541 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EAB8210E9DCC3000268541 /* right.png */; };
@@ -48,6 +54,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		C3BFD1750EB5952C00ED86F1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = webimages;
+			dstSubfolderSpec = 7;
+			files = (
+				C3BFD1830EB5A9E200ED86F1 /* bg.png in CopyFiles */,
+				C3BFD1840EB5A9E200ED86F1 /* theadbg.png in CopyFiles */,
+				C3BFD1850EB5A9E200ED86F1 /* titlebg.png in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C3E882300EA447BE00DE82FB /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,6 +142,9 @@
 		C39367E60E9CBBA1001EA28D /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/CHMBrowser.xib; sourceTree = "<group>"; };
 		C39367E90E9CBBD3001EA28D /* CHMBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHMBrowserController.h; sourceTree = "<group>"; };
 		C39367EA0E9CBBD3001EA28D /* CHMBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHMBrowserController.m; sourceTree = "<group>"; };
+		C3BFD1650EB594D800ED86F1 /* titlebg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titlebg.png; path = web/titlebg.png; sourceTree = "<group>"; };
+		C3BFD17F0EB5A9DA00ED86F1 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg.png; path = web/bg.png; sourceTree = "<group>"; };
+		C3BFD1800EB5A9DA00ED86F1 /* theadbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = theadbg.png; path = web/theadbg.png; sourceTree = "<group>"; };
 		C3E882080EA43DBE00DE82FB /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		C3E882090EA43DBE00DE82FB /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		C3EAB8210E9DCC3000268541 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = right.png; path = images/right.png; sourceTree = "<group>"; };
@@ -267,6 +288,9 @@
 		C32D58D30EA3AA6D002D02DC /* FileManager */ = {
 			isa = PBXGroup;
 			children = (
+				C3BFD17F0EB5A9DA00ED86F1 /* bg.png */,
+				C3BFD1800EB5A9DA00ED86F1 /* theadbg.png */,
+				C3BFD1650EB594D800ED86F1 /* titlebg.png */,
 				C3F9E5330EB1C05A00DD0D7A /* jquery.js */,
 				C3E8820E0EA4421000DE82FB /* index.html */,
 			);
@@ -332,6 +356,7 @@
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 				C3E882300EA447BE00DE82FB /* CopyFiles */,
 				C3F9E53E0EB1C13500DD0D7A /* CopyFiles */,
+				C3BFD1750EB5952C00ED86F1 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -380,6 +405,9 @@
 				C3EAB82E0E9DDA8300268541 /* Localizable.strings in Resources */,
 				C3EAB9AE0E9E2F0D00268541 /* IndexController.xib in Resources */,
 				C32D58480EA39502002D02DC /* FileManager.xib in Resources */,
+				C3BFD1660EB594D800ED86F1 /* titlebg.png in Resources */,
+				C3BFD1810EB5A9DA00ED86F1 /* bg.png in Resources */,
+				C3BFD1820EB5A9DA00ED86F1 /* theadbg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

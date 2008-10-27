@@ -6,14 +6,36 @@
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<script src="/scripts/jquery.js" type="text/javascript"></script>
 		<title>iChm File Management</title>
+		<style>
+		  * {padding:0;margin:0;}
+			body {margin:0;font: normal 12px Arial, Verdana, Tahoma; color:#333333;background: #F0F0F0 url("images/bg.png") 50% 0 fixed repeat;}
+			#main {width:800px;margin:0 auto;}
+			#header {background: transparent url(images/titlebg.png) repeat-x;border-top: 1px solid #dcdcdc;border-bottom: 1px solid #404040;height:50px;}
+			form.upload {margin:0 20px;margin-top:10px;}
+			table {width:100%;padding:0;border-bottom: 1px solid #fff;}
+			thead {margin:0;padding:0;}
+			th {height:15px;text-align: left;padding-left:20px;border-left:1px solid #999;border-bottom:1px solid #999;color:#303;font-size:.9em;font-weight: normal;background: transparent url(images/theadbg.png) repeat-x;}
+			td.del, th.del {width:8em;}
+			tbody td {padding-left:20px;background-color:#fff;height:20px;border-bottom: 1px solid #ccc;}
+			tr.shadow td{background-color:#ecf3fe;}
+			#footer {height:50px;border-top:1px solid #ccc;margin:0 auto;position:absolute;bottom:0px;width:800px;text-align: center;}
+			#footer .content {border-top: 1px solid #fff;}
+		</style>
 	</head>
 
 	<body>
-		<form action="/files" enctype="multipart/form-data" method="post">
-			<input id="newfile" name="newfile" size="30" type="file" />
-			<input name="commit" type="submit" value="Upload" />
+		<div id='main'>
+		<div id='header'>
+		<form action="/files" enctype="multipart/form-data" method="post" class='upload'>
+			<label>Select file:</label>
+			<input id="newfile" name="newfile" size="40" type="file" />
+			<input name="commit" type="submit" value="Upload" class='button' />
 		</form>
-		<table>
+		</div>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<thead>
+			 <tr><th>Name</th><th class='del'>Delete</th></tr>
+			</thead>
 			<tbody id="filelist">
 			</tbody>
 		</table>
@@ -21,11 +43,21 @@
 		var now = new Date();
 		$.getJSON("/files?"+ now.toString(),
 		function(data){
+		  var shadow = false;
 		  $.each(data, function(i,item){
-		  $("<tr><td>" + item.name + "</td>" + "<td><form action='/files/" + item.id + "' method='post'><input name='_method' value='delete' type='hidden'/><input name=\"commit\" type=\"submit\" value=\"Del\" /></td>" + "</tr>").appendTo("#filelist");
+		    var trclass='';
+		    if (shadow)
+		      trclass= " class='shadow'";
+		  $("<tr" + trclass + "><td>" + item.name + "</td>" + "<td class='del'><form action='/files/" + item.id + "' method='post'><input name='_method' value='delete' type='hidden'/><input name=\"commit\" type=\"submit\" value=\"Delete\" class='button' /></td>" + "</tr>").appendTo("#filelist");
+		    shadow = !shadow;
 		  });
 		});
 		</script>
+		<div id="footer">
+		  <div class='content'>
+		  </div>
+		</div>
+		</div>	   
 	</body>
 
 </html>

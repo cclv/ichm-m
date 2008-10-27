@@ -85,6 +85,13 @@
 		NSLog([NSString stringWithFormat:@"Can not create scripts path: %@", error]);
 		return nil;
 	}	
+	NSString *imagessPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], @"webimages"];
+	destPath = [NSString stringWithFormat:@"%@/images", docroot];
+	if (![manager createSymbolicLinkAtPath:destPath pathContent: imagessPath])
+	{
+		NSLog([NSString stringWithFormat:@"Can not create image path: %@", error]);
+		return nil;
+	}	
 	return docroot;
 }
 
