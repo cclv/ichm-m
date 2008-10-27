@@ -125,7 +125,6 @@
 {
 	if( url ) {
 		NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
-		[req setChmDoc:chmHandle];
 		[req setEncodingName:[chmHandle currentEncodingName]];
 		[webView loadRequest:req];
 	}

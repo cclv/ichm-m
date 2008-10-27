@@ -82,11 +82,6 @@
 
 @implementation NSURLRequest (SpecialProtocol)
 
-- (CHMDocument *)chmDoc
-{
-	return [NSURLProtocol propertyForKey:@"chmdoc" inRequest:self];
-}
-
 - (NSString *)encodingName
 {
 	return [NSURLProtocol propertyForKey:@"encoding" inRequest:self];
@@ -96,11 +91,6 @@
 
 
 @implementation NSMutableURLRequest (SpecialProtocol)
-
-- (void)setChmDoc:(CHMDocument *)doc 
-{
-	[NSURLProtocol setProperty:doc forKey:@"chmdoc" inRequest:self];
-}
 
 - (void)setEncodingName:(NSString *)name
 {

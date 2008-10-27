@@ -86,7 +86,6 @@
 	[browserController loadPath:docPath];
 	
 	[browserController release];
-	[doc release];
 }
 
 
