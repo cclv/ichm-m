@@ -18,10 +18,9 @@
 			</tbody>
 		</table>
 		<script type="text/javascript" charset="utf-8">
-		console.log("scripting");
-		$.getJSON("/files",
+		var now = new Date();
+		$.getJSON("/files?"+ now.toString(),
 		function(data){
-		  console.log(data);
 		  $.each(data, function(i,item){
 		  $("<tr><td>" + item.name + "</td>" + "<td><form action='/files/" + item.id + "' method='post'><input name='_method' value='delete' type='hidden'/><input name=\"commit\" type=\"submit\" value=\"Del\" /></td>" + "</tr>").appendTo("#filelist");
 		  });

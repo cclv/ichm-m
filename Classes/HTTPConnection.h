@@ -27,6 +27,7 @@
 	
 	int numHeaderLines;
 	NSString *requestBoundry;
+	NSString *userAgent;
 	
 	NSString *nonce;
 	int lastNC;

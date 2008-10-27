@@ -82,17 +82,20 @@
 	NSString* docDir = [NSString stringWithFormat:@"%@/Documents", NSHomeDirectory()];
 	iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
 	NSArray *filelist = [appDelegate fileList];
-	NSString *filename = [filelist objectAtIndex:fileId];
-	NSString *filePath = [NSString stringWithFormat:@"%@/%@", docDir, filename];
-	NSFileManager *fm = [NSFileManager defaultManager];
-	NSError *error;
-	if(![fm removeItemAtPath:filePath error:&error])
+	if ([filelist count] > fileId)
 	{
-		NSLog(@"%@ can not be removed because:%@", filePath, error);
+		NSString *filename = [filelist objectAtIndex:fileId];
+		NSString *filePath = [NSString stringWithFormat:@"%@/%@", docDir, filename];
+		NSFileManager *fm = [NSFileManager defaultManager];
+		NSError *error;
+		if(![fm removeItemAtPath:filePath error:&error])
+		{
+			NSLog(@"%@ can not be removed because:%@", filePath, error);
+		}
+		[[NSNotificationCenter defaultCenter] postNotificationName:HTTPFileDeletedNotification object:filename];
+
+		[appDelegate reloadFileList];		
 	}
-	[appDelegate reloadFileList];
-	
-	[[NSNotificationCenter defaultCenter] postNotificationName:HTTPFileDeletedNotification object:filename];
 
 	[connection redirectoTo:@"/"];	
 }

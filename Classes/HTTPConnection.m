@@ -132,6 +132,7 @@ static NSMutableArray *recentNonces;
 		remainBody = nil;
 		tmpUploadFileHandle = nil;
 		requestBoundry = nil;
+		userAgent = nil;
 
 		resource = nil;
 		params = [[NSMutableDictionary alloc] init];
@@ -157,6 +158,7 @@ static NSMutableArray *recentNonces;
 	
 	if(request) CFRelease(request);
 	if(requestBoundry) [requestBoundry release];
+	if(userAgent) [userAgent release];
 	
 	[nonce release];
 	
@@ -1066,14 +1068,14 @@ static NSMutableArray *recentNonces;
 	CFHTTPMessageSetHeaderFieldValue(response, CFSTR("Content-Length"), (CFStringRef)length);
 	NSString* contentType = [NSString stringWithFormat:@"%@; charset=utf-8", mimeType];
 	CFHTTPMessageSetHeaderFieldValue(response, CFSTR("Content-Type"), (CFStringRef)contentType );
+	CFHTTPMessageSetHeaderFieldValue(response, CFSTR("Cache-Control"), CFSTR("private, max-age=0, must-revalidate") );
 
-	NSData *responseData = (NSData *)CFHTTPMessageCopySerializedMessage(response);
+	NSData *responseData = [self preprocessResponse:response];
 	[asyncSocket writeData:responseData withTimeout:WRITE_HEAD_TIMEOUT tag:HTTP_FINAL_RESPONSE];
 	
 	[asyncSocket writeData:[content dataUsingEncoding:NSUTF8StringEncoding] withTimeout:WRITE_BODY_TIMEOUT tag:HTTP_FINAL_RESPONSE];
 	
 	CFRelease(response);
-	[responseData autorelease];
 	
 	// Close connection as soon as the error message is sent
 	[asyncSocket disconnectAfterWriting];
@@ -1171,7 +1173,7 @@ static NSMutableArray *recentNonces;
 		return;
 	}
 	
-	// read head
+	// read head to get file name
 	range = NSMakeRange([requestBoundry length] + [EOL length], [body length]- [requestBoundry length] - [EOL length]);
 	const char* bytes = [[body subdataWithRange:range] bytes];
 	int length = range.length;
@@ -1188,6 +1190,12 @@ static NSMutableArray *recentNonces;
 									  error:&error];
 	
 	NSString *filename = [bodyHeader substringWithRange:matchedRange];
+	if ([userAgent isMatchedByRegex:@"MSIE .* Windows "]
+		&& [filename isMatchedByRegex:@"\\A([a-zA-Z]:\\\\|\\\\\\\\)"])
+	{
+		NSArray *pathSegs = [filename componentsSeparatedByString:@"\\"];
+		filename = [pathSegs lastObject];
+	}
 	
 	matchedRange = [bodyHeader rangeOfRegex:@"Content-Disposition:.* name=\"?([^\\\";]*)\"?"
 									options: RKLCaseless
@@ -1401,6 +1409,12 @@ static NSMutableArray *recentNonces;
 		{
 			NSDictionary* header = (NSDictionary*)CFHTTPMessageCopyAllHeaderFields(request);
 			NSString* lenstr = (NSString*)[header objectForKey:@"Content-Length"];
+			if (nil == userAgent)
+			{
+				userAgent = [header objectForKey:@"User-Agent"];
+				[userAgent retain];
+			}			
+			
 			bodyLength = 0;
 			if (nil != lenstr)
 			{
