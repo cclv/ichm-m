@@ -264,11 +264,13 @@ static CHMDocument *currentDocument = nil;
 	
 	
     [self loadMetadata];
-	[self setupTOCSource];
+	[NSThread detachNewThreadSelector:@selector(setupTOCSource) toTarget:self withObject:NULL];
+	//[self setupTOCSource];
 	return YES;
 }
 
 - (void)setupTOCSource{
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	if (tocPath && [tocPath length] > 0)
 	{
 		NSData * tocData = [self content:tocPath];
@@ -277,7 +279,8 @@ static CHMDocument *currentDocument = nil;
 			[tocSource release];
 		tocSource = newTOC;
 	}
-	
+	[[NSNotificationCenter defaultCenter] postNotificationName:CHMDocumentTOCReady object:nil];
+
 	if (indexPath && [indexPath length] > 0) 
 	{
 		NSData * tocData = [self content:indexPath];
@@ -286,6 +289,8 @@ static CHMDocument *currentDocument = nil;
 			[indexSource release];
 		indexSource = newTOC;
 	}
+	[[NSNotificationCenter defaultCenter] postNotificationName:CHMDocumentIDXReady object:nil];
+	[pool release];
 }
 
 - (LinkItem*)tocItems

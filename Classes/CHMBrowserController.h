@@ -13,6 +13,7 @@
 @interface CHMBrowserController : UIViewController {
 	IBOutlet UIWebView *webView;
 	UISegmentedControl *segmentedControl;
+	UISegmentedControl *rightBarControl;
 	
 	CHMDocument* chmHandle;
 	LinkItem* currentItem;

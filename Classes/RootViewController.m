@@ -170,6 +170,7 @@
 
 
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];	
 	[fileManagerController release];
     [super dealloc];
 }

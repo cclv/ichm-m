@@ -12,6 +12,9 @@ struct chmFile;
 @class LinkItem;
 @class CHMIndex;
 
+#define CHMDocumentTOCReady @"CHMDocumentTOCReady"
+#define CHMDocumentIDXReady @"CHMDocumentIDXReady"
+
 @interface CHMDocument : NSObject {
 	struct chmFile *chmFileHandle;
 	NSString *fileName;

@@ -18,6 +18,8 @@
 
 - (void)resetHistoryNavBar;
 - (NSString*)extractPathFromURL:(NSURL*)url;
+- (void)updateTOCButton;
+- (void)updateIDXButton;
 @end
 
 @implementation CHMBrowserController
@@ -31,6 +33,13 @@
         // Custom initialization
 		chmHandle = chmdoc;
     }
+	
+	// setup notification
+	[[NSNotificationCenter defaultCenter] addObserver:self
+						 selector:@selector(updateTOCButton) name:CHMDocumentTOCReady object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+						 selector:@selector(updateIDXButton) name:CHMDocumentIDXReady object:nil];
+	
     return self;
 }
 
@@ -56,7 +65,7 @@
 	self.navigationItem.titleView = segmentedControl;
 	[self resetHistoryNavBar];
 
-	UISegmentedControl *rightBarControl = [[UISegmentedControl alloc] initWithItems:
+	rightBarControl = [[UISegmentedControl alloc] initWithItems:
 													[NSArray arrayWithObjects:
 													   [UIImage imageNamed:@"toc.png"],
 													   [UIImage imageNamed:@"idx.png"],
@@ -212,8 +221,19 @@
 
 #pragma mark dealloc
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];	
 	[segmentedControl release];
+	[rightBarControl release];
     [super dealloc];
 }
 
+#pragma mark notifications
+- (void)updateTOCButton
+{
+	[rightBarControl setEnabled:[[CHMDocument CurrentDocument] tocSource] != nil forSegmentAtIndex:0];
+}
+- (void)updateIDXButton
+{
+	[rightBarControl setEnabled:[[CHMDocument CurrentDocument] idxItems] != nil forSegmentAtIndex:1];
+}
 @end
