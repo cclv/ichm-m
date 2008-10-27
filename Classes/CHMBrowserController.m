@@ -58,8 +58,8 @@
 
 	UISegmentedControl *rightBarControl = [[UISegmentedControl alloc] initWithItems:
 													[NSArray arrayWithObjects:
-													   NSLocalizedString(@"TOC", @"TOC"),
-													   NSLocalizedString(@"IDX", @"IDX"),
+													   [UIImage imageNamed:@"toc.png"],
+													   [UIImage imageNamed:@"idx.png"],
 													   nil]];
 	[rightBarControl addTarget:self action:@selector(toTocOrIdx:) forControlEvents:UIControlEventValueChanged];
 	rightBarControl.frame = CGRectMake(0, 0, 90, 30);
