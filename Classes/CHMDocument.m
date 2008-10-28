@@ -367,22 +367,18 @@ static CHMDocument *currentDocument = nil;
 			
 			if( !docTitle || ( [docTitle length] == 0 ) ) { 
 				docTitle = readTrimmedString( stringsData, readLong( windowsData, entryOffset + 0x14), encodingName );
-				NSLog(@"STRINGS title: %@", docTitle);
 			}
 			
 			if( !tocPath || ( [tocPath length] == 0 ) ) { 
 				tocPath = readString( stringsData, readLong( windowsData, entryOffset + 0x60 ), encodingName );
-				NSLog(@"STRINGS path of TOC: %@", tocPath);
 			}
 			
 			if( !indexPath || ( [indexPath length] == 0 ) ) { 
 				indexPath = readString( stringsData, readLong( windowsData, entryOffset + 0x64 ), encodingName );
-				NSLog(@"STRINGS path of index file: %@", indexPath);
 			}
 			
 			if( !homePath || ( [homePath length] == 0 ) ) { 
 				homePath = readString( stringsData, readLong( windowsData, entryOffset + 0x68 ), encodingName );
-				NSLog(@"STRINGS path of home: %@", homePath);
 			}
 		}
     }
@@ -400,25 +396,21 @@ static CHMDocument *currentDocument = nil;
 			case 0:
 				if( !tocPath || ( [tocPath length] == 0 ) ) {
 					tocPath = readString( systemData, offset + 4, encodingName );
-                    NSLog( @"SYSTEM Table of contents: %@", tocPath );
 				}
 				break;
 			case 1:
 				if( !indexPath || ( [indexPath length] == 0 ) ) {
 					indexPath = readString( systemData, offset + 4, encodingName );
-                    NSLog( @"SYSTEM Index: %@", indexPath );
 				}
 				break;
 			case 2:
 				if( !homePath || ( [homePath length] == 0 ) ) {
 					homePath = readString( systemData, offset + 4, encodingName );
-                    NSLog( @"SYSTEM Home: %@", homePath );
 				}
 				break;
 			case 3:
 				if( !docTitle || ( [docTitle length] == 0 ) ) {
 					docTitle = readTrimmedString( systemData, offset + 4, encodingName );
-					NSLog( @"SYSTEM Title: %@", docTitle );
 				}
 				break;
 			case 4:
@@ -448,7 +440,6 @@ static CHMDocument *currentDocument = nil;
 						indexPath = path;
 					}
 				}
-				NSLog( @"SYSTEM Table of contents: %@", tocPath );
 				[prefix release];
 			}
 				break;

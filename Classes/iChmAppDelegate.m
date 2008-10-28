@@ -68,14 +68,10 @@ static NSString *filePreferencesIdentity = @"FilePreferences";
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 	// dynamically add a method to UITableViewIndex that lets us move around the index
 	Class tvi = NSClassFromString(@"UITableViewIndex");
-	if ( class_addMethod(tvi, @selector(moveIndexIn), (IMP)tableViewIndexMoveIn, "v@:") ) {
-		NSLog(@"Added method moveIndexIn to UITableViewIndex");
-	} else {
+	if ( !class_addMethod(tvi, @selector(moveIndexIn), (IMP)tableViewIndexMoveIn, "v@:") ) {
 		NSLog(@"Error adding method moveIndexIn to UITableViewIndex");
 	}
-	if ( class_addMethod(tvi, @selector(moveIndexOut), (IMP)tableViewIndexMoveOut, "v@:") ) {
-		NSLog(@"Added method moveIndexIn to UITableViewIndex");
-	} else {
+	if ( !class_addMethod(tvi, @selector(moveIndexOut), (IMP)tableViewIndexMoveOut, "v@:") ) {
 		NSLog(@"Error adding method moveIndexIn to UITableViewIndex");
 	}
 	

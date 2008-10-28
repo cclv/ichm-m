@@ -19,7 +19,6 @@
 	CFURLRef url = CFHTTPMessageCopyRequestURL(request);
 	NSString* fullpath = [(NSString*)CFURLCopyPath(url) autorelease];
 	NSString* path = [[fullpath componentsSeparatedByString:@"/"] objectAtIndex:1];
-	NSLog(path);
 	path = [[path componentsSeparatedByString:@"."] objectAtIndex:0];
 	NSComparisonResult rslt = [path caseInsensitiveCompare:@"files"];
 	CFRelease(url);

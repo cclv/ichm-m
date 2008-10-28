@@ -26,7 +26,6 @@
 - (void)awakeFromNib
 {
 	self.title = NSLocalizedString(@"File List", @"File List");
-	NSLog(@"init file list");
 	[[NSNotificationCenter defaultCenter] addObserver:self
 			 selector:@selector(uploadingFinished:) name:HTTPUploadingFinishedNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
