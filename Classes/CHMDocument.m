@@ -240,6 +240,9 @@ static CHMDocument *currentDocument = nil;
 
 + (CHMDocument*) OpenDocument: (NSString*)filename
 {
+	if (currentDocument && [[currentDocument fileName] isEqualToString:filename])
+		return currentDocument;
+	
 	if (currentDocument != nil)
 		[currentDocument release];
 	currentDocument = [[CHMDocument alloc] initWithFileName:filename];
@@ -291,6 +294,12 @@ static CHMDocument *currentDocument = nil;
 	}
 	[[NSNotificationCenter defaultCenter] postNotificationName:CHMDocumentIDXReady object:nil];
 	[pool release];
+}
+
+- (BOOL)tocIsReady
+{
+	return ((tocPath == nil || [tocPath length] == 0 || tocSource != nil) &&
+			 (indexPath == nil || [indexPath length] == 0 || indexSource != nil));
 }
 
 - (LinkItem*)tocItems

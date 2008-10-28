@@ -47,4 +47,6 @@ struct chmFile;
 - (NSString*)currentEncodingName;
 - (LinkItem*)tocItems;
 - (LinkItem*)idxItems;
+
+- (BOOL)tocIsReady;
 @end

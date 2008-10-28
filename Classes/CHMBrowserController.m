@@ -19,7 +19,6 @@
 - (void)resetHistoryNavBar;
 - (NSString*)extractPathFromURL:(NSURL*)url;
 - (void)updateTOCButton;
-- (void)updateIDXButton;
 @end
 
 @implementation CHMBrowserController
@@ -34,7 +33,8 @@
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(updateTOCButton) name:CHMDocumentTOCReady object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(updateIDXButton) name:CHMDocumentIDXReady object:nil];		
+												 selector:@selector(updateTOCButton) name:CHMDocumentIDXReady object:nil];
+		rightBarControl = nil;
     }
 	
     return self;
@@ -45,6 +45,43 @@
 - (void)loadView {
 }
  */
+
+- (void) updateTOCButton {
+	if (!rightBarControl)
+	{
+		rightBarControl = [[UISegmentedControl alloc] initWithItems:
+														[NSArray arrayWithObjects:
+														   [UIImage imageNamed:@"toc.png"],
+														   [UIImage imageNamed:@"idx.png"],
+														   nil]];
+		[rightBarControl addTarget:self action:@selector(toTocOrIdx:) forControlEvents:UIControlEventValueChanged];
+		rightBarControl.frame = CGRectMake(0, 0, 90, 30);
+		rightBarControl.segmentedControlStyle = UISegmentedControlStyleBar;
+		rightBarControl.momentary = YES;
+		
+		@synchronized(self)
+		{
+			UIBarButtonItem *segmentBarItem = [[[UIBarButtonItem alloc] initWithCustomView:rightBarControl] autorelease];
+			self.navigationItem.rightBarButtonItem = segmentBarItem;
+		}
+	}
+	[rightBarControl setEnabled:[[CHMDocument CurrentDocument] tocSource] != nil forSegmentAtIndex:0];
+	[rightBarControl setEnabled:[[CHMDocument CurrentDocument] idxItems] != nil forSegmentAtIndex:1];
+}
+
+- (void) addLoadingTOCIndicator {
+	@synchronized(self)
+	{
+		if (rightBarControl)
+			return;
+		UIActivityIndicatorView * loadingTOCView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+		UIBarButtonItem *segmentBarItem = [[UIBarButtonItem alloc] initWithCustomView:loadingTOCView];
+		[loadingTOCView startAnimating];
+		self.navigationItem.rightBarButtonItem = segmentBarItem;
+		[loadingTOCView release];
+		[segmentBarItem release];
+	}
+}
 
 // Implement viewDidLoad to do additional setup after loading the view.
 - (void)viewDidLoad {
@@ -62,20 +99,14 @@
 	self.navigationItem.titleView = segmentedControl;
 	[self resetHistoryNavBar];
 
-	rightBarControl = [[UISegmentedControl alloc] initWithItems:
-													[NSArray arrayWithObjects:
-													   [UIImage imageNamed:@"toc.png"],
-													   [UIImage imageNamed:@"idx.png"],
-													   nil]];
-	[rightBarControl addTarget:self action:@selector(toTocOrIdx:) forControlEvents:UIControlEventValueChanged];
-	rightBarControl.frame = CGRectMake(0, 0, 90, 30);
-	rightBarControl.segmentedControlStyle = UISegmentedControlStyleBar;
-	rightBarControl.momentary = YES;
-	[rightBarControl setEnabled:[[CHMDocument CurrentDocument] tocSource] != nil forSegmentAtIndex:0];
-	[rightBarControl setEnabled:[[CHMDocument CurrentDocument] idxItems] != nil forSegmentAtIndex:1];
-	
-	UIBarButtonItem *segmentBarItem = [[[UIBarButtonItem alloc] initWithCustomView:rightBarControl] autorelease];
-	self.navigationItem.rightBarButtonItem = segmentBarItem;
+	CHMDocument * doc = [CHMDocument CurrentDocument];
+	if ([doc tocIsReady]) {
+		[self updateTOCButton];
+	}
+	else
+	{
+		[self addLoadingTOCIndicator];
+	}
 
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
@@ -222,15 +253,5 @@
 	[segmentedControl release];
 	[rightBarControl release];
     [super dealloc];
-}
-
-#pragma mark notifications
-- (void)updateTOCButton
-{
-	[rightBarControl setEnabled:[[CHMDocument CurrentDocument] tocSource] != nil forSegmentAtIndex:0];
-}
-- (void)updateIDXButton
-{
-	[rightBarControl setEnabled:[[CHMDocument CurrentDocument] idxItems] != nil forSegmentAtIndex:1];
 }
 @end
