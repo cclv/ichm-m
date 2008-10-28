@@ -35,6 +35,7 @@
 		C37577520EB76D6E00A85FC6 /* AboutPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C37577510EB76D6E00A85FC6 /* AboutPageController.m */; };
 		C37577A20EB7736500A85FC6 /* rb48.png in Resources */ = {isa = PBXBuildFile; fileRef = C37577A10EB7736500A85FC6 /* rb48.png */; };
 		C37577B20EB776EF00A85FC6 /* credits.plist in Resources */ = {isa = PBXBuildFile; fileRef = C37577B10EB776EF00A85FC6 /* credits.plist */; };
+		C375782F0EB77FFD00A85FC6 /* rb32.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = C37576F30EB7516100A85FC6 /* rb32.png */; };
 		C382A1480EB6D21300F408BD /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = C382A1470EB6D21300F408BD /* home.png */; };
 		C382A1BF0EB7176C00F408BD /* uparrow.png in Resources */ = {isa = PBXBuildFile; fileRef = C382A1BE0EB7176C00F408BD /* uparrow.png */; };
 		C39366820E9C86D9001EA28D /* ITSSProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C39366810E9C86D9001EA28D /* ITSSProtocol.m */; };
@@ -70,6 +71,7 @@
 			dstPath = webimages;
 			dstSubfolderSpec = 7;
 			files = (
+				C375782F0EB77FFD00A85FC6 /* rb32.png in CopyFiles */,
 				C3BFD1830EB5A9E200ED86F1 /* bg.png in CopyFiles */,
 				C3BFD1840EB5A9E200ED86F1 /* theadbg.png in CopyFiles */,
 				C3BFD1850EB5A9E200ED86F1 /* titlebg.png in CopyFiles */,
