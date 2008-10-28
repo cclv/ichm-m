@@ -27,18 +27,15 @@
 @synthesize currentItem;
 
 // Override initWithNibName:bundle: to load the view using a nib file then perform additional customization that is not appropriate for viewDidLoad.
--(id)initWithCHMDocument:(CHMDocument*)chmdoc
+-(id)init
 {
     if (self = [super initWithNibName:@"CHMBrowser" bundle:nil]) {
-        // Custom initialization
-		chmHandle = chmdoc;
+		// setup notification
+		[[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(updateTOCButton) name:CHMDocumentTOCReady object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(updateIDXButton) name:CHMDocumentIDXReady object:nil];		
     }
-	
-	// setup notification
-	[[NSNotificationCenter defaultCenter] addObserver:self
-						 selector:@selector(updateTOCButton) name:CHMDocumentTOCReady object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-						 selector:@selector(updateIDXButton) name:CHMDocumentIDXReady object:nil];
 	
     return self;
 }
@@ -124,8 +121,9 @@
 - (void)loadURL:(NSURL *)url
 {
 	if( url ) {
+		CHMDocument *doc = [CHMDocument CurrentDocument];
 		NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
-		[req setEncodingName:[chmHandle currentEncodingName]];
+		[req setEncodingName:[doc currentEncodingName]];
 		[webView loadRequest:req];
 	}
 }

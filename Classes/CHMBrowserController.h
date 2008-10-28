@@ -15,13 +15,12 @@
 	UISegmentedControl *segmentedControl;
 	UISegmentedControl *rightBarControl;
 	
-	CHMDocument* chmHandle;
 	LinkItem* currentItem;
 }
 
 @property (readonly) LinkItem* currentItem;
 
--(id)initWithCHMDocument:(CHMDocument*)chmdoc;
+-(id)init;
 
 - (void)loadURL:(NSURL *)url;
 - (void)loadPath:(NSString *)path;

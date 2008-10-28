@@ -69,10 +69,7 @@
     // Navigation logic -- create and push a new view controller
 	NSString* filename = [[self fileList] objectAtIndex:indexPath.row];
 	CHMDocument *doc = [CHMDocument OpenDocument:filename];
-	//TableOfContentController *tocController = [[TableOfContentController alloc] initWithCHMDocument:doc];
-	//[[self navigationController] pushViewController:tocController animated:YES];
-	//[tocController release];
-	CHMBrowserController *browserController = [[CHMBrowserController alloc] initWithCHMDocument:doc];
+	CHMBrowserController *browserController = [[CHMBrowserController alloc] init];
 	[[self navigationController] pushViewController:browserController animated:YES];
 	
 	iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
