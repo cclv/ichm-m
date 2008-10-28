@@ -25,7 +25,7 @@
 #pragma mark init
 - (void)awakeFromNib
 {
-	self.title = NSLocalizedString(@"File List", @"File List");
+	self.title = NSLocalizedString(@"iChm", @"iChm");
 	[[NSNotificationCenter defaultCenter] addObserver:self
 			 selector:@selector(uploadingFinished:) name:HTTPUploadingFinishedNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -63,7 +63,7 @@
     // Set up the cell
 	if ([[self fileList] count] == 0)
 	{
-		cell.text = NSLocalizedString(@"Start File Manager", @"Start File Manager");
+		cell.text = NSLocalizedString(@"Start File Manager to upload files", @"Start File Manager to upload files");
 		cell.accessoryType = UITableViewCellSeparatorStyleNone;
 		cell.image = [UIImage imageNamed:@"uparrow.png"];
 		cell.font = [UIFont italicSystemFontOfSize:16];

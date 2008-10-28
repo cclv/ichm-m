@@ -30,6 +30,7 @@
 		C32D580F0EA391A8002D02DC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32D580E0EA391A8002D02DC /* CFNetwork.framework */; };
 		C32D58480EA39502002D02DC /* FileManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32D58470EA39502002D02DC /* FileManager.xib */; };
 		C32D584C0EA39532002D02DC /* FileManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32D584B0EA39532002D02DC /* FileManagerController.m */; };
+		C37576F40EB7516100A85FC6 /* rb32.png in Resources */ = {isa = PBXBuildFile; fileRef = C37576F30EB7516100A85FC6 /* rb32.png */; };
 		C382A1480EB6D21300F408BD /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = C382A1470EB6D21300F408BD /* home.png */; };
 		C382A1BF0EB7176C00F408BD /* uparrow.png in Resources */ = {isa = PBXBuildFile; fileRef = C382A1BE0EB7176C00F408BD /* uparrow.png */; };
 		C39366820E9C86D9001EA28D /* ITSSProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C39366810E9C86D9001EA28D /* ITSSProtocol.m */; };
@@ -140,6 +141,7 @@
 		C32D584A0EA39532002D02DC /* FileManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerController.h; sourceTree = "<group>"; };
 		C32D584B0EA39532002D02DC /* FileManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManagerController.m; sourceTree = "<group>"; };
 		C32D58D40EA3AA83002D02DC /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = English; path = English.lproj/index.html; sourceTree = "<group>"; };
+		C37576F30EB7516100A85FC6 /* rb32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rb32.png; path = images/rb32.png; sourceTree = "<group>"; };
 		C382A1470EB6D21300F408BD /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home.png; path = images/home.png; sourceTree = "<group>"; };
 		C382A1BE0EB7176C00F408BD /* uparrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = uparrow.png; path = images/uparrow.png; sourceTree = "<group>"; };
 		C39366800E9C86D9001EA28D /* ITSSProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITSSProtocol.h; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 		C3EAB7D80E9DC59E00268541 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C37576F30EB7516100A85FC6 /* rb32.png */,
 				C382A1BE0EB7176C00F408BD /* uparrow.png */,
 				C382A1470EB6D21300F408BD /* home.png */,
 				C31E6E4A0EB601D600A685CA /* idx.png */,
@@ -428,6 +431,7 @@
 				C31E6E4B0EB601D600A685CA /* idx.png in Resources */,
 				C382A1480EB6D21300F408BD /* home.png in Resources */,
 				C382A1BF0EB7176C00F408BD /* uparrow.png in Resources */,
+				C37576F40EB7516100A85FC6 /* rb32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

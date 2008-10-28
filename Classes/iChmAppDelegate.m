@@ -34,10 +34,7 @@ static NSString *filePreferencesIdentity = @"FilePreferences";
 	NSString *pname;
 	while (pname = [direnum nextObject])
 	{
-		if ([[pname pathExtension] isEqualToString:@"chm"])
-		{
-			[fileList addObject:pname];
-		}
+		[fileList addObject:pname];
 	}
 }
 

@@ -14,6 +14,7 @@
 	IBOutlet UITextView *fileNameLabel;
 	IBOutlet UIProgressView *uploadProgress;
 	IBOutlet UIView *uploadNoticeView;
+	IBOutlet UIView *headerView;
 	
 	BOOL serverIsRunning;
 }

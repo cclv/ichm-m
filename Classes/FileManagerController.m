@@ -46,16 +46,17 @@
 			 selector:@selector(uploadingFinished:) name:HTTPUploadingFinishedNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
 			 selector:@selector(fileDeleted:) name:HTTPFileDeletedNotification object:nil];
+
+	// setup view header
+	self.tableView.tableHeaderView = headerView;
+	[headerView setBackgroundColor:[UIColor clearColor]];
 	
 	// setup view footer
-	CGRect newFrame = CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, 300);
 	[fileNameLabel setText:@""];
 	fileNameLabel.font = [UIFont systemFontOfSize:14];
-	uploadNoticeView.backgroundColor = [UIColor clearColor];
-	uploadNoticeView.frame = newFrame;
 	[uploadProgress setHidden:YES];
+	uploadNoticeView.backgroundColor = [UIColor clearColor];
 	self.tableView.tableFooterView = uploadNoticeView;
-		
 	return self;
 }
 
@@ -119,7 +120,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return 3;
 }
 
 
@@ -146,12 +147,18 @@
 		cell.textAlignment = UITextAlignmentCenter;
 		cell.font = [UIFont boldSystemFontOfSize:20];
 	}
+	else if (indexPath.row == 2)
+	{
+		cell.text = NSLocalizedString(@"for uploading and deleting.",@"for uploading and deleting.");
+	}
     return cell;
 }
 
+/*
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	return NSLocalizedString(@"Service is running...",@"Service is running...");
 }
+ */
 /*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
