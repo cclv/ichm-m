@@ -88,6 +88,7 @@
 		cell.font = [UIFont systemFontOfSize:18];
 		cell.indentationLevel = 2;
 	}
+	cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
