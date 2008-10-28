@@ -55,7 +55,7 @@
 														   [UIImage imageNamed:@"idx.png"],
 														   nil]];
 		[rightBarControl addTarget:self action:@selector(toTocOrIdx:) forControlEvents:UIControlEventValueChanged];
-		rightBarControl.frame = CGRectMake(0, 0, 90, 30);
+		rightBarControl.frame = CGRectMake(0, 0, 80, 30);
 		rightBarControl.segmentedControlStyle = UISegmentedControlStyleBar;
 		rightBarControl.momentary = YES;
 		
@@ -89,10 +89,11 @@
 	segmentedControl = [[UISegmentedControl alloc] initWithItems:
 											 [NSArray arrayWithObjects:
 											  [UIImage imageNamed:@"left.png"],
+											  [UIImage imageNamed:@"home.png"],
 											  [UIImage imageNamed:@"right.png"],
 											  nil]];
 	[segmentedControl addTarget:self action:@selector(navHistory:) forControlEvents:UIControlEventValueChanged];
-	segmentedControl.frame = CGRectMake(0, 0, 90, 30);
+	segmentedControl.frame = CGRectMake(0, 0, 120, 30);
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	segmentedControl.momentary = YES;
 	
@@ -134,7 +135,7 @@
 - (void)resetHistoryNavBar
 {
 	[segmentedControl setEnabled:[webView canGoBack] forSegmentAtIndex:0];
-	[segmentedControl setEnabled:[webView canGoForward] forSegmentAtIndex:1];
+	[segmentedControl setEnabled:[webView canGoForward] forSegmentAtIndex:2];
 }
 
 - (NSString*)extractPathFromURL:(NSURL*)url
@@ -177,6 +178,9 @@
 			[webView goBack];
 			break;
 		case 1:
+			[self loadPath:[[CHMDocument CurrentDocument] homePath]];
+			break;
+		case 2:
 			[webView goForward];
 			break;
 	}
