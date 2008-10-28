@@ -57,6 +57,7 @@
 	[uploadProgress setHidden:YES];
 	uploadNoticeView.backgroundColor = [UIColor clearColor];
 	self.tableView.tableFooterView = uploadNoticeView;
+	
 	return self;
 }
 

@@ -14,6 +14,8 @@
 }
 
 - (IBAction)startFileManager:(id)sender;
+- (IBAction)aboutPage:(id)sender;
+
 - (void)uploadingFinished:(NSNotification*)notification;
 - (void)fileDeleted:(NSNotification*)notification;
 @end

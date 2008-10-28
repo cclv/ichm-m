@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>Developed By:</string>
+		<key>name</key>
+		<string>Robin Lu</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Application Icon:</string>
+		<key>name</key>
+		<string>Fasticon.com</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>CHMLIB:</string>
+		<key>name</key>
+		<string>Jed Wing</string>
+	</dict>
+</array>
+</plist>

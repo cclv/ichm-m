@@ -13,6 +13,7 @@
 #import "CHMBrowserController.h"
 #import "FileManagerController.h"
 #import "HTTPServer.h"
+#import "AboutPageController.h"
 
 @interface RootViewController (Private)
 
@@ -31,6 +32,13 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self
 			 selector:@selector(fileDeleted:) name:HTTPFileDeletedNotification object:nil];
 	fileManagerController = nil;
+	
+	// about page
+	UIButton* aboutViewButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+	[aboutViewButton addTarget:self action:@selector(aboutPage:) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *aboutButton = [[UIBarButtonItem alloc] initWithCustomView:aboutViewButton];
+	self.navigationItem.rightBarButtonItem = aboutButton;
+	[aboutViewButton release];
 }
 
 - (NSArray*) fileList
@@ -80,7 +88,7 @@
 
 
 - (void) launchBrowserForFile: (NSString *) filename  {
-  CHMDocument *doc = [CHMDocument OpenDocument:filename];
+    CHMDocument *doc = [CHMDocument OpenDocument:filename];
 	CHMBrowserController *browserController = [[CHMBrowserController alloc] init];
 	[[self navigationController] pushViewController:browserController animated:YES];
 	
@@ -208,6 +216,13 @@
 	if (nil == fileManagerController)
 		fileManagerController = [[FileManagerController alloc] init];
 	[self.navigationController pushViewController:fileManagerController animated:YES];
+}
+
+- (IBAction)aboutPage:(id)sender
+{
+	AboutPageController *aboutPageController = [[AboutPageController alloc] init];
+	[[self navigationController] pushViewController:aboutPageController animated:YES];
+
 }
 
 #pragma mark notification
