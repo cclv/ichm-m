@@ -65,10 +65,8 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic -- create and push a new view controller
-	NSString* filename = [[self fileList] objectAtIndex:indexPath.row];
-	CHMDocument *doc = [CHMDocument OpenDocument:filename];
+- (void) launchBrowserForFile: (NSString *) filename  {
+  CHMDocument *doc = [CHMDocument OpenDocument:filename];
 	CHMBrowserController *browserController = [[CHMBrowserController alloc] init];
 	[[self navigationController] pushViewController:browserController animated:YES];
 	
@@ -82,6 +80,14 @@
 	[browserController loadPath:docPath];
 	
 	[browserController release];
+
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Navigation logic -- create and push a new view controller
+	NSString* filename = [[self fileList] objectAtIndex:indexPath.row];
+	[self launchBrowserForFile: filename];
+
 }
 
 
@@ -138,11 +144,20 @@
     [super viewWillAppear:animated];
 }
 */
-/*
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+	
+	// restore latest page
+	NSString *key = @"last open file";
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSString* filename = [defaults stringForKey:key];
+	if (filename && [[self fileList] indexOfObject:filename] != NSNotFound)
+	{
+		[self launchBrowserForFile:filename];
+	}
+	[defaults removeObjectForKey:key];
 }
-*/
 /*
 - (void)viewWillDisappear:(BOOL)animated {
 }

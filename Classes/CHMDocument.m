@@ -515,6 +515,7 @@ static CHMDocument *currentDocument = nil;
 
 #pragma mark dealloc
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];	
 	[fileName release];
 	[tocSource release];
 	[indexSource release];

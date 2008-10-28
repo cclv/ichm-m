@@ -19,6 +19,7 @@
 - (void)resetHistoryNavBar;
 - (NSString*)extractPathFromURL:(NSURL*)url;
 - (void)updateTOCButton;
+- (void)willTerminate;
 @end
 
 @implementation CHMBrowserController
@@ -34,6 +35,8 @@
 												 selector:@selector(updateTOCButton) name:CHMDocumentTOCReady object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(updateTOCButton) name:CHMDocumentIDXReady object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(willTerminate) name:UIApplicationWillTerminateNotification object:nil];
 		rightBarControl = nil;
     }
 	
@@ -257,5 +260,13 @@
 	[segmentedControl release];
 	[rightBarControl release];
     [super dealloc];
+}
+
+- (void)willTerminate
+{
+	// Save data if appropriate
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setObject:[CHMDocument CurrentDocument].fileName forKey:@"last open file"];
+	[defaults synchronize];
 }
 @end
