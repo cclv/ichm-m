@@ -1745,7 +1745,7 @@ Failed:;
 **/
 - (void)scheduleDequeueRead
 {
-	[self performSelector:@selector(maybeDequeueRead) withObject:nil afterDelay:0];
+	[self performSelector:@selector(maybeDequeueRead) withObject:nil afterDelay:0.01];
 }
 
 /**

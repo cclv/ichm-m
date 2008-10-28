@@ -48,13 +48,14 @@
 			 selector:@selector(fileDeleted:) name:HTTPFileDeletedNotification object:nil];
 	
 	// setup view footer
-	CGRect newFrame = CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, uploadNoticeView.frame.size.height);
+	CGRect newFrame = CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, 300);
 	[fileNameLabel setText:@""];
+	fileNameLabel.font = [UIFont systemFontOfSize:14];
 	uploadNoticeView.backgroundColor = [UIColor clearColor];
 	uploadNoticeView.frame = newFrame;
 	[uploadProgress setHidden:YES];
 	self.tableView.tableFooterView = uploadNoticeView;
-	
+		
 	return self;
 }
 
@@ -130,9 +131,10 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
+	cell.selectionStyle = UITableViewCellSelectionStyleNone;
     // Configure the cell
 	if (indexPath.row == 0)
-		cell.text =  NSLocalizedString(@"Use your browser to connect to:",@"Use your browser to connect to:");
+		cell.text =  NSLocalizedString(@"Use web browser to connect to:",@"Use web browser to connect to:");
 	else if (indexPath.row == 1)
 	{
 		if ([httpServer port] == 80)
@@ -195,7 +197,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 }
-*/
+ */
 /*
 - (void)viewWillDisappear:(BOOL)animated {
 }
@@ -246,7 +248,7 @@
 		return;
 	[uploadProgress setProgress:1.0];
 	[uploadProgress setHidden:YES];
-	[fileNameLabel setText:[NSString stringWithFormat:@"%@ %@", filename, NSLocalizedString(@"uploaded",@"uploaded")]];
+	[fileNameLabel setText:[NSString stringWithFormat:@"%@ %@", filename, NSLocalizedString(@"uploaded.",@"uploaded.")]];
 }
 
 - (void)fileDeleted:(NSNotification*)notification
@@ -256,7 +258,7 @@
 		return;
 	[uploadProgress setProgress:1.0];
 	[uploadProgress setHidden:YES];
-	[fileNameLabel setText:[NSString stringWithFormat:@"%@ %@", filename, NSLocalizedString(@"deleted",@"deleted")]];	
+	[fileNameLabel setText: [NSString stringWithFormat:@"%@ %@", filename, NSLocalizedString(@"deleted.",@"deleted.")]];
 }
 @end
 

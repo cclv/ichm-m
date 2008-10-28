@@ -11,7 +11,7 @@
 
 @interface FileManagerController : UITableViewController {
 	HTTPServer *httpServer;
-	IBOutlet UILabel *fileNameLabel;
+	IBOutlet UITextView *fileNameLabel;
 	IBOutlet UIProgressView *uploadProgress;
 	IBOutlet UIView *uploadNoticeView;
 	

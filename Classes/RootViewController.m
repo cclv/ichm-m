@@ -45,7 +45,10 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[self fileList] count];
+	if ([[self fileList] count] == 0)
+		return 1;
+	else
+		return [[self fileList] count];
 }
 
 
@@ -57,10 +60,21 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
-    
     // Set up the cell
-	cell.text = [[self fileList] objectAtIndex:indexPath.row];
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	if ([[self fileList] count] == 0)
+	{
+		cell.text = NSLocalizedString(@"Start File Manager", @"Start File Manager");
+		cell.accessoryType = UITableViewCellSeparatorStyleNone;
+		cell.image = [UIImage imageNamed:@"uparrow.png"];
+		cell.font = [UIFont italicSystemFontOfSize:16];
+	}	
+	else
+	{
+		cell.text = [[self fileList] objectAtIndex:indexPath.row];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.image = nil;
+		cell.font = [UIFont boldSystemFontOfSize:20];
+	}
     return cell;
 }
 
@@ -84,6 +98,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if ([[self fileList] count] == 0)
+		return;
+	
     // Navigation logic -- create and push a new view controller
 	NSString* filename = [[self fileList] objectAtIndex:indexPath.row];
 	[self launchBrowserForFile: filename];
