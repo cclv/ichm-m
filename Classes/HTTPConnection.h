@@ -71,6 +71,7 @@
 - (void)handleInvalidRequest:(NSData *)data;
 - (void)handleUnknownMethod:(NSString *)method;
 - (void)handleHTTPRequestBody:(NSData*)data tag:(long)tag;
+- (void)handleResponse:(NSObject<HTTPResponse> *)rsp method:(NSString*)method;
 
 - (void)parsePostBody:(NSData*)data;
 

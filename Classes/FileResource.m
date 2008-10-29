@@ -11,6 +11,7 @@
 #import "HTTPConnection.h"
 #import "HTTPServer.h"
 #import "iChmAppDelegate.h"
+#import "HTTPResponse.h"
 
 @implementation FileResource
 
@@ -56,15 +57,22 @@
 		if (NSOrderedSame == [path caseInsensitiveCompare:@"/files"])
 			[self actionList];
 		else
-			[self actionShow];
+		{
+			NSArray *segs = [path componentsSeparatedByString:@"/"];
+			if ([segs count] >= 2)
+			{
+				NSString* fileName = [segs objectAtIndex:2];
+				[self actionShow:fileName];
+			}			
+		}
 	}
 	else if (([method isEqualToString:@"POST"]) && _method && [[_method lowercaseString] isEqualToString:@"delete"])
 	{
 		NSArray *segs = [path componentsSeparatedByString:@"/"];
 		if ([segs count] >= 2)
 		{
-			int fileId = [[segs objectAtIndex:2] intValue] ;
-			[self actionDelete:fileId];
+			NSString* fileName = [segs objectAtIndex:2];
+			[self actionDelete:fileName];
 		}
 	}
 	else if (([method isEqualToString:@"POST"]))
@@ -76,26 +84,21 @@
 	[method release];
 }
 
-- (void)actionDelete:(int)fileId
+- (void)actionDelete:(NSString*)fileName
 {
 	NSString* docDir = [NSString stringWithFormat:@"%@/Documents", NSHomeDirectory()];
-	iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
-	NSArray *filelist = [appDelegate fileList];
-	if ([filelist count] > fileId)
+	NSURL *baseURL = [NSURL fileURLWithPath:docDir];
+	NSURL *fileURL = [NSURL URLWithString:fileName relativeToURL:baseURL];
+	NSString* filePath = [fileURL path];
+	NSFileManager *fm = [NSFileManager defaultManager];
+	NSError *error;
+	if(![fm removeItemAtPath:filePath error:&error])
 	{
-		NSString *filename = [filelist objectAtIndex:fileId];
-		[filename retain];
-		NSString *filePath = [NSString stringWithFormat:@"%@/%@", docDir, filename];
-		NSFileManager *fm = [NSFileManager defaultManager];
-		NSError *error;
-		if(![fm removeItemAtPath:filePath error:&error])
-		{
-			NSLog(@"%@ can not be removed because:%@", filePath, error);
-		}
-
-		[appDelegate reloadFileList];		
-		[[NSNotificationCenter defaultCenter] postNotificationName:HTTPFileDeletedNotification object:filename];
-		[filename release];
+		NSLog(@"%@ can not be removed because:%@", filePath, error);
+	}
+	else
+	{
+		[[NSNotificationCenter defaultCenter] postNotificationName:HTTPFileDeletedNotification object:[filePath lastPathComponent]];
 	}
 
 	[connection redirectoTo:@"/"];	
@@ -126,8 +129,15 @@
 	[output release];
 }
 
-- (void)actionShow
+- (void)actionShow:(NSString*)fileName
 {
+	NSString* docDir = [NSString stringWithFormat:@"%@/Documents", NSHomeDirectory()];
+	NSURL *baseURL = [NSURL fileURLWithPath:docDir];
+	NSURL *fileURL = [NSURL URLWithString:fileName relativeToURL:baseURL];
+	NSString* filePath = [fileURL path];
+	
+	HTTPFileResponse* response = [[[HTTPFileResponse alloc] initWithFilePath:filePath] autorelease];
+	[connection handleResponse:response method:@"GET"];
 }
 
 - (void)actionNew
@@ -140,8 +150,6 @@
 	NSError *error;
 	[fm moveItemAtPath:tmpfile toPath:filePath error:&error];
 	
-	iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
-	[appDelegate reloadFileList];
 	[[NSNotificationCenter defaultCenter] postNotificationName:HTTPUploadingFinishedNotification object:filename];
 
 	[connection redirectoTo:@"/"];

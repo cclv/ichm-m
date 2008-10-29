@@ -654,8 +654,13 @@ static NSMutableArray *recentNonces;
 		return;
 	}
 	
+	[self handleResponse:(NSObject<HTTPResponse> *)[self httpResponseForURI:[uri relativeString]] method:method ];
+}
+
+- (void)handleResponse:(NSObject<HTTPResponse> *)rsp method:(NSString*)method
+{
 	// Respond properly to HTTP 'GET' and 'HEAD' commands
-	httpResponse = [[self httpResponseForURI:[uri relativeString]] retain];
+	httpResponse = [rsp retain];
 	
 	UInt64 contentLength = [httpResponse contentLength];
 	
@@ -1156,7 +1161,8 @@ static NSMutableArray *recentNonces;
 	{
 		NSArray* keyvalue = [pair componentsSeparatedByString:@"="];
 		[params setObject:[keyvalue objectAtIndex:1] forKey:[[keyvalue objectAtIndex:0] lowercaseString]];
-	}	
+	}
+	[body release];
 }
 
 /* parsing head info for multipart body */

@@ -8,7 +8,7 @@
 		<title>iChm File Management</title>
 		<style>
 		  * {padding:0;margin:0;}
-			body {margin:0;font: normal 12px Arial, Verdana, Tahoma; color:#333333;background: #F0F0F0 url("images/bg.png") 50% 0 fixed repeat;}
+			body {margin:0;font: normal 12px Arial, Verdana, Tahoma; color:#333;background: #F0F0F0 url("images/bg.png") 50% 0 fixed repeat;}
 			#main {width:800px;margin:0 auto;}
 			#header {background: transparent url(images/titlebg.png) repeat-x;border-top: 1px solid #dcdcdc;border-bottom: 1px solid #404040;height:50px;}
 			form.upload {margin-left:12px;padding-left:48px;padding-top:8px;margin-top:10px;background:transparent url(/images/rb32.png) no-repeat;height:32px;}
@@ -18,6 +18,7 @@
 			td.del, th.del {width:8em;}
 			tbody td {padding-left:20px;background-color:#fff;height:20px;border-bottom: 1px solid #ccc;}
 			tr.shadow td{background-color:#ecf3fe;}
+			a.file {text-decoration:none;color:#333;}
 			#footer {height:50px;border-top:1px solid #ccc;margin:0 auto;position:absolute;bottom:0px;width:800px;text-align: center;}
 			#footer .content {border-top: 1px solid #fff;}
 		</style>
@@ -48,7 +49,7 @@
 		    var trclass='';
 		    if (shadow)
 		      trclass= " class='shadow'";
-		  $("<tr" + trclass + "><td>" + item.name + "</td>" + "<td class='del'><form action='/files/" + item.id + "' method='post'><input name='_method' value='delete' type='hidden'/><input name=\"commit\" type=\"submit\" value=\"Delete\" class='button' /></td>" + "</tr>").appendTo("#filelist");
+		  $("<tr" + trclass + "><td><a href='/files/" + item.name + "' class='file'>" + item.name + "</a></td>" + "<td class='del'><form action='/files/" + encodeURI(item.name) + "' method='post'><input name='_method' value='delete' type='hidden'/><input name=\"commit\" type=\"submit\" value=\"Delete\" class='button' /></td>" + "</tr>").appendTo("#filelist");
 		    shadow = !shadow;
 		  });
 		});

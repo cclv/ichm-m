@@ -28,9 +28,9 @@
 {
 	self.title = NSLocalizedString(@"iChm", @"iChm");
 	[[NSNotificationCenter defaultCenter] addObserver:self
-			 selector:@selector(uploadingFinished:) name:HTTPUploadingFinishedNotification object:nil];
+			 selector:@selector(updateFilelist:) name:HTTPUploadingFinishedNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
-			 selector:@selector(fileDeleted:) name:HTTPFileDeletedNotification object:nil];
+			 selector:@selector(updateFilelist:) name:HTTPFileDeletedNotification object:nil];
 	fileManagerController = nil;
 	
 	// about page
@@ -226,13 +226,10 @@
 }
 
 #pragma mark notification
-- (void)uploadingFinished:(NSNotification*)notification
+- (void)updateFilelist:(NSNotification*)notification
 {
-	[self.tableView reloadData];
-}
-
-- (void)fileDeleted:(NSNotification*)notification
-{
+	iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate reloadFileList];
 	[self.tableView reloadData];
 }
 @end
