@@ -30,6 +30,7 @@
 		C32D580F0EA391A8002D02DC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32D580E0EA391A8002D02DC /* CFNetwork.framework */; };
 		C32D58480EA39502002D02DC /* FileManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32D58470EA39502002D02DC /* FileManager.xib */; };
 		C32D584C0EA39532002D02DC /* FileManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32D584B0EA39532002D02DC /* FileManagerController.m */; };
+		C3576D6B0EB97218001BF046 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3576D6A0EB97218001BF046 /* Entitlements.plist */; };
 		C37576F40EB7516100A85FC6 /* rb32.png in Resources */ = {isa = PBXBuildFile; fileRef = C37576F30EB7516100A85FC6 /* rb32.png */; };
 		C37577490EB7695900A85FC6 /* about.xib in Resources */ = {isa = PBXBuildFile; fileRef = C37577480EB7695900A85FC6 /* about.xib */; };
 		C37577520EB76D6E00A85FC6 /* AboutPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C37577510EB76D6E00A85FC6 /* AboutPageController.m */; };
@@ -147,6 +148,7 @@
 		C32D584A0EA39532002D02DC /* FileManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerController.h; sourceTree = "<group>"; };
 		C32D584B0EA39532002D02DC /* FileManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManagerController.m; sourceTree = "<group>"; };
 		C32D58D40EA3AA83002D02DC /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = English; path = English.lproj/index.html; sourceTree = "<group>"; };
+		C3576D6A0EB97218001BF046 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		C37576F30EB7516100A85FC6 /* rb32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rb32.png; path = images/rb32.png; sourceTree = "<group>"; };
 		C37577460EB7694800A85FC6 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = Classes/English.lproj/about.xib; sourceTree = "<group>"; };
 		C37577500EB76D6E00A85FC6 /* AboutPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutPageController.h; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				C3576D6A0EB97218001BF046 /* Entitlements.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				C37577490EB7695900A85FC6 /* about.xib in Resources */,
 				C37577A20EB7736500A85FC6 /* rb48.png in Resources */,
 				C37577B20EB776EF00A85FC6 /* credits.plist in Resources */,
+				C3576D6B0EB97218001BF046 /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,7 +607,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robin Lu";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -628,6 +632,38 @@
 			};
 			name = Release;
 		};
+		C3F56AA00EB96D64007FA09E /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robin Lu";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E2D7C15A-21C7-41C7-908A-800E93EE262F";
+				SDKROOT = iphoneos2.1;
+			};
+			name = Distribution;
+		};
+		C3F56AA10EB96D64007FA09E /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robin Lu";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = iChm_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_NAME = iChm;
+				PROVISIONING_PROFILE = DefaultProfileUuid;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E2D7C15A-21C7-41C7-908A-800E93EE262F";
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -636,6 +672,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				C3F56AA10EB96D64007FA09E /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -645,6 +682,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				C3F56AA00EB96D64007FA09E /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
