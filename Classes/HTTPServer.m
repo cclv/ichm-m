@@ -1,5 +1,6 @@
 #include <netdb.h>
 #include <arpa/inet.h>
+#include <ifaddrs.h>
 #import "AsyncSocket.h"
 #import "HTTPServer.h"
 #import "HTTPConnection.h"
@@ -208,26 +209,30 @@
 
 - (NSString*)hostName
 {
-	char baseHostName[255]; 
-	gethostname(baseHostName, 255); 
-	char hn[255]; 
-#if TARGET_IPHONE_SIMULATOR == 0
-	// This adjusts for iPhone by adding .local to the host name 
-	sprintf(hn, "%s.local", baseHostName); 
-#else
-	sprintf(hn, "%s", baseHostName); 	
-#endif
-	struct hostent *host = gethostbyname(hn); 
-	if (host == NULL) 
-	{ 
-		herror("resolv"); 
-		return NULL; 
-	} 
-	else { 
-		struct in_addr **list = (struct in_addr **)host->h_addr_list; 
-		return [NSString stringWithCString:inet_ntoa(*list[0])]; 
-	} 
-	return NULL; 	
+	struct ifaddrs *addrs;
+	const struct ifaddrs *cursor;
+	int error;
+	error = getifaddrs(&addrs);
+	NSString *hostname = nil;
+	
+	if (error)
+	{
+		NSLog(@"%@", gai_strerror(error));
+	}
+	for (cursor = addrs; cursor; cursor = cursor->ifa_next)
+	{
+		if (cursor->ifa_addr->sa_family == AF_INET)
+		{
+			if([@"en0" compare:[NSString stringWithUTF8String:cursor->ifa_name]] == NSOrderedSame)
+			{
+				hostname = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)cursor->ifa_addr)->sin_addr)];
+				NSLog(@"hostname:%@",hostname);
+				break;
+			}
+		}
+	}
+	freeifaddrs(addrs);
+	return hostname;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
