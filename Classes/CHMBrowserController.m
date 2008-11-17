@@ -259,6 +259,8 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];	
 	[segmentedControl release];
 	[rightBarControl release];
+	[webView stopLoading];
+	webView.delegate = nil;
     [super dealloc];
 }
 
