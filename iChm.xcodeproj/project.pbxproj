@@ -34,11 +34,11 @@
 		C37576F40EB7516100A85FC6 /* rb32.png in Resources */ = {isa = PBXBuildFile; fileRef = C37576F30EB7516100A85FC6 /* rb32.png */; };
 		C37577490EB7695900A85FC6 /* about.xib in Resources */ = {isa = PBXBuildFile; fileRef = C37577480EB7695900A85FC6 /* about.xib */; };
 		C37577520EB76D6E00A85FC6 /* AboutPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C37577510EB76D6E00A85FC6 /* AboutPageController.m */; };
-		C37577A20EB7736500A85FC6 /* rb48.png in Resources */ = {isa = PBXBuildFile; fileRef = C37577A10EB7736500A85FC6 /* rb48.png */; };
 		C37577B20EB776EF00A85FC6 /* credits.plist in Resources */ = {isa = PBXBuildFile; fileRef = C37577B10EB776EF00A85FC6 /* credits.plist */; };
 		C375782F0EB77FFD00A85FC6 /* rb32.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = C37576F30EB7516100A85FC6 /* rb32.png */; };
 		C382A1480EB6D21300F408BD /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = C382A1470EB6D21300F408BD /* home.png */; };
 		C382A1BF0EB7176C00F408BD /* uparrow.png in Resources */ = {isa = PBXBuildFile; fileRef = C382A1BE0EB7176C00F408BD /* uparrow.png */; };
+		C38E6A7F0ED10BEA00565F61 /* rb48.png in Resources */ = {isa = PBXBuildFile; fileRef = C38E6A7E0ED10BEA00565F61 /* rb48.png */; };
 		C39366820E9C86D9001EA28D /* ITSSProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C39366810E9C86D9001EA28D /* ITSSProtocol.m */; };
 		C393669E0E9C8B23001EA28D /* CHMTableOfContent.m in Sources */ = {isa = PBXBuildFile; fileRef = C393669D0E9C8B23001EA28D /* CHMTableOfContent.m */; };
 		C393679F0E9CAF0E001EA28D /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C393679E0E9CAF0E001EA28D /* libxml2.2.dylib */; };
@@ -153,10 +153,10 @@
 		C37577460EB7694800A85FC6 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = Classes/English.lproj/about.xib; sourceTree = "<group>"; };
 		C37577500EB76D6E00A85FC6 /* AboutPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutPageController.h; sourceTree = "<group>"; };
 		C37577510EB76D6E00A85FC6 /* AboutPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutPageController.m; sourceTree = "<group>"; };
-		C37577A10EB7736500A85FC6 /* rb48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rb48.png; path = ../rb48.png; sourceTree = SOURCE_ROOT; };
 		C37577B10EB776EF00A85FC6 /* credits.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credits.plist; sourceTree = "<group>"; };
 		C382A1470EB6D21300F408BD /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home.png; path = images/home.png; sourceTree = "<group>"; };
 		C382A1BE0EB7176C00F408BD /* uparrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = uparrow.png; path = images/uparrow.png; sourceTree = "<group>"; };
+		C38E6A7E0ED10BEA00565F61 /* rb48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rb48.png; path = images/rb48.png; sourceTree = "<group>"; };
 		C39366800E9C86D9001EA28D /* ITSSProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITSSProtocol.h; sourceTree = "<group>"; };
 		C39366810E9C86D9001EA28D /* ITSSProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSSProtocol.m; sourceTree = "<group>"; };
 		C39366880E9C878D001EA28D /* lcid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lcid.h; sourceTree = "<group>"; };
@@ -339,7 +339,7 @@
 		C3EAB7D80E9DC59E00268541 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				C37577A10EB7736500A85FC6 /* rb48.png */,
+				C38E6A7E0ED10BEA00565F61 /* rb48.png */,
 				C37576F30EB7516100A85FC6 /* rb32.png */,
 				C382A1BE0EB7176C00F408BD /* uparrow.png */,
 				C382A1470EB6D21300F408BD /* home.png */,
@@ -452,9 +452,9 @@
 				C382A1BF0EB7176C00F408BD /* uparrow.png in Resources */,
 				C37576F40EB7516100A85FC6 /* rb32.png in Resources */,
 				C37577490EB7695900A85FC6 /* about.xib in Resources */,
-				C37577A20EB7736500A85FC6 /* rb48.png in Resources */,
 				C37577B20EB776EF00A85FC6 /* credits.plist in Resources */,
 				C3576D6B0EB97218001BF046 /* Entitlements.plist in Resources */,
+				C38E6A7F0ED10BEA00565F61 /* rb48.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

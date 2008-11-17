@@ -1160,7 +1160,10 @@ static NSMutableArray *recentNonces;
 	for (NSString* pair in paramstr)
 	{
 		NSArray* keyvalue = [pair componentsSeparatedByString:@"="];
-		[params setObject:[keyvalue objectAtIndex:1] forKey:[[keyvalue objectAtIndex:0] lowercaseString]];
+		if ([keyvalue count] == 2)
+			[params setObject:[keyvalue objectAtIndex:1] forKey:[[keyvalue objectAtIndex:0] lowercaseString]];
+		else
+			NSLog(@"misformat parameters in POST:%@", pair);
 	}
 	[body release];
 }

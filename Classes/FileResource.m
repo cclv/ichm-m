@@ -112,7 +112,7 @@
 	NSArray *filelist = [appDelegate fileList];
 	for(int i = 0; i<[filelist count]; ++i)
 	{
-		NSString* file = [filelist objectAtIndex:i];
+		NSString* file = [[filelist objectAtIndex:i] stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"] ;
 		[output appendFormat:@"{'name':'%@', 'id':%d},", file, i];
 	}
 	if ([output length] > 1)

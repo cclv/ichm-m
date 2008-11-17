@@ -49,7 +49,9 @@
 		    var trclass='';
 		    if (shadow)
 		      trclass= " class='shadow'";
-		  $("<tr" + trclass + "><td><a href='/files/" + item.name + "' class='file'>" + item.name + "</a></td>" + "<td class='del'><form action='/files/" + encodeURI(item.name) + "' method='post'><input name='_method' value='delete' type='hidden'/><input name=\"commit\" type=\"submit\" value=\"Delete\" class='button' /></td>" + "</tr>").appendTo("#filelist");
+			encodeName = encodeURI(item.name).replace("'", "&apos;");
+			console.log(encodeName);
+		  $("<tr" + trclass + "><td><a href='/files/" + encodeName + "' class='file'>" + item.name + "</a></td>" + "<td class='del'><form action='/files/" + encodeName + "' method='post'><input name='_method' value='delete' type='hidden'/><input name=\"commit\" type=\"submit\" value=\"Delete\" class='button' /></td>" + "</tr>").appendTo("#filelist");
 		    shadow = !shadow;
 		  });
 		});
