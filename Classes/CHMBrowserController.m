@@ -20,6 +20,8 @@
 - (NSString*)extractPathFromURL:(NSURL*)url;
 - (void)updateTOCButton;
 - (void)willTerminate;
+- (void)startLoadingIndicator;
+- (void)stopLoadingIndicator;
 @end
 
 @implementation CHMBrowserController
@@ -160,6 +162,7 @@
 		NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 		[req setEncodingName:[doc currentEncodingName]];
 		[webView loadRequest:req];
+		[self startLoadingIndicator];
 	}
 }
 
@@ -252,6 +255,25 @@
 		NSDictionary *pref = [NSDictionary dictionaryWithObject:[currentItem path] forKey:@"last path"];
 		[appDelegate setPreference:pref ForFile:[CHMDocument CurrentDocument].fileName];	
 	}
+	
+	[self stopLoadingIndicator];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+	[self stopLoadingIndicator];	
+}
+
+- (void)startLoadingIndicator
+{
+	[loadIndicatorView setHidden:NO];
+	[loadIndicatorView startAnimating];
+}
+
+- (void)stopLoadingIndicator
+{
+	[loadIndicatorView stopAnimating];
+	[loadIndicatorView setHidden:YES];
 }
 
 #pragma mark dealloc

@@ -12,6 +12,7 @@
 
 @interface CHMBrowserController : UIViewController {
 	IBOutlet UIWebView *webView;
+	IBOutlet UIActivityIndicatorView *loadIndicatorView;
 	UISegmentedControl *segmentedControl;
 	UISegmentedControl *rightBarControl;
 	
