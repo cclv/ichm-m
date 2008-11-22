@@ -22,4 +22,6 @@
 - (void)updateUploadingStatus:(NSNotification*)notification;
 - (void)uploadingFinished:(NSNotification*)notification;
 - (void)fileDeleted:(NSNotification*)notification;
+
+- (IBAction)helpPage:(id)sender;
 @end

@@ -8,6 +8,7 @@
 
 #import "FileManagerController.h"
 #import "HTTPServer.h"
+#import "HelpViewController.h"
 
 @interface FileManagerController (Private)
 - (NSString*)setupDocroot;
@@ -57,6 +58,14 @@
 	[uploadProgress setHidden:YES];
 	uploadNoticeView.backgroundColor = [UIColor clearColor];
 	self.tableView.tableFooterView = uploadNoticeView;
+
+	// help page
+	UIBarButtonItem *helpButton = [[[UIBarButtonItem alloc]
+									initWithTitle:NSLocalizedString(@"Help", @"Help")
+									style:UIBarButtonItemStyleBordered
+									target:self
+									action:@selector(helpPage:)] autorelease];
+	self.navigationItem.rightBarButtonItem = helpButton;
 	
 	return self;
 }
@@ -268,5 +277,12 @@
 	[uploadProgress setHidden:YES];
 	[fileNameLabel setText: [NSString stringWithFormat:@"%@ %@", filename, NSLocalizedString(@"deleted.",@"deleted.")]];
 }
+
+- (IBAction)helpPage:(id)sender
+{
+	HelpViewController *controller = [[HelpViewController alloc] init];
+	[[self navigationController] pushViewController:controller animated:YES];
+}
+
 @end
 

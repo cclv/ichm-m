@@ -7,6 +7,7 @@
 //
 
 #import "AboutPageController.h"
+#import "HelpViewController.h"
 
 
 @implementation AboutPageController
@@ -45,12 +46,18 @@
 }
 */
 
-/*
 // Implement viewDidLoad to do additional setup after loading the view.
 - (void)viewDidLoad {
+	// help page
+	UIBarButtonItem *helpButton = [[[UIBarButtonItem alloc]
+								   initWithTitle:NSLocalizedString(@"Help", @"Help")
+								   style:UIBarButtonItemStyleBordered
+								   target:self
+								   action:@selector(helpPage:)] autorelease];
+	self.navigationItem.rightBarButtonItem = helpButton;
+	
     [super viewDidLoad];
 }
-*/
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
@@ -148,6 +155,11 @@
     [super didReceiveMemoryWarning];
 }
 */
+- (IBAction)helpPage:(id)sender
+{
+	HelpViewController *controller = [[HelpViewController alloc] init];
+	[[self navigationController] pushViewController:controller animated:YES];
+}
 
 - (void)dealloc {
 	[creditsData release];

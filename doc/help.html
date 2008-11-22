@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+  <title>iChm Help</title>
+  <style type="text/css" media="screen">
+    body {margin:0;overflow-x:hidden;font-family:Helvetica;font-size:11pt;background-color:#f0f0f0;}
+    #head {padding-left:50px;background: transparent url(rb48.png) no-repeat;height:50px;}
+    #head span {font-style: italic;font-size:.8em;}
+    h1 {margin:0;padding:6px 0 2px 2px;font-size:1.2em;}
+    h2 {margin:0;padding:2px;font-size:1em;background:url(titlebg.png) repeat-x;line-height:20px;}
+    img {border: 1px solid #999;padding:2px;margin:0 20px;}
+    p {margin:8px 4px;}
+    #foot {height:50px;border-top:1px solid #aaa;margin:0 auto;text-align: center;padding 3px;font-size:.8em;}
+    .question {font-weight: bold;text-decoration: underline;}
+  </style>
+</head>
+<body>
+  <div id="head">
+    <h1>iChm</h1>
+    <span>CHM Reader on iPhone/iPod Touch</span>
+  </div>
+  <h2><a name="top">Topics</a></h2>
+  <ul>
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#uploading">How to upload files</a></li>
+    <li><a href="#reader">How to view CHM file with iChm</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <h2><a name="requirements">Requirements</a></h2>
+  <ul>
+    <li>iPhone or iPod Touch with Version 2.1 or above.</li>
+    <li>Wi-Fi is required for file uploading.</li>
+    <li>A computer with browser (IE, Firefox or Safari) is required for file uploading.</li>
+  </ul>
+  <h2><a name="uploading">How to upload Files?</a></h2>
+  
+  <p>1. Before uploading, please make sure you have Wi-Fi connection for your iPhone/iPod Touch.</p>
+  <p>2. In the root view of iChm for iPhone, click on the button "manager" on the top left corner of the view.</p>
+  <img src="root.png"/>
+  <p>3. After the file manager is launched, you can see an URL in the page like "http://xxx.xxx.xxx:8080".</p>
+  <img src="fm.png"/>
+  <p>4. In your desktop machine (PC or Mac), launch your web browser (IE, Firefox or Safari). Type the URL shown on the page into the URL bar and load. </p>
+  <img src='url.png'>
+  <p>5. After you connect to the address, you will see a file manager in your browser.</p>
+  <img src="fm-browser.png">
+  <p>6. Choose a file from your desktop machine and click "upload" to upload the file to your iPhone.</p>
+  <p>7. You can see a progress indicator on iPhone during uploading. When the uploading finished, a notice will be shown. </p>
+  <p>8. Click on button 'iChm' on iPhone and go back to the root view of iChm. The file manager will be turn off by this way.</p>
+  <p><a href="#top">back to top</a></p>
+  <h2><a name="reader">How to view CHM file with iChm</a></h2>
+  <p>1. In the root view, click on the file name to load the file in iChm.</p>
+  <p>2. Here's the buttons on the navigation bar of the reader. It takes some time to load the "Table of Content" and "Index" and the buttons will show after loading. If there's no table of content and index in the CHM file, the buttons will be grayed out.</p>
+  <img src="toolbar.png" />
+  <p>3. Clicking on the "Table of Content" button brings you to the section of the current page in table of content.</p>
+  <p>4. Clicking on the "Index" button brings you to the index viewer. You can navigate or search keywords in the index viewer.</p>
+  <p><a href="#top">back to top</a></p>
+  <h2><a name="faq">FAQ</a></h2>
+  <p class='question'>Why I get "http://(null):8080" in the File Manager page? I can not connect to that URL.</p>
+  <p>Please make sure you have Wi-Fi connection to your device. Check it in the Wi-Fi section in "Settings" of iPhone OS. </p>
+  <p class='question'>Why some special chars aren't printed correctly?</p>
+  <p>Some chm files set the locale id which is not compatible with the actual test encoding. It makes some characters printed incorrectly.</p>
+  <p class='question'></p>
+  <p class='question'>Where can I get support if I have more question?</p>
+  <p>Please put your question into iChm issue tracker at http://code.google.com/p/ichm/issues.</p>
+  <p><a href="#top">back to top</a></p>
+  <div id="foot">
+    <a href='http://www.robinlu.com/ichm'>iChm</a>, Copyright © 2008, www.robinlu.com
+  </div>  
+</body>
+</html>

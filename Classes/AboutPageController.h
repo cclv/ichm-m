@@ -16,4 +16,5 @@
 	NSArray *creditsData;
 }
 
+- (IBAction)helpPage:(id)sender;
 @end
