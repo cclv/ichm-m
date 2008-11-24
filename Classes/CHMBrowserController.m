@@ -22,6 +22,8 @@
 - (void)willTerminate;
 - (void)startLoadingIndicator;
 - (void)stopLoadingIndicator;
+- (void)setCurrentItem;
+- (void)tocLoadFinished;
 
 - (void)setToolbarButtonWidth;
 @end
@@ -36,14 +38,14 @@
     if (self = [super initWithNibName:@"CHMBrowser" bundle:nil]) {
 		// setup notification
 		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(updateTOCButton) name:CHMDocumentTOCReady object:nil];
-		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(resetNavBar) name:CHMDocumentTOCReady object:nil];
+												 selector:@selector(tocLoadFinished) name:CHMDocumentTOCReady object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(updateTOCButton) name:CHMDocumentIDXReady object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(willTerminate) name:UIApplicationWillTerminateNotification object:nil];
 		rightBarControl = nil;
+		currentItem = nil;
+		needResetCurrentItem = NO;
     }
 	
     return self;
@@ -109,7 +111,7 @@
 	self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 	webView.autoresizesSubviews = YES;
 	webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-
+	
     [super viewDidLoad];
 }
 
@@ -135,6 +137,22 @@
 	[forwardButton setEnabled:[webView canGoForward]];
 	[pageupButton setEnabled:[tocSource canGoPrevPage:currentItem]];
 	[pagedownButton setEnabled:[tocSource canGoNextPage:currentItem]];
+}
+
+- (void)realTocLoadFinished
+{
+	if (needResetCurrentItem)
+	{
+		[self setCurrentItem];
+		needResetCurrentItem = NO;
+	}
+	[self updateTOCButton];
+	[self resetNavBar];
+}
+
+- (void)tocLoadFinished
+{
+	[self performSelectorOnMainThread:@selector(realTocLoadFinished) withObject:nil waitUntilDone:NO];
 }
 
 - (NSString*)extractPathFromURL:(NSURL*)url
@@ -255,18 +273,33 @@
 	[self startLoadingIndicator];
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webview
-{	
+- (void)setCurrentItem
+{
+	CHMTableOfContent *toc = [[CHMDocument CurrentDocument] tocSource];
+	if (toc == nil)
+		return;
+
 	NSURL *url = [webView.request URL];
 	NSString *path = [self extractPathFromURL:url];
-	currentItem = [[[CHMDocument CurrentDocument] tocSource] itemForPath:path withStack:nil];
-
+	currentItem = [toc itemForPath:path withStack:nil];
+	
 	if (currentItem)
 	{
 		iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
 		NSDictionary *pref = [NSDictionary dictionaryWithObject:[currentItem path] forKey:@"last path"];
 		[appDelegate setPreference:pref ForFile:[CHMDocument CurrentDocument].fileName];	
+	}	
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webview
+{	
+	CHMTableOfContent *toc = [[CHMDocument CurrentDocument] tocSource];
+	if (toc)
+	{
+		[self setCurrentItem];
 	}
+	else
+		needResetCurrentItem = YES;
 	
 	[self resetNavBar];
 	[self stopLoadingIndicator];

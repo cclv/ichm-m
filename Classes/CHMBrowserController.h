@@ -22,6 +22,7 @@
 	IBOutlet UIBarButtonItem *pageupButton;
 	IBOutlet UIBarButtonItem *pagedownButton;
 	IBOutlet UIBarButtonItem *fullscrennBarButton;
+	BOOL needResetCurrentItem;
 	
 	UISegmentedControl *rightBarControl;
 	

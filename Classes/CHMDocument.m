@@ -253,6 +253,7 @@ static CHMDocument *currentDocument = nil;
 {
 	fileName = filename;
 	[fileName retain];
+	tocSource = nil;
 	NSString* docDir = [NSString stringWithFormat:@"%@/Documents", NSHomeDirectory()];
 	[self readFromFile:[NSString stringWithFormat:@"%@/%@", docDir, filename]];
 	return self;
