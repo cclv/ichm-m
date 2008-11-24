@@ -276,6 +276,15 @@
 	[loadIndicatorView setHidden:YES];
 }
 
+#pragma mark actions
+- (IBAction)toggleFullScreen:(id)sender
+{
+	BOOL isHide = !self.navigationController.navigationBarHidden;
+	self.navigationController.navigationBarHidden = isHide;
+	[toolBar setHidden:isHide];
+	[fullScreenButton setHidden:!isHide];
+}
+
 #pragma mark dealloc
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];	

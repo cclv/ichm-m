@@ -13,6 +13,8 @@
 @interface CHMBrowserController : UIViewController {
 	IBOutlet UIWebView *webView;
 	IBOutlet UIActivityIndicatorView *loadIndicatorView;
+	IBOutlet UIButton *fullScreenButton;
+	IBOutlet UIToolbar *toolBar;
 	UISegmentedControl *segmentedControl;
 	UISegmentedControl *rightBarControl;
 	
@@ -29,4 +31,6 @@
 
 - (void)navToTOC:(id)sender;
 - (void)navToIDX:(id)sender;
+
+- (IBAction)toggleFullScreen:(id)sender;
 @end
