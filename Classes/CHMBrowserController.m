@@ -22,6 +22,8 @@
 - (void)willTerminate;
 - (void)startLoadingIndicator;
 - (void)stopLoadingIndicator;
+
+- (void)setToolbarButtonWidth;
 @end
 
 @implementation CHMBrowserController
@@ -90,19 +92,6 @@
 
 // Implement viewDidLoad to do additional setup after loading the view.
 - (void)viewDidLoad {
-	// "Segmented" control to the right
-	segmentedControl = [[UISegmentedControl alloc] initWithItems:
-											 [NSArray arrayWithObjects:
-											  [UIImage imageNamed:@"left.png"],
-											  [UIImage imageNamed:@"home.png"],
-											  [UIImage imageNamed:@"right.png"],
-											  nil]];
-	[segmentedControl addTarget:self action:@selector(navHistory:) forControlEvents:UIControlEventValueChanged];
-	segmentedControl.frame = CGRectMake(0, 0, 120, 30);
-	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-	segmentedControl.momentary = YES;
-	
-	self.navigationItem.titleView = segmentedControl;
 	[self resetHistoryNavBar];
 
 	CHMDocument * doc = [CHMDocument CurrentDocument];
@@ -139,8 +128,8 @@
 
 - (void)resetHistoryNavBar
 {
-	[segmentedControl setEnabled:[webView canGoBack] forSegmentAtIndex:0];
-	[segmentedControl setEnabled:[webView canGoForward] forSegmentAtIndex:2];
+	[backButton setEnabled:[webView canGoBack]];
+	[forwardButton setEnabled:[webView canGoForward]];
 }
 
 - (NSString*)extractPathFromURL:(NSURL*)url
@@ -148,6 +137,23 @@
 	return [[[url absoluteString] substringFromIndex:11] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+	[self setToolbarButtonWidth];
+}
+
+- (void)setToolbarButtonWidth
+{
+	// reposition bar buttons
+	CGFloat width = (toolBar.frame.size.width)/8.0;
+	
+	backButton.width = width;
+	homeButton.width = width;
+	forwardButton.width = width;
+	pagedownButton.width = width;
+	pageupButton.width = width;
+	fullscrennBarButton.width = width;
+}
 #pragma mark load page
 - (void)loadPath:(NSString *)path
 {
@@ -162,7 +168,6 @@
 		NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 		[req setEncodingName:[doc currentEncodingName]];
 		[webView loadRequest:req];
-		[self startLoadingIndicator];
 	}
 }
 
@@ -241,6 +246,11 @@
 }
 
 #pragma mark webviewdelegate
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+	[self startLoadingIndicator];
+}
+
 - (void)webViewDidFinishLoad:(UIWebView *)webview
 {
 	[self resetHistoryNavBar];
@@ -285,10 +295,14 @@
 	[fullScreenButton setHidden:!isHide];
 }
 
+- (IBAction)goHome:(id)sender
+{
+	[self loadPath:[[CHMDocument CurrentDocument] homePath]];
+}
+
 #pragma mark dealloc
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];	
-	[segmentedControl release];
 	[rightBarControl release];
 	[webView stopLoading];
 	webView.delegate = nil;

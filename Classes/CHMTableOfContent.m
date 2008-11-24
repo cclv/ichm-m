@@ -92,7 +92,15 @@
 
 - (LinkItem*)find_by_path:(NSString *)path withStack:(NSMutableArray*)stack
 {
-	if ([_path isEqualToString:path])
+	NSString *p = _path;
+	if( [p hasPrefix:@"/"] ) {
+		p = [p substringFromIndex:1];
+    }
+	else if ( [p hasPrefix:@"./"] ) {
+		p = [p substringFromIndex:2];
+	}
+	
+	if ([p isEqualToString:path])
 		return self;
 	
 	if(!_children)
