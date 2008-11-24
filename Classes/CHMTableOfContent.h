@@ -13,6 +13,7 @@
 	LinkItem *rootItems;
 	
 	NSMutableArray *itemStack;
+	NSMutableArray *pageList;
 	LinkItem *curItem;
 }
 @property (readonly) LinkItem *rootItems;
@@ -22,6 +23,10 @@
 - (LinkItem *)itemForPath:(NSString*)path withStack:(NSMutableArray*)stack;
 - (int)rootChildrenCount;
 - (void)sort;
+- (LinkItem*)getNextPage:(LinkItem*)item;
+- (LinkItem*)getPrevPage:(LinkItem*)item;
+- (BOOL)canGoNextPage:(LinkItem*)item;
+- (BOOL)canGoPrevPage:(LinkItem*)item;
 @end
 
 @interface CHMSearchResult : CHMTableOfContent
@@ -39,7 +44,9 @@
 	NSString *_name;
 	NSString *_path;
 	NSMutableArray *_children;
+	NSUInteger pageID;
 }
+@property (readonly) NSUInteger pageID;
 
 - (id)initWithName:(NSString *)name Path:(NSString *)path;
 - (int)numberOfChildren;
@@ -51,8 +58,10 @@
 - (void)purge;
 - (void)setName:(NSString *)name;
 - (void)setPath:(NSString *)path;
+- (void)setPageID:(NSUInteger)pageid;
 - (void)appendChild:(LinkItem *)item;
 - (LinkItem*)find_by_path:(NSString *)path withStack:(NSMutableArray*)stack;
+- (void)enumerateItemsWithSEL:(SEL)selector ForTarget:(id)target;
 - (void)sort;
 - (void)removeAllChildren;
 @end

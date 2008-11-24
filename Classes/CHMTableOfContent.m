@@ -12,6 +12,7 @@
 #import "CHMDocument.h"
 
 @implementation LinkItem
+@synthesize pageID;
 
 - (id)init
 {
@@ -19,6 +20,11 @@
 	_name = nil;
 	_path = nil;
 	return self;
+}
+
+- (void)setPageID:(NSUInteger)pageid
+{
+	pageID = pageid;
 }
 
 - (void) dealloc
@@ -119,6 +125,16 @@
 	return nil;
 }
 
+- (void)enumerateItemsWithSEL:(SEL)selector ForTarget:(id)target
+{
+	if (![_path isEqualToString:@"/"])
+		[target performSelector:selector withObject:self];
+	for (LinkItem* item in _children)
+	{
+		[item enumerateItemsWithSEL:selector ForTarget:target];
+	}
+}
+
 - (void)sort
 {
 	NSSortDescriptor *sd = [[NSSortDescriptor alloc] initWithKey:@"uppercaseName" ascending:YES];
@@ -153,6 +169,7 @@
 - (void)push_item;
 - (void)pop_item;
 - (void)new_item;
+- (void)addToPageList:(LinkItem*)item;
 @end
 
 @implementation CHMTableOfContent
@@ -192,6 +209,7 @@ NULL, /* getParameterEntity */
 - (id)initWithData:(NSData *)data encodingName:(NSString*)encodingName
 {
 	itemStack = [[NSMutableArray alloc] init];
+	pageList = [[NSMutableArray alloc] init];
 	rootItems = [[LinkItem alloc] initWithName:@"root"	Path:@"/"];
 	curItem = rootItems;
 	
@@ -206,6 +224,7 @@ NULL, /* getParameterEntity */
 	    xmlFreeDoc( doc );
 	}
 	[rootItems purge];
+	[rootItems enumerateItemsWithSEL:@selector(addToPageList:) ForTarget:self];
 	return self;
 }
 
@@ -241,6 +260,32 @@ NULL, /* getParameterEntity */
 	[rootItems sort];	
 }
 
+- (LinkItem*)getNextPage:(LinkItem*)item
+{
+	NSUInteger idx = [item pageID] + 1;
+	if (idx == [pageList count])
+		return nil;
+	return [pageList objectAtIndex:idx];
+}
+
+- (LinkItem*)getPrevPage:(LinkItem*)item
+{
+	NSUInteger idx = [item pageID] - 1;
+	if (idx == -1)
+		return nil;
+	return [pageList objectAtIndex:idx];
+}
+
+- (BOOL)canGoNextPage:(LinkItem*)item
+{
+	return ([self getNextPage:item] != nil);
+}
+
+- (BOOL)canGoPrevPage:(LinkItem*)item
+{
+	return [self getPrevPage:item] != nil;
+}
+
 - (LinkItem *)curItem
 {
 	return curItem;
@@ -262,6 +307,28 @@ NULL, /* getParameterEntity */
 {
 	curItem = [itemStack lastObject];
 	[itemStack removeLastObject];
+}
+
+- (void)addToPageList:(LinkItem*)item
+{
+	if ([item path] == nil)
+		return;
+	
+	LinkItem* latest = [pageList lastObject];
+	
+	if(nil == latest)
+	{
+		[pageList addObject:item];
+	}
+	else
+	{
+		NSURL *baseURL = [NSURL URLWithString:@"http://dummy.com"];
+		NSURL *url = [NSURL URLWithString:[item path] relativeToURL:baseURL];
+		NSURL *curUrl = [NSURL URLWithString:[latest path] relativeToURL:baseURL];
+		if (![[url path] isEqualToString:[curUrl path]])
+			[pageList addObject:item];
+	}
+	[item setPageID:([pageList count] - 1)];
 }
 
 # pragma mark NSXMLParser delegation

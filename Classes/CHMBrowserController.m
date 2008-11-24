@@ -16,7 +16,7 @@
 
 @interface CHMBrowserController (Private)
 
-- (void)resetHistoryNavBar;
+- (void)resetNavBar;
 - (NSString*)extractPathFromURL:(NSURL*)url;
 - (void)updateTOCButton;
 - (void)willTerminate;
@@ -92,7 +92,7 @@
 
 // Implement viewDidLoad to do additional setup after loading the view.
 - (void)viewDidLoad {
-	[self resetHistoryNavBar];
+	[self resetNavBar];
 
 	CHMDocument * doc = [CHMDocument CurrentDocument];
 	if ([doc tocIsReady]) {
@@ -126,10 +126,13 @@
     // Release anything that's not essential, such as cached data
 }
 
-- (void)resetHistoryNavBar
+- (void)resetNavBar
 {
+	CHMTableOfContent *tocSource = [[CHMDocument CurrentDocument] tocSource];
 	[backButton setEnabled:[webView canGoBack]];
 	[forwardButton setEnabled:[webView canGoForward]];
+	[pageupButton setEnabled:[tocSource canGoPrevPage:currentItem]];
+	[pagedownButton setEnabled:[tocSource canGoNextPage:currentItem]];
 }
 
 - (NSString*)extractPathFromURL:(NSURL*)url
@@ -195,7 +198,6 @@
 			[webView goForward];
 			break;
 	}
-	[self resetHistoryNavBar];
 }
 
 - (void)toTocOrIdx:(id)sender
@@ -252,9 +254,7 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webview
-{
-	[self resetHistoryNavBar];
-	
+{	
 	NSURL *url = [webView.request URL];
 	NSString *path = [self extractPathFromURL:url];
 	currentItem = [[[CHMDocument CurrentDocument] tocSource] itemForPath:path withStack:nil];
@@ -266,6 +266,7 @@
 		[appDelegate setPreference:pref ForFile:[CHMDocument CurrentDocument].fileName];	
 	}
 	
+	[self resetNavBar];
 	[self stopLoadingIndicator];
 }
 
@@ -298,6 +299,20 @@
 - (IBAction)goHome:(id)sender
 {
 	[self loadPath:[[CHMDocument CurrentDocument] homePath]];
+}
+
+- (IBAction)goNextPage:(id)sender
+{
+	CHMTableOfContent *tocSource = [[ CHMDocument CurrentDocument] tocSource];
+	LinkItem *item = [tocSource getNextPage:currentItem];
+	[self loadPath:[item path]];
+}
+
+- (IBAction)goPrevPage:(id)sender
+{
+	CHMTableOfContent *tocSource = [[ CHMDocument CurrentDocument] tocSource];
+	LinkItem *item = [tocSource getPrevPage:currentItem];
+	[self loadPath:[item path]];
 }
 
 #pragma mark dealloc

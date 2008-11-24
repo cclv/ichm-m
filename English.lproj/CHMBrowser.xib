@@ -59,7 +59,7 @@
 						<bool key="IBUIHidesWhenStopped">NO</bool>
 						<int key="IBUIStyle">0</int>
 					</object>
-					<object class="IBUIToolbar" id="1035006594">
+					<object class="IBUIToolbar" id="241411469">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{0, 436}, {320, 44}}</string>
@@ -68,57 +68,57 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<object class="NSMutableArray" key="IBUIItems">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIBarButtonItem" id="385696350">
+							<object class="IBUIBarButtonItem" id="377005638">
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">left.png</string>
 								</object>
 								<float key="IBUIWidth">4.000000e+01</float>
-								<reference key="IBUIToolbar" ref="1035006594"/>
+								<reference key="IBUIToolbar" ref="241411469"/>
 							</object>
-							<object class="IBUIBarButtonItem" id="724486454">
+							<object class="IBUIBarButtonItem" id="977908977">
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">home.png</string>
 								</object>
 								<float key="IBUIWidth">4.000000e+01</float>
-								<reference key="IBUIToolbar" ref="1035006594"/>
+								<reference key="IBUIToolbar" ref="241411469"/>
 							</object>
-							<object class="IBUIBarButtonItem" id="321616730">
+							<object class="IBUIBarButtonItem" id="845071610">
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">right.png</string>
 								</object>
 								<float key="IBUIWidth">4.000000e+01</float>
-								<reference key="IBUIToolbar" ref="1035006594"/>
+								<reference key="IBUIToolbar" ref="241411469"/>
 							</object>
-							<object class="IBUIBarButtonItem" id="673815657">
+							<object class="IBUIBarButtonItem" id="1035192108">
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">up.png</string>
 								</object>
 								<float key="IBUIWidth">4.000000e+01</float>
-								<reference key="IBUIToolbar" ref="1035006594"/>
+								<reference key="IBUIToolbar" ref="241411469"/>
 							</object>
-							<object class="IBUIBarButtonItem" id="207112646">
+							<object class="IBUIBarButtonItem" id="632430986">
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">down.png</string>
 								</object>
 								<float key="IBUIWidth">4.000000e+01</float>
-								<reference key="IBUIToolbar" ref="1035006594"/>
+								<reference key="IBUIToolbar" ref="241411469"/>
 							</object>
-							<object class="IBUIBarButtonItem" id="678925839">
+							<object class="IBUIBarButtonItem" id="992970946">
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">fullscreen.png</string>
 								</object>
 								<float key="IBUIWidth">4.000000e+01</float>
-								<reference key="IBUIToolbar" ref="1035006594"/>
+								<reference key="IBUIToolbar" ref="241411469"/>
 							</object>
 						</object>
 					</object>
-					<object class="IBUIButton" id="556231335">
+					<object class="IBUIButton" id="640430953">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483359</int>
 						<string key="NSFrame">{{285, 4}, {31, 26}}</string>
@@ -145,13 +145,13 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUIHighlightedImage" id="85030625">
+						<object class="NSCustomResource" key="IBUIHighlightedImage" id="572097798">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">defullscreen.png</string>
 						</object>
-						<reference key="IBUIDisabledImage" ref="85030625"/>
-						<reference key="IBUISelectedImage" ref="85030625"/>
-						<reference key="IBUINormalImage" ref="85030625"/>
+						<reference key="IBUIDisabledImage" ref="572097798"/>
+						<reference key="IBUISelectedImage" ref="572097798"/>
+						<reference key="IBUINormalImage" ref="572097798"/>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 480}</string>
@@ -203,7 +203,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">goBack</string>
-						<reference key="source" ref="385696350"/>
+						<reference key="source" ref="377005638"/>
 						<reference key="destination" ref="871309136"/>
 					</object>
 					<int key="connectionID">23</int>
@@ -211,7 +211,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">goForward</string>
-						<reference key="source" ref="321616730"/>
+						<reference key="source" ref="845071610"/>
 						<reference key="destination" ref="871309136"/>
 					</object>
 					<int key="connectionID">24</int>
@@ -220,14 +220,14 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">fullScreenButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="556231335"/>
+						<reference key="destination" ref="640430953"/>
 					</object>
 					<int key="connectionID">30</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">toggleFullScreen:</string>
-						<reference key="source" ref="556231335"/>
+						<reference key="source" ref="640430953"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -236,7 +236,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">toggleFullScreen:</string>
-						<reference key="source" ref="678925839"/>
+						<reference key="source" ref="992970946"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">32</int>
@@ -245,7 +245,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">toolBar</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1035006594"/>
+						<reference key="destination" ref="241411469"/>
 					</object>
 					<int key="connectionID">33</int>
 				</object>
@@ -253,7 +253,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">backButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="385696350"/>
+						<reference key="destination" ref="377005638"/>
 					</object>
 					<int key="connectionID">34</int>
 				</object>
@@ -261,7 +261,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">homeButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="724486454"/>
+						<reference key="destination" ref="977908977"/>
 					</object>
 					<int key="connectionID">35</int>
 				</object>
@@ -269,7 +269,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">forwardButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="321616730"/>
+						<reference key="destination" ref="845071610"/>
 					</object>
 					<int key="connectionID">36</int>
 				</object>
@@ -277,7 +277,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">pageupButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="673815657"/>
+						<reference key="destination" ref="1035192108"/>
 					</object>
 					<int key="connectionID">37</int>
 				</object>
@@ -285,7 +285,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">pagedownButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="207112646"/>
+						<reference key="destination" ref="632430986"/>
 					</object>
 					<int key="connectionID">38</int>
 				</object>
@@ -293,17 +293,33 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">fullscrennBarButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="678925839"/>
+						<reference key="destination" ref="992970946"/>
 					</object>
 					<int key="connectionID">39</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">goHome:</string>
-						<reference key="source" ref="724486454"/>
+						<reference key="source" ref="977908977"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">40</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">goPrevPage:</string>
+						<reference key="source" ref="1035192108"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">43</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">goNextPage:</string>
+						<reference key="source" ref="632430986"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">44</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -323,8 +339,8 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="710097488"/>
-							<reference ref="1035006594"/>
-							<reference ref="556231335"/>
+							<reference ref="241411469"/>
+							<reference ref="640430953"/>
 							<reference ref="871309136"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
@@ -352,51 +368,51 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">15</int>
-						<reference key="object" ref="1035006594"/>
+						<reference key="object" ref="241411469"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="678925839"/>
-							<reference ref="207112646"/>
-							<reference ref="673815657"/>
-							<reference ref="321616730"/>
-							<reference ref="724486454"/>
-							<reference ref="385696350"/>
+							<reference ref="992970946"/>
+							<reference ref="632430986"/>
+							<reference ref="1035192108"/>
+							<reference ref="845071610"/>
+							<reference ref="977908977"/>
+							<reference ref="377005638"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">22</int>
-						<reference key="object" ref="678925839"/>
-						<reference key="parent" ref="1035006594"/>
+						<reference key="object" ref="992970946"/>
+						<reference key="parent" ref="241411469"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">21</int>
-						<reference key="object" ref="207112646"/>
-						<reference key="parent" ref="1035006594"/>
+						<reference key="object" ref="632430986"/>
+						<reference key="parent" ref="241411469"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">20</int>
-						<reference key="object" ref="673815657"/>
-						<reference key="parent" ref="1035006594"/>
+						<reference key="object" ref="1035192108"/>
+						<reference key="parent" ref="241411469"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">19</int>
-						<reference key="object" ref="321616730"/>
-						<reference key="parent" ref="1035006594"/>
+						<reference key="object" ref="845071610"/>
+						<reference key="parent" ref="241411469"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">18</int>
-						<reference key="object" ref="724486454"/>
-						<reference key="parent" ref="1035006594"/>
+						<reference key="object" ref="977908977"/>
+						<reference key="parent" ref="241411469"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">17</int>
-						<reference key="object" ref="385696350"/>
-						<reference key="parent" ref="1035006594"/>
+						<reference key="object" ref="377005638"/>
+						<reference key="parent" ref="241411469"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">29</int>
-						<reference key="object" ref="556231335"/>
+						<reference key="object" ref="640430953"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
@@ -460,7 +476,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">40</int>
+			<int key="maxID">44</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -473,12 +489,16 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>goHome:</string>
+							<string>goNextPage:</string>
+							<string>goPrevPage:</string>
 							<string>navToIDX:</string>
 							<string>navToTOC:</string>
 							<string>toggleFullScreen:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
