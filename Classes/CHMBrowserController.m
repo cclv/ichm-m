@@ -38,6 +38,8 @@
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(updateTOCButton) name:CHMDocumentTOCReady object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(resetNavBar) name:CHMDocumentTOCReady object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(updateTOCButton) name:CHMDocumentIDXReady object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(willTerminate) name:UIApplicationWillTerminateNotification object:nil];
