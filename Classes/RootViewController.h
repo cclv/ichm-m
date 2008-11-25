@@ -9,6 +9,20 @@
 #import <UIKit/UIKit.h>
 @class FileManagerController;
 
+
+@interface FileTitleCell: UITableViewCell
+{
+	UILabel *titleLabel;
+	UILabel *filenameLabel;
+	UIImageView *backgrounView;
+}
+
+- (void)setTitle:(NSString*)title;
+- (void)setFilename:(NSString*)filename;
+
+@end
+
+
 @interface RootViewController : UITableViewController {
 	FileManagerController *fileManagerController;
 }

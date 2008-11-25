@@ -9,6 +9,7 @@
 #import "iChmAppDelegate.h"
 #import "ITSSProtocol.h"
 #import "RootViewController.h"
+#import "CHMDocument.h"
 
 #import <objc/runtime.h>
 
@@ -24,10 +25,12 @@ static NSString *filePreferencesIdentity = @"FilePreferences";
 @synthesize window;
 @synthesize navigationController;
 @synthesize fileList;
+@synthesize fileTitleList;
 
 - (void)setupFileList
 {
 	fileList = [[NSMutableArray alloc] init];
+	fileTitleList = [[NSMutableArray alloc] init];
 	NSString* docDir = [NSString stringWithFormat:@"%@/Documents", NSHomeDirectory()];
 	NSDirectoryEnumerator *direnum = [[NSFileManager defaultManager]
 									  enumeratorAtPath:docDir];
@@ -35,6 +38,11 @@ static NSString *filePreferencesIdentity = @"FilePreferences";
 	while (pname = [direnum nextObject])
 	{
 		[fileList addObject:pname];
+		NSString *title = [CHMDocument TitleForFile:pname];
+		if (title && [title length] > 0)
+			[fileTitleList addObject:title];
+		else
+			[fileTitleList addObject:pname];
 	}
 }
 
@@ -42,6 +50,8 @@ static NSString *filePreferencesIdentity = @"FilePreferences";
 {
 	if (fileList)
 		[fileList release];
+	if (fileTitleList)
+		[fileTitleList release];
 	[self setupFileList];
 }
 

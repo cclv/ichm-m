@@ -219,6 +219,7 @@ static inline NSString * LCIDtoEncodingName(unsigned int lcid) {
 @interface CHMDocument (Private)
 
 - (id)initWithFileName:(NSString *)filename;
+- (id)initWithoutTOCWithFileName:(NSString*)filename;
 
 - (BOOL)readFromFile:(NSString *)path;
 - (void)setupTOCSource;
@@ -248,6 +249,27 @@ static CHMDocument *currentDocument = nil;
 		[currentDocument release];
 	currentDocument = [[CHMDocument alloc] initWithFileName:filename];
 	return currentDocument;
+}
+
++ (NSString*) TitleForFile:(NSString*)filename
+{
+	CHMDocument *doc = [[CHMDocument alloc] initWithoutTOCWithFileName:filename];
+	NSString *title = [NSString stringWithString:[doc docTitle]];
+	[doc release];
+	return title;
+}
+
+- (id)initWithoutTOCWithFileName:(NSString*)filename
+{
+	fileName = filename;
+	[fileName retain];
+	tocSource = nil;
+	NSString* docDir = [NSString stringWithFormat:@"%@/Documents", NSHomeDirectory()];
+	NSString* filePath = [NSString stringWithFormat:@"%@/%@", docDir, filename];
+	chmFileHandle = chm_open( [filePath fileSystemRepresentation] );
+	if (chmFileHandle)
+		[self loadMetadata];
+	return self;
 }
 
 - (id)initWithFileName:(NSString *)filename

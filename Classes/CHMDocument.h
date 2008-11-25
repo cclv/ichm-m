@@ -38,6 +38,7 @@ struct chmFile;
 
 + (CHMDocument*) CurrentDocument;
 + (CHMDocument*) OpenDocument: (NSString*)filename;
++ (NSString*) TitleForFile:(NSString*)filename;
 
 - (BOOL) exist: (NSString *)path;
 - (NSData *)content: (NSString *)path;
