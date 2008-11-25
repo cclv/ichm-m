@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="15"/>
+			<integer value="13"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -39,18 +39,17 @@
 					<object class="IBUIWebView" id="871309136">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{320, 480}</string>
+						<string key="NSFrameSize">{320, 436}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<bool key="IBUIScalesPageToFit">YES</bool>
 					</object>
 					<object class="IBUIActivityIndicatorView" id="710097488">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483392</int>
+						<int key="NSvFlags">-2147483347</int>
 						<string key="NSFrame">{{141, 174}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -73,7 +72,7 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">left.png</string>
 								</object>
-								<float key="IBUIWidth">4.000000e+01</float>
+								<float key="IBUIWidth">3.200000e+01</float>
 								<reference key="IBUIToolbar" ref="241411469"/>
 							</object>
 							<object class="IBUIBarButtonItem" id="977908977">
@@ -81,7 +80,7 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">home.png</string>
 								</object>
-								<float key="IBUIWidth">4.000000e+01</float>
+								<float key="IBUIWidth">3.200000e+01</float>
 								<reference key="IBUIToolbar" ref="241411469"/>
 							</object>
 							<object class="IBUIBarButtonItem" id="845071610">
@@ -89,7 +88,7 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">right.png</string>
 								</object>
-								<float key="IBUIWidth">4.000000e+01</float>
+								<float key="IBUIWidth">3.200000e+01</float>
 								<reference key="IBUIToolbar" ref="241411469"/>
 							</object>
 							<object class="IBUIBarButtonItem" id="1035192108">
@@ -97,7 +96,7 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">up.png</string>
 								</object>
-								<float key="IBUIWidth">4.000000e+01</float>
+								<float key="IBUIWidth">3.200000e+01</float>
 								<reference key="IBUIToolbar" ref="241411469"/>
 							</object>
 							<object class="IBUIBarButtonItem" id="632430986">
@@ -105,7 +104,7 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">down.png</string>
 								</object>
-								<float key="IBUIWidth">4.000000e+01</float>
+								<float key="IBUIWidth">3.200000e+01</float>
 								<reference key="IBUIToolbar" ref="241411469"/>
 							</object>
 							<object class="IBUIBarButtonItem" id="992970946">
@@ -113,7 +112,15 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">fullscreen.png</string>
 								</object>
-								<float key="IBUIWidth">4.000000e+01</float>
+								<float key="IBUIWidth">3.200000e+01</float>
+								<reference key="IBUIToolbar" ref="241411469"/>
+							</object>
+							<object class="IBUIBarButtonItem" id="1040307017">
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">zoomtofit.png</string>
+								</object>
+								<float key="IBUIWidth">3.200000e+01</float>
 								<reference key="IBUIToolbar" ref="241411469"/>
 							</object>
 						</object>
@@ -321,6 +328,14 @@
 					</object>
 					<int key="connectionID">44</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">toggleScaleToFit:</string>
+						<reference key="source" ref="1040307017"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">47</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -377,6 +392,7 @@
 							<reference ref="845071610"/>
 							<reference ref="977908977"/>
 							<reference ref="377005638"/>
+							<reference ref="1040307017"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -415,6 +431,11 @@
 						<reference key="object" ref="640430953"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">46</int>
+						<reference key="object" ref="1040307017"/>
+						<reference key="parent" ref="241411469"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -436,14 +457,16 @@
 					<string>22.IBPluginDependency</string>
 					<string>29.IBPluginDependency</string>
 					<string>3.IBPluginDependency</string>
+					<string>46.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>CHMBrowserController</string>
 					<string>UIResponder</string>
-					<string>{{216, 606}, {320, 480}}</string>
+					<string>{{387, 534}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{605, 930}, {37, 37}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -476,7 +499,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">44</int>
+			<int key="maxID">47</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -494,9 +517,11 @@
 							<string>navToIDX:</string>
 							<string>navToTOC:</string>
 							<string>toggleFullScreen:</string>
+							<string>toggleScaleToFit:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

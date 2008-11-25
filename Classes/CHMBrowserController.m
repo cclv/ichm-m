@@ -111,6 +111,11 @@
 	self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 	webView.autoresizesSubviews = YES;
 	webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+	NSString *scaleToFitPref = [[CHMDocument CurrentDocument] getPrefForKey:@"scale to fit" withDefault:@"NO"];
+	if ([scaleToFitPref isEqualToString:@"YES"])
+		webView.scalesPageToFit = YES;
+	
+	[self setToolbarButtonWidth];
 	
     [super viewDidLoad];
 }
@@ -168,7 +173,7 @@
 - (void)setToolbarButtonWidth
 {
 	// reposition bar buttons
-	CGFloat width = (toolBar.frame.size.width)/8.0;
+	CGFloat width = toolBar.frame.size.width == 480.0 ? 60 : 34;
 	
 	backButton.width = width;
 	homeButton.width = width;
@@ -285,9 +290,7 @@
 	
 	if (currentItem)
 	{
-		iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
-		NSDictionary *pref = [NSDictionary dictionaryWithObject:[currentItem path] forKey:@"last path"];
-		[appDelegate setPreference:pref ForFile:[CHMDocument CurrentDocument].fileName];	
+		[[CHMDocument CurrentDocument] setPref:[currentItem path] forKey:@"last path"];
 	}	
 }
 
@@ -329,6 +332,10 @@
 	self.navigationController.navigationBarHidden = isHide;
 	[toolBar setHidden:isHide];
 	[fullScreenButton setHidden:!isHide];
+	CGFloat height = self.view.frame.size.height - (isHide ? 0 : toolBar.frame.size.height);
+	CGRect frame = [webView frame];
+	frame.size.height = height;
+	[webView setFrame:frame];
 }
 
 - (IBAction)goHome:(id)sender
@@ -350,6 +357,14 @@
 	[self loadPath:[item path]];
 }
 
+- (IBAction)toggleScaleToFit:(id)sender
+{
+	webView.scalesPageToFit = !webView.scalesPageToFit;
+
+	NSString *value = webView.scalesPageToFit ? @"YES" : @"NO";
+	[[CHMDocument CurrentDocument] setPref:value forKey:@"scale to fit"];
+	[webView reload];
+}
 #pragma mark dealloc
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];	

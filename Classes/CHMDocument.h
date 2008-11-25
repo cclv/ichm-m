@@ -44,6 +44,9 @@ struct chmFile;
 - (BOOL)loadMetadata;
 - (NSString *)findHomeForPath: (NSString *)basePath;
 
+- (void)setPref:(id)object forKey:(id)key;
+- (id)getPrefForKey:(id)key withDefault:(id)object;
+
 - (NSString*)currentEncodingName;
 - (LinkItem*)tocItems;
 - (LinkItem*)idxItems;

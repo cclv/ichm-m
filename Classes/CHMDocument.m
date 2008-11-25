@@ -10,6 +10,7 @@
 #import "lcid.h"
 #import "CHMDocument.h"
 #import "CHMTableOfContent.h"
+#import "iChmAppDelegate.h"
 
 #pragma mark Basic CHM reading operations
 static inline NSStringEncoding nameToEncoding(NSString* name) {
@@ -512,6 +513,24 @@ static CHMDocument *currentDocument = nil;
 - (NSString*)currentEncodingName
 {
 	return encodingName;
+}
+
+#pragma mark preference
+- (void)setPref:(id)object forKey:(id)key
+{
+	iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+	NSMutableDictionary *pref = [[NSMutableDictionary alloc] initWithDictionary:[appDelegate getPreferenceForFile:fileName]];
+	[pref setValue:object forKey:key];
+	[appDelegate setPreference:pref ForFile:fileName];		
+}
+
+- (id)getPrefForKey:(id)key withDefault:(id)object
+{
+	iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+	NSDictionary *pref = [appDelegate getPreferenceForFile:fileName];
+	if (pref && [pref objectForKey:key])
+		return [pref objectForKey:key];
+	return object;
 }
 
 #pragma mark dealloc

@@ -41,6 +41,7 @@
 - (void)navToIDX:(id)sender;
 
 - (IBAction)toggleFullScreen:(id)sender;
+- (IBAction)toggleScaleToFit:(id)sender;
 - (IBAction)goHome:(id)sender;
 - (IBAction)goNextPage:(id)sender;
 - (IBAction)goPrevPage:(id)sender;

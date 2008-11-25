@@ -51,6 +51,7 @@
 		C393686A0E9CF1D7001EA28D /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39368690E9CF1D7001EA28D /* MainWindow.xib */; };
 		C393686C0E9CF1E1001EA28D /* TableOfContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = C393686B0E9CF1E1001EA28D /* TableOfContent.xib */; };
 		C393686E0E9CF1EB001EA28D /* CHMBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = C393686D0E9CF1EB001EA28D /* CHMBrowser.xib */; };
+		C3A498200EDBDF4400997EF0 /* zoomtofit.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A4981F0EDBDF4400997EF0 /* zoomtofit.png */; };
 		C3BFD1660EB594D800ED86F1 /* titlebg.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BFD1650EB594D800ED86F1 /* titlebg.png */; };
 		C3BFD1810EB5A9DA00ED86F1 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BFD17F0EB5A9DA00ED86F1 /* bg.png */; };
 		C3BFD1820EB5A9DA00ED86F1 /* theadbg.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BFD1800EB5A9DA00ED86F1 /* theadbg.png */; };
@@ -203,6 +204,7 @@
 		C39367E60E9CBBA1001EA28D /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/CHMBrowser.xib; sourceTree = "<group>"; };
 		C39367E90E9CBBD3001EA28D /* CHMBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHMBrowserController.h; sourceTree = "<group>"; };
 		C39367EA0E9CBBD3001EA28D /* CHMBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHMBrowserController.m; sourceTree = "<group>"; };
+		C3A4981F0EDBDF4400997EF0 /* zoomtofit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zoomtofit.png; path = images/zoomtofit.png; sourceTree = "<group>"; };
 		C3BFD1650EB594D800ED86F1 /* titlebg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titlebg.png; path = web/titlebg.png; sourceTree = "<group>"; };
 		C3BFD17F0EB5A9DA00ED86F1 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg.png; path = web/bg.png; sourceTree = "<group>"; };
 		C3BFD1800EB5A9DA00ED86F1 /* theadbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = theadbg.png; path = web/theadbg.png; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 		C3EAB7D80E9DC59E00268541 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C3A4981F0EDBDF4400997EF0 /* zoomtofit.png */,
 				C36239230EDA7120003C16BF /* defullscreen.png */,
 				C362391F0EDA671E003C16BF /* fullscreen.png */,
 				C362391B0EDA645E003C16BF /* up.png */,
@@ -534,6 +537,7 @@
 				C362391E0EDA645E003C16BF /* down.png in Resources */,
 				C36239200EDA671E003C16BF /* fullscreen.png in Resources */,
 				C36239240EDA7120003C16BF /* defullscreen.png in Resources */,
+				C3A498200EDBDF4400997EF0 /* zoomtofit.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
