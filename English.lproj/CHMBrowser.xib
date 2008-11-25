@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="15"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -107,7 +107,7 @@
 								<float key="IBUIWidth">3.200000e+01</float>
 								<reference key="IBUIToolbar" ref="241411469"/>
 							</object>
-							<object class="IBUIBarButtonItem" id="199134971">
+							<object class="IBUIBarButtonItem" id="91225355">
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">zoomtofit.png</string>
@@ -127,8 +127,8 @@
 					</object>
 					<object class="IBUIButton" id="640430953">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483359</int>
-						<string key="NSFrame">{{285, 4}, {31, 26}}</string>
+						<int key="NSvFlags">-2147483383</int>
+						<string key="NSFrame">{{285, 450}, {31, 26}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -331,7 +331,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">toggleScaleToFit:</string>
-						<reference key="source" ref="199134971"/>
+						<reference key="source" ref="91225355"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">47</int>
@@ -340,7 +340,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">scaleToFitButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="199134971"/>
+						<reference key="destination" ref="91225355"/>
 					</object>
 					<int key="connectionID">48</int>
 				</object>
@@ -362,9 +362,9 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="710097488"/>
-							<reference ref="640430953"/>
 							<reference ref="871309136"/>
 							<reference ref="241411469"/>
+							<reference ref="640430953"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -399,7 +399,7 @@
 							<reference ref="845071610"/>
 							<reference ref="977908977"/>
 							<reference ref="377005638"/>
-							<reference ref="199134971"/>
+							<reference ref="91225355"/>
 							<reference ref="992970946"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
@@ -441,7 +441,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">46</int>
-						<reference key="object" ref="199134971"/>
+						<reference key="object" ref="91225355"/>
 						<reference key="parent" ref="241411469"/>
 					</object>
 				</object>
