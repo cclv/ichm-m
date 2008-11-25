@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="13"/>
+			<integer value="15"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -107,18 +107,18 @@
 								<float key="IBUIWidth">3.200000e+01</float>
 								<reference key="IBUIToolbar" ref="241411469"/>
 							</object>
-							<object class="IBUIBarButtonItem" id="992970946">
+							<object class="IBUIBarButtonItem" id="199134971">
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">fullscreen.png</string>
+									<string key="NSResourceName">zoomtofit.png</string>
 								</object>
 								<float key="IBUIWidth">3.200000e+01</float>
 								<reference key="IBUIToolbar" ref="241411469"/>
 							</object>
-							<object class="IBUIBarButtonItem" id="1040307017">
+							<object class="IBUIBarButtonItem" id="992970946">
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">zoomtofit.png</string>
+									<string key="NSResourceName">fullscreen.png</string>
 								</object>
 								<float key="IBUIWidth">3.200000e+01</float>
 								<reference key="IBUIToolbar" ref="241411469"/>
@@ -331,10 +331,18 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">toggleScaleToFit:</string>
-						<reference key="source" ref="1040307017"/>
+						<reference key="source" ref="199134971"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">47</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">scaleToFitButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="199134971"/>
+					</object>
+					<int key="connectionID">48</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -354,9 +362,9 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="710097488"/>
-							<reference ref="241411469"/>
 							<reference ref="640430953"/>
 							<reference ref="871309136"/>
+							<reference ref="241411469"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -386,13 +394,13 @@
 						<reference key="object" ref="241411469"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="992970946"/>
 							<reference ref="632430986"/>
 							<reference ref="1035192108"/>
 							<reference ref="845071610"/>
 							<reference ref="977908977"/>
 							<reference ref="377005638"/>
-							<reference ref="1040307017"/>
+							<reference ref="199134971"/>
+							<reference ref="992970946"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -433,7 +441,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">46</int>
-						<reference key="object" ref="1040307017"/>
+						<reference key="object" ref="199134971"/>
 						<reference key="parent" ref="241411469"/>
 					</object>
 				</object>
@@ -499,7 +507,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">47</int>
+			<int key="maxID">48</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -542,6 +550,7 @@
 							<string>loadIndicatorView</string>
 							<string>pagedownButton</string>
 							<string>pageupButton</string>
+							<string>scaleToFitButton</string>
 							<string>toolBar</string>
 							<string>webView</string>
 						</object>
@@ -553,6 +562,7 @@
 							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
 							<string>UIActivityIndicatorView</string>
+							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
 							<string>UIToolbar</string>

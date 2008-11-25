@@ -21,6 +21,7 @@
 	IBOutlet UIBarButtonItem *forwardButton;
 	IBOutlet UIBarButtonItem *pageupButton;
 	IBOutlet UIBarButtonItem *pagedownButton;
+	IBOutlet UIBarButtonItem *scaleToFitButton;
 	IBOutlet UIBarButtonItem *fullscrennBarButton;
 	BOOL needResetCurrentItem;
 	

@@ -114,15 +114,14 @@
 	NSString *scaleToFitPref = [[CHMDocument CurrentDocument] getPrefForKey:@"scale to fit" withDefault:@"NO"];
 	if ([scaleToFitPref isEqualToString:@"YES"])
 		webView.scalesPageToFit = YES;
-	
-	[self setToolbarButtonWidth];
-	
+		
     [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+	[self setToolbarButtonWidth];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -173,13 +172,14 @@
 - (void)setToolbarButtonWidth
 {
 	// reposition bar buttons
-	CGFloat width = toolBar.frame.size.width == 480.0 ? 60 : 34;
+	CGFloat width = toolBar.frame.size.width > 321.0 ? 58 : 34;
 	
 	backButton.width = width;
 	homeButton.width = width;
 	forwardButton.width = width;
 	pagedownButton.width = width;
 	pageupButton.width = width;
+	scaleToFitButton.width = width;
 	fullscrennBarButton.width = width;
 }
 #pragma mark load page
