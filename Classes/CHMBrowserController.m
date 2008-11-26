@@ -58,8 +58,6 @@
  */
 
 - (void) updateTOCButton {
-	@synchronized(self)
-	{
 		if (!rightBarControl)
 		{
 			rightBarControl = [[UISegmentedControl alloc] initWithItems:
@@ -72,12 +70,14 @@
 			rightBarControl.segmentedControlStyle = UISegmentedControlStyleBar;
 			rightBarControl.momentary = YES;
 			
-			UIBarButtonItem *segmentBarItem = [[[UIBarButtonItem alloc] initWithCustomView:rightBarControl] autorelease];
-			self.navigationItem.rightBarButtonItem = segmentBarItem;
+			@synchronized(self)
+			{
+				UIBarButtonItem *segmentBarItem = [[[UIBarButtonItem alloc] initWithCustomView:rightBarControl] autorelease];
+				self.navigationItem.rightBarButtonItem = segmentBarItem;
+			}
 		}
 		[rightBarControl setEnabled:[[CHMDocument CurrentDocument] tocSource] != nil forSegmentAtIndex:0];
 		[rightBarControl setEnabled:[[CHMDocument CurrentDocument] idxItems] != nil forSegmentAtIndex:1];
-	}
 }
 
 - (void) addLoadingTOCIndicator {
