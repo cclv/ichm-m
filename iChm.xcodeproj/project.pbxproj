@@ -53,6 +53,7 @@
 		C393686E0E9CF1EB001EA28D /* CHMBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = C393686D0E9CF1EB001EA28D /* CHMBrowser.xib */; };
 		C3A498200EDBDF4400997EF0 /* zoomtofit.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A4981F0EDBDF4400997EF0 /* zoomtofit.png */; };
 		C3A499BB0EDC4ED300997EF0 /* spine.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A499BA0EDC4ED300997EF0 /* spine.png */; };
+		C3A64C160EDD078400B36D26 /* navbar.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = C3A64BDD0EDD077500B36D26 /* navbar.png */; };
 		C3BFD1660EB594D800ED86F1 /* titlebg.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BFD1650EB594D800ED86F1 /* titlebg.png */; };
 		C3BFD1810EB5A9DA00ED86F1 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BFD17F0EB5A9DA00ED86F1 /* bg.png */; };
 		C3BFD1820EB5A9DA00ED86F1 /* theadbg.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BFD1800EB5A9DA00ED86F1 /* theadbg.png */; };
@@ -122,6 +123,7 @@
 			dstPath = help_doc;
 			dstSubfolderSpec = 7;
 			files = (
+				C3A64C160EDD078400B36D26 /* navbar.png in CopyFiles */,
 				C3FB6DC10ED82DE10043ABCF /* filemanager.jpg in CopyFiles */,
 				C3FB6DC20ED82DE10043ABCF /* fm-browser.png in CopyFiles */,
 				C3FB6DC30ED82DE10043ABCF /* fm.png in CopyFiles */,
@@ -207,6 +209,7 @@
 		C39367EA0E9CBBD3001EA28D /* CHMBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHMBrowserController.m; sourceTree = "<group>"; };
 		C3A4981F0EDBDF4400997EF0 /* zoomtofit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zoomtofit.png; path = images/zoomtofit.png; sourceTree = "<group>"; };
 		C3A499BA0EDC4ED300997EF0 /* spine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spine.png; path = images/spine.png; sourceTree = "<group>"; };
+		C3A64BDD0EDD077500B36D26 /* navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar.png; sourceTree = "<group>"; };
 		C3BFD1650EB594D800ED86F1 /* titlebg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titlebg.png; path = web/titlebg.png; sourceTree = "<group>"; };
 		C3BFD17F0EB5A9DA00ED86F1 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg.png; path = web/bg.png; sourceTree = "<group>"; };
 		C3BFD1800EB5A9DA00ED86F1 /* theadbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = theadbg.png; path = web/theadbg.png; sourceTree = "<group>"; };
@@ -447,6 +450,7 @@
 		C3FB6D9F0ED82D6C0043ABCF /* doc */ = {
 			isa = PBXGroup;
 			children = (
+				C3A64BDD0EDD077500B36D26 /* navbar.png */,
 				C3FB6DA00ED82D6C0043ABCF /* filemanager.jpg */,
 				C3FB6DA10ED82D6C0043ABCF /* fm-browser.png */,
 				C3FB6DA20ED82D6C0043ABCF /* fm.png */,
