@@ -123,13 +123,15 @@
 }
 */
 
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	if (!serverIsRunning || [httpServer hostName] == nil)
+		return 0;
+	
     return 3;
 }
 
@@ -210,11 +212,19 @@
 	}
     [super viewWillAppear:animated];
 }
-/*
+
 - (void)viewDidAppear:(BOOL)animated {
+	if (!serverIsRunning || [httpServer hostName] == nil)
+	{
+		UIAlertView *alertView = [[[UIAlertView alloc]
+				   initWithTitle:@"" 
+				   message:@"Cannot establish the file manager service. Please check your Wi-Fi connection settings and try again." 
+				   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		[alertView show];
+	}
     [super viewDidAppear:animated];
 }
- */
+
 /*
 - (void)viewWillDisappear:(BOOL)animated {
 }
@@ -237,6 +247,12 @@
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];	
     [super dealloc];
+}
+
+#pragma mark alertview delegate
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark notifications
