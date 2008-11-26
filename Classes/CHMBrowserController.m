@@ -58,26 +58,26 @@
  */
 
 - (void) updateTOCButton {
-	if (!rightBarControl)
+	@synchronized(self)
 	{
-		rightBarControl = [[UISegmentedControl alloc] initWithItems:
-														[NSArray arrayWithObjects:
-														   [UIImage imageNamed:@"toc.png"],
-														   [UIImage imageNamed:@"idx.png"],
-														   nil]];
-		[rightBarControl addTarget:self action:@selector(toTocOrIdx:) forControlEvents:UIControlEventValueChanged];
-		rightBarControl.frame = CGRectMake(0, 0, 80, 30);
-		rightBarControl.segmentedControlStyle = UISegmentedControlStyleBar;
-		rightBarControl.momentary = YES;
-		
-		@synchronized(self)
+		if (!rightBarControl)
 		{
+			rightBarControl = [[UISegmentedControl alloc] initWithItems:
+															[NSArray arrayWithObjects:
+															   [UIImage imageNamed:@"toc.png"],
+															   [UIImage imageNamed:@"idx.png"],
+															   nil]];
+			[rightBarControl addTarget:self action:@selector(toTocOrIdx:) forControlEvents:UIControlEventValueChanged];
+			rightBarControl.frame = CGRectMake(0, 0, 80, 30);
+			rightBarControl.segmentedControlStyle = UISegmentedControlStyleBar;
+			rightBarControl.momentary = YES;
+			
 			UIBarButtonItem *segmentBarItem = [[[UIBarButtonItem alloc] initWithCustomView:rightBarControl] autorelease];
 			self.navigationItem.rightBarButtonItem = segmentBarItem;
 		}
+		[rightBarControl setEnabled:[[CHMDocument CurrentDocument] tocSource] != nil forSegmentAtIndex:0];
+		[rightBarControl setEnabled:[[CHMDocument CurrentDocument] idxItems] != nil forSegmentAtIndex:1];
 	}
-	[rightBarControl setEnabled:[[CHMDocument CurrentDocument] tocSource] != nil forSegmentAtIndex:0];
-	[rightBarControl setEnabled:[[CHMDocument CurrentDocument] idxItems] != nil forSegmentAtIndex:1];
 }
 
 - (void) addLoadingTOCIndicator {
