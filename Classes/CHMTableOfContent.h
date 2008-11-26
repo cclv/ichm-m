@@ -14,6 +14,8 @@
 	
 	NSMutableArray *itemStack;
 	NSMutableArray *pageList;
+	NSCharacterSet *urlSpliter;
+	NSString *lastPath;
 	LinkItem *curItem;
 }
 @property (readonly) LinkItem *rootItems;

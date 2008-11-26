@@ -208,6 +208,9 @@ NULL, /* getParameterEntity */
 
 - (id)initWithData:(NSData *)data encodingName:(NSString*)encodingName
 {
+	urlSpliter = [NSCharacterSet characterSetWithCharactersInString:@"#?"];
+	lastPath = nil;
+
 	itemStack = [[NSMutableArray alloc] init];
 	pageList = [[NSMutableArray alloc] init];
 	rootItems = [[LinkItem alloc] initWithName:@"root"	Path:@"/"];
@@ -263,15 +266,15 @@ NULL, /* getParameterEntity */
 - (LinkItem*)getNextPage:(LinkItem*)item
 {
 	NSUInteger idx = [item pageID] + 1;
-	if (idx == [pageList count])
+	if (idx >= [pageList count])
 		return nil;
 	return [pageList objectAtIndex:idx];
 }
 
 - (LinkItem*)getPrevPage:(LinkItem*)item
 {
-	NSUInteger idx = [item pageID] - 1;
-	if (idx == -1)
+	int idx = [item pageID] - 1;
+	if (idx <= -1)
 		return nil;
 	return [pageList objectAtIndex:idx];
 }
@@ -314,19 +317,10 @@ NULL, /* getParameterEntity */
 	if ([item path] == nil)
 		return;
 	
-	LinkItem* latest = [pageList lastObject];
-	
-	if(nil == latest)
+	if(nil == lastPath || ![[item path] hasPrefix:lastPath])
 	{
 		[pageList addObject:item];
-	}
-	else
-	{
-		NSURL *baseURL = [NSURL URLWithString:@"http://dummy.com"];
-		NSURL *url = [NSURL URLWithString:[item path] relativeToURL:baseURL];
-		NSURL *curUrl = [NSURL URLWithString:[latest path] relativeToURL:baseURL];
-		if (![[url path] isEqualToString:[curUrl path]])
-			[pageList addObject:item];
+		lastPath = [[[item path] componentsSeparatedByCharactersInSet:urlSpliter] objectAtIndex:0];
 	}
 	[item setPageID:([pageList count] - 1)];
 }
