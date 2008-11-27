@@ -38,7 +38,7 @@ static inline unsigned long readLong( NSData *data, unsigned int offset ) {
 
 static inline NSString * readString( NSData *data, unsigned long offset, NSString *encodingName ) {
     const char *stringData = (char *)[data bytes] + offset;
-	return [[NSString alloc] initWithCString:stringData encoding:nameToEncoding(encodingName)];
+	return [[[NSString alloc] initWithCString:stringData encoding:nameToEncoding(encodingName)] autorelease];
 }
 
 static inline NSString * readTrimmedString( NSData *data, unsigned long offset, NSString *encodingName ) {
@@ -307,7 +307,9 @@ static CHMDocument *currentDocument = nil;
 		tocSource = newTOC;
 	}
 	[[NSNotificationCenter defaultCenter] postNotificationName:CHMDocumentTOCReady object:nil];
-
+	[pool release];
+	
+	pool = [[NSAutoreleasePool alloc] init];	
 	if (indexPath && [indexPath length] > 0) 
 	{
 		NSData * tocData = [self content:indexPath];
@@ -543,7 +545,8 @@ static CHMDocument *currentDocument = nil;
 	iChmAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
 	NSMutableDictionary *pref = [[NSMutableDictionary alloc] initWithDictionary:[appDelegate getPreferenceForFile:fileName]];
 	[pref setValue:object forKey:key];
-	[appDelegate setPreference:pref ForFile:fileName];		
+	[appDelegate setPreference:pref ForFile:fileName];
+	[pref release];
 }
 
 - (id)getPrefForKey:(id)key withDefault:(id)object
@@ -561,6 +564,7 @@ static CHMDocument *currentDocument = nil;
 	[fileName release];
 	[tocSource release];
 	[indexSource release];
+	chm_close(chmFileHandle);
     [super dealloc];
 }
 

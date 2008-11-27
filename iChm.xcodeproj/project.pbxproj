@@ -732,6 +732,38 @@
 			};
 			name = Release;
 		};
+		C38B64170EDE8DB8009B8B6B /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robin Lu";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				PREBINDING = NO;
+				SDKROOT = iphoneos2.1;
+			};
+			name = "Ad Hoc";
+		};
+		C38B64180EDE8DB8009B8B6B /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Robin Lu";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robin Lu";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = iChm_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_NAME = iChm;
+				PROVISIONING_PROFILE = "4C421397-96A5-4413-8C12-90802A3BD7AE";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4C421397-96A5-4413-8C12-90802A3BD7AE";
+			};
+			name = "Ad Hoc";
+		};
 		C3F56AA00EB96D64007FA09E /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -772,6 +804,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				C38B64180EDE8DB8009B8B6B /* Ad Hoc */,
 				C3F56AA10EB96D64007FA09E /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -782,6 +815,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				C38B64170EDE8DB8009B8B6B /* Ad Hoc */,
 				C3F56AA00EB96D64007FA09E /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;

@@ -234,7 +234,7 @@ NULL, /* getParameterEntity */
 - (void) dealloc
 {
 	[rootItems release];
-	
+	[pageList release];
 	[super dealloc];
 }
 
