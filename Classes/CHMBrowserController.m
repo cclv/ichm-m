@@ -287,6 +287,11 @@
 	NSURL *url = [webView.request URL];
 	NSString *path = [self extractPathFromURL:url];
 	currentItem = [toc itemForPath:path withStack:nil];
+	if (currentItem == nil)
+	{
+		path = [[path componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"#?"]] objectAtIndex:0];
+		currentItem = [toc itemForPath:path withStack:nil];
+	}
 	
 	if (currentItem)
 	{
