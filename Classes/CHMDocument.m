@@ -38,7 +38,7 @@ static inline unsigned long readLong( NSData *data, unsigned int offset ) {
 
 static inline NSString * readString( NSData *data, unsigned long offset, NSString *encodingName ) {
     const char *stringData = (char *)[data bytes] + offset;
-	return [[[NSString alloc] initWithCString:stringData encoding:nameToEncoding(encodingName)] autorelease];
+	return [NSString stringWithCString:stringData encoding:nameToEncoding(encodingName)];
 }
 
 static inline NSString * readTrimmedString( NSData *data, unsigned long offset, NSString *encodingName ) {
