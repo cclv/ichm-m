@@ -1229,7 +1229,7 @@ static NSMutableArray *recentNonces;
 	
 	length = length - (headEnd - bytes + strlen(deol));
 	bytes = headEnd + strlen(deol);
-	NSData *fileContent = [NSData dataWithBytesNoCopy:(void*)bytes length:length];
+	NSData *fileContent = [NSData dataWithBytesNoCopy:(void*)bytes length:length freeWhenDone:NO];
 
 	[self handleMultipartBody:fileContent];
 }
