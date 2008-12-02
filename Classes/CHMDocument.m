@@ -254,6 +254,8 @@ static CHMDocument *currentDocument = nil;
 + (NSString*) TitleForFile:(NSString*)filename
 {
 	CHMDocument *doc = [[CHMDocument alloc] initWithoutTOCWithFileName:filename];
+	if ([doc docTitle] == nil)
+		return nil;
 	NSString *title = [NSString stringWithString:[doc docTitle]];
 	[doc release];
 	return title;
@@ -350,7 +352,7 @@ static CHMDocument *currentDocument = nil;
 
 - (NSData *)content: (NSString *)path
 {
-	if( !path ) {
+	if( !path || !chmFileHandle) {
 		return nil;
     }
     
