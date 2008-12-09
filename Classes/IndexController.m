@@ -78,7 +78,7 @@ static BOOL tableViewIndexMoveOut(id self, SEL _cmd) {
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if (rootItem == indexSource)
+	if (rootItem == indexSource && [rootItem numberOfChildren] > 0)
 		return [rootItem numberOfChildren];
 	return 1;
 }
@@ -86,7 +86,12 @@ static BOOL tableViewIndexMoveOut(id self, SEL _cmd) {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (rootItem == indexSource)
-		return [[rootItem childAtIndex:section] numberOfChildren];
+	{
+		if ([rootItem numberOfChildren] > 0)
+			return [[rootItem childAtIndex:section] numberOfChildren];
+		else
+			return 0;
+	}
 	return [rootItem numberOfChildren];
 }
 
@@ -124,7 +129,7 @@ static BOOL tableViewIndexMoveOut(id self, SEL _cmd) {
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section { 
-	if (rootItem == indexSource)
+	if (rootItem == indexSource && [rootItem numberOfChildren] > 0)
 		return [[rootItem childAtIndex:section] name];
 	return nil;
 }

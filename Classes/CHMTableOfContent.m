@@ -471,7 +471,8 @@ static void elementDidEnd( CHMTableOfContent *context, const xmlChar *name )
 		{
 			if ([item numberOfChildren] > 0)
 				[item setName:[NSString stringWithFormat:@"%@, %@", [item name], [[item childAtIndex:0] name]]];
-			
+			if ([item name] == nil || [[item name] length] == 0)
+				continue;
 			NSString *title = [[[item name] substringToIndex:1] uppercaseString];
 			if ([title localizedCaseInsensitiveCompare:@"a"] < 0)
 			{
