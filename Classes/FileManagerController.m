@@ -222,6 +222,7 @@
 				   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[alertView show];
 	}
+    self.navigationController.navigationBar.backItem.title = @"Stop";
     [super viewDidAppear:animated];
 }
 
