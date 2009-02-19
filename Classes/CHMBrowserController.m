@@ -24,8 +24,6 @@
 - (void)stopLoadingIndicator;
 - (void)setCurrentItem;
 - (void)tocLoadFinished;
-
-- (void)setToolbarButtonWidth;
 @end
 
 @implementation CHMBrowserController
@@ -58,26 +56,26 @@
  */
 
 - (void) updateTOCButton {
-		if (!rightBarControl)
-		{
-			rightBarControl = [[UISegmentedControl alloc] initWithItems:
-															[NSArray arrayWithObjects:
-															   [UIImage imageNamed:@"toc.png"],
-															   [UIImage imageNamed:@"idx.png"],
-															   nil]];
-			[rightBarControl addTarget:self action:@selector(toTocOrIdx:) forControlEvents:UIControlEventValueChanged];
-			rightBarControl.frame = CGRectMake(0, 0, 80, 30);
-			rightBarControl.segmentedControlStyle = UISegmentedControlStyleBar;
-			rightBarControl.momentary = YES;
-			
-			@synchronized(self)
-			{
-				UIBarButtonItem *segmentBarItem = [[[UIBarButtonItem alloc] initWithCustomView:rightBarControl] autorelease];
-				self.navigationItem.rightBarButtonItem = segmentBarItem;
-			}
-		}
-		[rightBarControl setEnabled:[[CHMDocument CurrentDocument] tocSource] != nil forSegmentAtIndex:0];
-		[rightBarControl setEnabled:[[CHMDocument CurrentDocument] idxItems] != nil forSegmentAtIndex:1];
+    if (!rightBarControl)
+    {
+        rightBarControl = [[UISegmentedControl alloc] initWithItems:
+                                                        [NSArray arrayWithObjects:
+                                                           [UIImage imageNamed:@"toc.png"],
+                                                           [UIImage imageNamed:@"idx.png"],
+                                                           nil]];
+        [rightBarControl addTarget:self action:@selector(toTocOrIdx:) forControlEvents:UIControlEventValueChanged];
+        rightBarControl.frame = CGRectMake(0, 0, 80, 30);
+        rightBarControl.segmentedControlStyle = UISegmentedControlStyleBar;
+        rightBarControl.momentary = YES;
+        
+        @synchronized(self)
+        {
+            UIBarButtonItem *segmentBarItem = [[[UIBarButtonItem alloc] initWithCustomView:rightBarControl] autorelease];
+            self.navigationItem.rightBarButtonItem = segmentBarItem;
+        }
+    }
+    [rightBarControl setEnabled:[[CHMDocument CurrentDocument] tocSource] != nil forSegmentAtIndex:0];
+    [rightBarControl setEnabled:[[CHMDocument CurrentDocument] idxItems] != nil forSegmentAtIndex:1];
 }
 
 - (void) addLoadingTOCIndicator {
@@ -121,7 +119,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
-	[self setToolbarButtonWidth];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -166,22 +163,8 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-	[self setToolbarButtonWidth];
 }
 
-- (void)setToolbarButtonWidth
-{
-	// reposition bar buttons
-	CGFloat width = toolBar.frame.size.width > 321.0 ? 58 : 34;
-	
-	backButton.width = width;
-	homeButton.width = width;
-	forwardButton.width = width;
-	pagedownButton.width = width;
-	pageupButton.width = width;
-	scaleToFitButton.width = width;
-	fullscrennBarButton.width = width;
-}
 #pragma mark load page
 - (void)loadPath:(NSString *)path
 {
