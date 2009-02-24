@@ -163,6 +163,7 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
+    [webView reload];
 }
 
 #pragma mark load page
