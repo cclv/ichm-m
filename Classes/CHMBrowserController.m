@@ -94,6 +94,17 @@
 
 // Implement viewDidLoad to do additional setup after loading the view.
 - (void)viewDidLoad {
+    UISegmentedControl *fontControl = [[UISegmentedControl alloc] initWithItems:
+                                            [NSArray arrayWithObjects:
+                                                    [UIImage imageNamed:@"zoom-out.png"],
+                                                    [UIImage imageNamed:@"zoom-in.png"],
+                                             nil]];
+    [fontControl addTarget:self action:@selector(zoom:) forControlEvents:UIControlEventValueChanged];
+    fontControl.frame = CGRectMake(0, 0, 80, 30);
+    fontControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    fontControl.momentary = YES;
+    self.navigationItem.titleView = fontControl;
+    [fontControl release];
 	[self resetNavBar];
 
 	CHMDocument * doc = [CHMDocument CurrentDocument];
@@ -254,6 +265,32 @@
 		[[self navigationController] pushViewController:tocController animated:NO];		
 	}
 	[tocStack release];
+}
+
+- (IBAction)zoom:(id)sender
+{
+    UISegmentedControl* segCtl = sender;
+	// the segmented control was clicked, handle it here
+	switch ([segCtl selectedSegmentIndex]) {
+		case 0:
+			[self zoomOut:self];
+			break;
+		case 1:
+			[self zoomIn:self];
+			break;
+	}    
+}
+
+- (IBAction)zoomIn:(id)sender
+{
+    [[CHMDocument CurrentDocument] zoomIn];
+    [webView reload];
+}
+
+- (IBAction)zoomOut:(id)sender
+{
+    [[CHMDocument CurrentDocument] zoomOut];
+    [webView reload];    
 }
 
 #pragma mark webviewdelegate

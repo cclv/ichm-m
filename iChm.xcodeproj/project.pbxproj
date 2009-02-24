@@ -68,6 +68,8 @@
 		C3EAB82E0E9DDA8300268541 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3EAB82D0E9DDA8300268541 /* Localizable.strings */; };
 		C3EAB9AE0E9E2F0D00268541 /* IndexController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3EAB9AD0E9E2F0D00268541 /* IndexController.xib */; };
 		C3EAB9B20E9E2F3300268541 /* IndexController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EAB9B10E9E2F3300268541 /* IndexController.m */; };
+		C3EE72BC0F544933001BAF49 /* zoom-out.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EE72BA0F544933001BAF49 /* zoom-out.png */; };
+		C3EE72BD0F544933001BAF49 /* zoom-in.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EE72BB0F544933001BAF49 /* zoom-in.png */; };
 		C3F11F440EA86E14004B4B46 /* FileResource.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F11F430EA86E14004B4B46 /* FileResource.m */; };
 		C3F9E53F0EB1C18600DD0D7A /* jquery.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = C3F9E5330EB1C05A00DD0D7A /* jquery.js */; };
 		C3FB6DC10ED82DE10043ABCF /* filemanager.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = C3FB6DA00ED82D6C0043ABCF /* filemanager.jpg */; };
@@ -222,6 +224,8 @@
 		C3EAB9AB0E9E2F0400268541 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/IndexController.xib; sourceTree = "<group>"; };
 		C3EAB9B00E9E2F3300268541 /* IndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexController.h; sourceTree = "<group>"; };
 		C3EAB9B10E9E2F3300268541 /* IndexController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexController.m; sourceTree = "<group>"; };
+		C3EE72BA0F544933001BAF49 /* zoom-out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zoom-out.png"; path = "images/zoom-out.png"; sourceTree = "<group>"; };
+		C3EE72BB0F544933001BAF49 /* zoom-in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zoom-in.png"; path = "images/zoom-in.png"; sourceTree = "<group>"; };
 		C3F11F420EA86E14004B4B46 /* FileResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileResource.h; sourceTree = "<group>"; };
 		C3F11F430EA86E14004B4B46 /* FileResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileResource.m; sourceTree = "<group>"; };
 		C3F9E5330EB1C05A00DD0D7A /* jquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = jquery.js; path = web/jquery.js; sourceTree = "<group>"; };
@@ -399,6 +403,8 @@
 		C3EAB7D80E9DC59E00268541 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C3EE72BA0F544933001BAF49 /* zoom-out.png */,
+				C3EE72BB0F544933001BAF49 /* zoom-in.png */,
 				C3A499BA0EDC4ED300997EF0 /* spine.png */,
 				C3A4981F0EDBDF4400997EF0 /* zoomtofit.png */,
 				C36239230EDA7120003C16BF /* defullscreen.png */,
@@ -546,6 +552,8 @@
 				C36239240EDA7120003C16BF /* defullscreen.png in Resources */,
 				C3A498200EDBDF4400997EF0 /* zoomtofit.png in Resources */,
 				C3A499BB0EDC4ED300997EF0 /* spine.png in Resources */,
+				C3EE72BC0F544933001BAF49 /* zoom-out.png in Resources */,
+				C3EE72BD0F544933001BAF49 /* zoom-in.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -46,4 +46,7 @@
 - (IBAction)goHome:(id)sender;
 - (IBAction)goNextPage:(id)sender;
 - (IBAction)goPrevPage:(id)sender;
+- (IBAction)zoom:(id)sender;
+- (IBAction)zoomIn:(id)sender;
+- (IBAction)zoomOut:(id)sender;
 @end

@@ -261,11 +261,18 @@ static CHMDocument *currentDocument = nil;
 	return title;
 }
 
+- (id)init
+{
+    tocSource = nil;
+    zoomFactor = 1;
+    return self;
+}
+
 - (id)initWithoutTOCWithFileName:(NSString*)filename
 {
+    [self init];
 	fileName = filename;
 	[fileName retain];
-	tocSource = nil;
 	NSString* docDir = [NSString stringWithFormat:@"%@/Documents", NSHomeDirectory()];
 	NSString* filePath = [NSString stringWithFormat:@"%@/%@", docDir, filename];
 	chmFileHandle = chm_open( [filePath fileSystemRepresentation] );
@@ -276,9 +283,9 @@ static CHMDocument *currentDocument = nil;
 
 - (id)initWithFileName:(NSString *)filename
 {
+    [self init];
 	fileName = filename;
 	[fileName retain];
-	tocSource = nil;
 	NSString* docDir = [NSString stringWithFormat:@"%@/Documents", NSHomeDirectory()];
 	[self readFromFile:[NSString stringWithFormat:@"%@/%@", docDir, filename]];
 	return self;
@@ -364,17 +371,28 @@ static CHMDocument *currentDocument = nil;
     else {
 		path = [NSString stringWithFormat:@"/%@", path];
     }
+
+    NSString *prefix = @"";
+    if (([[[path pathExtension] lowercaseString] isEqualToString:@"html"] ||
+         [[[path pathExtension] lowercaseString] isEqualToString:@"htm"]))
+    {
+        prefix = [NSString stringWithFormat:@"<style>body{-webkit-text-size-adjust: %f%%;}</style>", zoomFactor * 100];
+    }
     
 	struct chmUnitInfo info;
 	void *buffer = nil;
 	@synchronized(self)
 	{
 		if (chm_resolve_object( chmFileHandle, [path UTF8String], &info ) == CHM_RESOLVE_SUCCESS)
-		{    
-			buffer = malloc( info.length );
+		{
+            size_t offset = [prefix lengthOfBytesUsingEncoding:NSASCIIStringEncoding];
+            size_t len = info.length + offset;
+			buffer = malloc( len  );
+            if (offset > 0)
+                memcpy(buffer, [prefix cStringUsingEncoding:NSASCIIStringEncoding], offset);
 			
 			if( buffer ) {
-				if( !chm_retrieve_object( chmFileHandle, &info, buffer, 0, info.length ) ) {
+				if( !chm_retrieve_object( chmFileHandle, &info, buffer + offset, 0, info.length ) ) {
 					NSLog( @"Failed to load %qu bytes for %@", (long long)info.length, path );
 					free( buffer );
 					buffer = nil;
@@ -539,6 +557,17 @@ static CHMDocument *currentDocument = nil;
 - (NSString*)currentEncodingName
 {
 	return encodingName;
+}
+
+#pragma mark zoom
+- (void)zoomIn
+{
+    zoomFactor = zoomFactor * 1.2;
+}
+
+- (void)zoomOut
+{
+    zoomFactor = zoomFactor / 1.2;
 }
 
 #pragma mark preference

@@ -28,6 +28,7 @@ struct chmFile;
 	CHMIndex *indexSource ;
 
 	NSString* encodingName;
+    float zoomFactor;
 }
 
 @property (readonly) NSString* fileName;
@@ -53,4 +54,7 @@ struct chmFile;
 - (LinkItem*)idxItems;
 
 - (BOOL)tocIsReady;
+
+- (void)zoomIn;
+- (void)zoomOut;
 @end
