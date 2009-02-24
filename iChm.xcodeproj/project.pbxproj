@@ -484,6 +484,7 @@
 				C3F9E53E0EB1C13500DD0D7A /* CopyFiles */,
 				C3BFD1750EB5952C00ED86F1 /* CopyFiles */,
 				C3FB6DDA0ED82DEC0043ABCF /* CopyFiles */,
+				C3EE72F30F5451EC001BAF49 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -558,6 +559,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C3EE72F30F5451EC001BAF49 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/ruby;
+			shellScript = "#!/usr/bin/env ruby\nif ENV[\"BUILD_STYLE\"] == \"Distribution\" && ENV[\"ARCHS\"] == 'armv6'\n  common_git_paths = %w[/usr/local/bin/git /usr/local/git/bin/git /opt/local/bin/git]\n  git_path = \"\"\n\n  common_git_paths.each do |p|\n    if File.exist?(p)\n      git_path = p\n      break\n    end\n  end\n\n  if git_path == \"\"\n    puts \"Path to git not found\"\n    exit\n  end\n\n  command_line = git_path + \" rev-parse --short HEAD\"\n  sha = `#{command_line}`.chomp\n\n  info_file = ENV['INFOPLIST_FILE']\n\n  f = File.open(info_file, \"r\").read\n  re = /([\\t ]+<key>CFBundleVersion<\\/key>\\n[\\t ]+<string>)(.*?)(<\\/string>)/\n  f =~ re\n  puts $1\n\n  # Get the version info from the source Info.plist file\n  # If the script has already been run we need to remove the git sha\n  # from the bundle’s Info.plist.\n  version = $2.sub(/ \\([\\w]+\\)/, \"\")\n\n  cmdline = \"cd #{ENV['BUILT_PRODUCTS_DIR']};zip -r #{ENV['CONTENTS_FOLDER_PATH']}.#{version}.zip #{ENV['CONTENTS_FOLDER_PATH']};zip -r #{ENV['CONTENTS_FOLDER_PATH']}.dSYM.#{version}.#{sha}.zip #{ENV['CONTENTS_FOLDER_PATH']}.dSYM\"\n  `#{cmdline}`\nend";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
