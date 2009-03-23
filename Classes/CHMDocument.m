@@ -374,7 +374,8 @@ static CHMDocument *currentDocument = nil;
 
     NSString *prefix = @"";
     if (([[[path pathExtension] lowercaseString] isEqualToString:@"html"] ||
-         [[[path pathExtension] lowercaseString] isEqualToString:@"htm"]))
+         [[[path pathExtension] lowercaseString] isEqualToString:@"htm"]) &&
+        fabs(zoomFactor - 1.0) > 0.01)
     {
         prefix = [NSString stringWithFormat:@"<style>body{-webkit-text-size-adjust: %f%%;}</style>", zoomFactor * 100];
     }
