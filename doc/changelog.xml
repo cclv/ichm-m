@@ -1,0 +1,840 @@
+<?xml version="1.0"?>
+<commits created="2009-03-27T21:09:20+08:00">
+<commit id="67ff79e15c8e4c215b5e7d705105e9b5a432f9c5">
+<date>Fri, 27 Mar 2009 21:07:15 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[update beta profile]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="91ac97f8cff2be0dc88c499c0cf0773414f09fb8">
+<date>Mon, 23 Mar 2009 18:14:34 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[don't apply text size adjust style when the zoom factor is 1.]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="7d271f851799a11d3e41b440c3f28ef99d1c191a">
+<date>Wed, 25 Feb 2009 00:17:52 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[post build script]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="a70f67bb38f20482e097a971173d92b4818dac2a">
+<date>Tue, 24 Feb 2009 23:58:22 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[1.2]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="9daf3b2939f176b696d9809904b4f0c77a756d84">
+<date>Tue, 24 Feb 2009 23:35:31 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[change font size]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="43a108c3a1df88e719aaf92b704aff63e2bf4aa9">
+<date>Tue, 24 Feb 2009 22:31:55 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix font changing after rotation]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="7f88f06d6d263e1ceffe7149335368bbc798a897">
+<date>Thu, 19 Feb 2009 14:40:03 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[caption to stop file manager button]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="a2bea560b46d5d415d402f37df55cecd514fecc0">
+<date>Thu, 19 Feb 2009 14:35:08 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[remove button spacing code]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="03cab6c8901a2ff631944dcfc30706b96376ba01">
+<date>Fri, 12 Dec 2008 11:04:04 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[guessing mimtype by ext]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="9831475c4d504377da0b290b66a69a17abf3397a">
+<date>Tue, 9 Dec 2008 09:50:26 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix crash when item name is empty]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="c9e4f620d74858b7a5f0a813a420ac3b9435f844">
+<date>Sat, 6 Dec 2008 23:58:25 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[1.1.1]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="1042e1973c3574e2b8d78aa10077be1ffce3b8a7">
+<date>Sat, 6 Dec 2008 23:49:57 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix file list bug]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="8f555ed57fd6af8d50d600f0def286a352ddded9">
+<date>Tue, 2 Dec 2008 21:18:17 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix crash when title does not exist]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="9182d6639361e906b652d89d7e6cb9207f03e4b8">
+<date>Mon, 1 Dec 2008 16:36:52 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix free bug]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="a191b5c32d88b51f44926ac5e25d66a1184fbfad">
+<date>Fri, 28 Nov 2008 12:51:20 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix potential memory leak]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="62c49d4e939ab60664ed3f65502f14068deadc67">
+<date>Thu, 27 Nov 2008 22:23:07 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[find current item when the url is not in toc]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="304dfc6d98dde00690e86de0f98cb0e21daf7253">
+<date>Thu, 27 Nov 2008 18:51:55 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix some memory leaks]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="5df5dc0795f452f13f147fefc86be5a0f18364e3">
+<date>Wed, 26 Nov 2008 23:39:17 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[tuning toc building performance]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="1eedb0f9954cdbdbed1192cb6fa67b4e434a8f55">
+<date>Wed, 26 Nov 2008 21:37:46 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[backout wrong fix]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="b8562141831f7fe9a78efb9747aaa51ed5cda932">
+<date>Wed, 26 Nov 2008 17:08:58 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[alert message when http service can not be established]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="3df4441427f5a6d1e7c4c94bf3e7091aff74d839">
+<date>Wed, 26 Nov 2008 13:20:55 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix toc button update bug]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="8a238eaccb251f1a91698ffc92127914697154b4">
+<date>Wed, 26 Nov 2008 12:32:46 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix help doc]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="537ecf49c8c1e69d3b236aef25828552accc3ece">
+<date>Wed, 26 Nov 2008 12:32:11 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[tuning help doc]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="7942db7e21b2952c630093d2111a2c9e647d33a0">
+<date>Wed, 26 Nov 2008 00:10:05 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[beautify file list]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="ae1bdc018c39a111d43317dd7bbef53b3424e195">
+<date>Tue, 25 Nov 2008 20:14:38 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[tuning fullscreen toggle button]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="df16bc9c9007fb2fb6abc142ea88af3d15c539b9">
+<date>Tue, 25 Nov 2008 18:17:34 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[tuning toolbar]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="7576a5b24c421b56fca7fa1973a318f9448f6b84">
+<date>Tue, 25 Nov 2008 18:06:33 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[toggle scale to fit]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="159330382f4a65c9217fbf5bcefa4944e3c5d325">
+<date>Tue, 25 Nov 2008 00:40:25 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[update navbar correctly]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="3d097caf1217fb1ec4c316861a3c270345b29c45">
+<date>Mon, 24 Nov 2008 16:19:13 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[update navbar after toc building]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="6c1ed0915ea86912162808aa617bc740502d99f6">
+<date>Mon, 24 Nov 2008 16:02:45 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[support pageup/pagedown]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="604508cf34640683638fa39fc893d3e6320bdc65">
+<date>Mon, 24 Nov 2008 15:15:51 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[move navigate buttons]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="8fc669341ac55f504d95d6a0c9a0d76c056448cb">
+<date>Mon, 24 Nov 2008 13:56:50 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[add toolbar and support of full screen]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="b7bcede5bc0ff2a08f7d46cdba9bc8809175b7f1">
+<date>Mon, 24 Nov 2008 11:57:34 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix link]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="19e9ef6f2cc6895db24eccf388b7c6b8bb20f839">
+<date>Mon, 24 Nov 2008 11:40:50 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix helper]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="b7869c3b8a007e0d57d84f85cad3664b94203c30">
+<date>Sat, 22 Nov 2008 22:58:20 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[add loading progress indicator]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="f13becab4e8226b875866335260edfbe03ec3150">
+<date>Sat, 22 Nov 2008 21:13:28 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[rotate as safari]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="3e982fba94c42cdd76a543636debd07c54b19fc0">
+<date>Sat, 22 Nov 2008 20:58:55 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[add help page]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="319bdbbf2d26dc7c3c824a7ddce0a150ce9f45a9">
+<date>Sat, 22 Nov 2008 15:03:08 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[missing ';']]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="e839cb72454de25603f05c05263e42f256ffd539">
+<date>Wed, 19 Nov 2008 15:18:10 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[to 1.0.1]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="f5ac7b9a607d0d91243f42120fadca7f1458deeb">
+<date>Mon, 17 Nov 2008 16:38:06 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[get host name with getifaddr]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="3f911b67f796e1c12ab6ed3d6247741231af48ec">
+<date>Mon, 17 Nov 2008 12:35:12 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix table cell identifier and more compatible to index files]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="3c2fdc627f43d52fc1c3630660993742d9270b7e">
+<date>Mon, 17 Nov 2008 11:53:22 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix crash in webview]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="9a3efc1ad05e13ac0e4b089d2e31b31f3eb32cfd">
+<date>Mon, 17 Nov 2008 11:10:20 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix file name compatibility bug]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="4e31bc642724c128bc3b881378d3f8d878f13d6b">
+<date>Thu, 30 Oct 2008 12:54:16 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[prepare for release]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="677d8a3ee23eec979f0e1c02ccb671d3709412c1">
+<date>Wed, 29 Oct 2008 22:51:47 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[file show/delete]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="32325c71c179a16e2a04aa69898650e30546eab7">
+<date>Wed, 29 Oct 2008 21:37:26 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[change background color]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="ef7a67116118181dab1ec92b2cab43a3ecaad38d">
+<date>Wed, 29 Oct 2008 01:24:35 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix selection bug]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="53e423e079c2ab19c62c3d0e98b5ca3cda5b0030">
+<date>Wed, 29 Oct 2008 01:21:43 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[tuning file management page]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="ffffbc4a677294745036713f95128d313abeb9f3">
+<date>Wed, 29 Oct 2008 01:13:15 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[about page]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="d29bf9afa351212c12d2141f10a2b8f60aa96512">
+<date>Tue, 28 Oct 2008 22:20:02 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[beautify ui]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="0d54f65c11b0d729558de84c8a168f50a74b5c15">
+<date>Tue, 28 Oct 2008 21:27:56 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[better status log for file management]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="fdce8a85d7b455817ccdc5f57f2465e210ea522d">
+<date>Tue, 28 Oct 2008 16:11:22 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[launch last opened page]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="c0c19072639d97d04a99754658612e3f4559ad7d">
+<date>Tue, 28 Oct 2008 12:59:23 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[home button]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="a9624fd7f3eaf235c40feeb833366df9c26ca7d4">
+<date>Tue, 28 Oct 2008 12:39:34 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[add loading indicator and reduce duplicated loading]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="4bf2bc31bed82826802361a3393684445b44b3d6">
+<date>Tue, 28 Oct 2008 12:01:32 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[remove controller dependency of chmdoc]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="4ff1cc11d8c0d680db85d5ba14d9c6c086feee3a">
+<date>Tue, 28 Oct 2008 11:30:11 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[clean up logs]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="9048eae9ed6f839bf57d0e51b570d865c9f9d55a">
+<date>Tue, 28 Oct 2008 01:15:28 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix a hidden memory leak]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="821b4b19d06075ca26bef1b784ef212d04d5939a">
+<date>Tue, 28 Oct 2008 00:47:26 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[setup toc and index in background]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="349faeb8ef9ea4747da66c3131a0d84c8bff0821">
+<date>Mon, 27 Oct 2008 22:37:02 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[tuning style]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="8413ef0e74e549bb0ed967b9c74b4c6c924fe36a">
+<date>Mon, 27 Oct 2008 22:15:18 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[use icon]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="68b9afe9c799e9ffc5bf2bdf84c1c73c82cfac01">
+<date>Mon, 27 Oct 2008 22:14:00 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[icon for buttons]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="8f7a8f51dfb2e4f61e698fc8ddb7aeef7902a7e2">
+<date>Mon, 27 Oct 2008 20:16:43 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix crash after deleting file]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="d2cdb51ffa7ecf0b1581cd1e6f7c679e65413602">
+<date>Mon, 27 Oct 2008 18:58:40 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[add icon]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="6c963b79950a63730d8934695b81cba562a985c1">
+<date>Mon, 27 Oct 2008 16:47:44 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[beautify file management page]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="b84f2d8ef15f8d3dc6c3529776a5cc12b0799a79">
+<date>Mon, 27 Oct 2008 14:01:30 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[compatible with IE]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="f11fc8cbab7c9e0f8e01a06dc8b3238983dad5fb">
+<date>Mon, 27 Oct 2008 01:05:05 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[file manager start/stop]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="ecced5915f44b15756b31cc7ce869c3fc1405872">
+<date>Mon, 27 Oct 2008 00:49:21 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[delete notification]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="61c65aeec18a5363a305cbd9ce039c751960f775">
+<date>Sun, 26 Oct 2008 22:38:19 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[support del]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="471c42ef255ad24b112ed5ce78a0e8820423c5ba">
+<date>Sun, 26 Oct 2008 14:26:25 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix progress bar bug]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="64ffa687f9d22025234e1e18e24ed93991096bf0">
+<date>Sat, 25 Oct 2008 23:58:58 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[notification for uploading]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="84d7ec4c0cfadff7016cf93e142f5f77dac7c7c7">
+<date>Sat, 25 Oct 2008 11:52:49 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix empty list]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="464fbaa4ba16fed8afb4dc8ab38a7724f5d0474b">
+<date>Sat, 25 Oct 2008 01:40:24 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix memory leaks]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="2006a4c46c280c6e5dfca0ec4671f817be502ea8">
+<date>Fri, 24 Oct 2008 23:44:02 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix docroot bug on device]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="b323a4685604c3fca227fc2431f0b18ede4f0f68">
+<date>Fri, 24 Oct 2008 22:46:50 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[show service address]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="245cc54d87e5a0f1b7ebc8f4ccf158b2cfce98cb">
+<date>Fri, 24 Oct 2008 17:54:57 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[file list in file manager]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="ae794150fc1c93d40e94fe88470bbf812aef5635">
+<date>Fri, 24 Oct 2008 16:01:47 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[support file upload]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="47bb3305abcfb7482e1cfb92f6e73234502d0f43">
+<date>Fri, 17 Oct 2008 00:02:00 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix some memory leak]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="6accaf9e3cbf7786e513b6390009af7a06e6b8b6">
+<date>Tue, 14 Oct 2008 23:43:28 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[integrate regex and localize index.html]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="f61cc0cec4b2b841fa2783e579d8f038b4c626bc">
+<date>Tue, 14 Oct 2008 00:12:03 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[integrate cocoahttpserver]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="8c94a99e70822e992fd131fe92584322c28b088a">
+<date>Sat, 11 Oct 2008 19:30:56 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[remember last page]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="e2fa15aed99bd8ecbe83eaa9bacd92555320edfc">
+<date>Sat, 11 Oct 2008 18:08:57 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[refactory file list]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="ecac728e2cd9014a4022d4eb06d658150d082819">
+<date>Sat, 11 Oct 2008 16:52:36 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[support rotating]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="be0249d2d823f64c6cbe32798a467b4a603a9931">
+<date>Sat, 11 Oct 2008 00:06:04 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[search in index]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="0905cc95fd4e474c8392873dc379c7abac841bf2">
+<date>Fri, 10 Oct 2008 21:47:42 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[fix index selection]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="e56882a412d8049e287bf8a96ed954e8ca1388fc">
+<date>Fri, 10 Oct 2008 21:16:20 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[enhance index]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="0e2864e4d9e29b7552158931d6b1e49bf6420532">
+<date>Thu, 9 Oct 2008 23:51:35 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[tuning title]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="e71f08e563426e37027ac438cb36c55ac803f5ae">
+<date>Thu, 9 Oct 2008 23:39:39 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[refine toc]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="55f5d46ecb7b5e265a3eb085c530e05f0678bca1">
+<date>Thu, 9 Oct 2008 23:18:51 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[use different style for toc]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="7936ccb540575dd605c16ba81d7044b36fa5645f">
+<date>Thu, 9 Oct 2008 22:52:58 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[support index]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="700e787c83859ca8c384eb65ee9d9a4fe18ad32d">
+<date>Thu, 9 Oct 2008 18:12:38 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[auto locate current page in toc]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="f8de8e2cdd145ddb4893543186900f17a517e82e">
+<date>Thu, 9 Oct 2008 15:52:42 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[table of content]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="3e6fa2841f8107c615bd78cecb849e83bd451c79">
+<date>Thu, 9 Oct 2008 13:21:00 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[make browsing work]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+<commit id="5e2b31070ec4686ca72251e45b2b610d6554596e">
+<date>Wed, 8 Oct 2008 21:49:49 +0800</date>
+<author><![CDATA[Robin Lu]]></author><author-email><![CDATA[iamawalrus@gmail.com]]></author-email>
+<subject><![CDATA[init checkin]]></subject><msg>
+<![CDATA[
+
+]]>
+</msg>
+</commit>
+</commits>
