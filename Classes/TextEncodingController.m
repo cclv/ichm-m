@@ -7,11 +7,12 @@
 //
 
 #import "CHMDocument.h"
+#import "DocumentSettingController.h"
 #import "TextEncodingController.h"
 
 
 @implementation TextEncodingController
-
+@synthesize settingController;
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -122,6 +123,7 @@
     NSString *encodingName = [[[encodingNames objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] objectForKey:@"name"];
     if (encodingName && [encodingName length] > 0) {
         [[CHMDocument CurrentDocument] setPref:encodingName forKey:@"text_encoding"];
+        [settingController settingChanged:self];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     [self.navigationController popViewControllerAnimated:YES];

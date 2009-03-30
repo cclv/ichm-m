@@ -13,14 +13,3 @@
 
 }
 @end
-
-@interface NSURLRequest (ITSSProtocol)
-- (CHMDocument *)chmDoc;
-- (NSString *)encodingName;
-@end
-
-@interface NSMutableURLRequest (ITSSProtocol)
-- (void)setChmDoc:(CHMDocument *)doc;
-- (void)setEncodingName:(NSString *)name;
-@end
-

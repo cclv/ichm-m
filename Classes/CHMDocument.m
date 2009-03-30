@@ -265,6 +265,7 @@ static CHMDocument *currentDocument = nil;
 {
     tocSource = nil;
     zoomFactor = 1;
+    encodingName = [self getPrefForKey:@"text_encoding" withDefault:nil];
     return self;
 }
 
@@ -473,7 +474,9 @@ static CHMDocument *currentDocument = nil;
 			{
 				unsigned int lcid = readLong(systemData, offset + 4);
 				NSLog(@"SYSTEM LCID: %d", lcid);
-				encodingName = LCIDtoEncodingName(lcid);
+                if (nil == encodingName || [encodingName length] == 0) {
+                    encodingName = LCIDtoEncodingName(lcid);
+                }
 				NSLog(@"SYSTEM encoding: %@", encodingName);
 			}
 				break;
@@ -557,6 +560,10 @@ static CHMDocument *currentDocument = nil;
 #pragma mark encoding
 - (NSString*)currentEncodingName
 {
+    NSString *name = [self getPrefForKey:@"text_encoding" withDefault:nil];
+    if (nil != name && [name length] > 0) {
+        return name;
+    }
 	return encodingName;
 }
 

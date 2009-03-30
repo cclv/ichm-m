@@ -8,10 +8,13 @@
 
 #import "CHMDocument.h"
 #import "TextEncodingController.h"
+#import "CHMBrowserController.h"
 #import "DocumentSettingController.h"
 
 
 @implementation DocumentSettingController
+
+@synthesize delegate;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -85,7 +88,7 @@
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if (indexPath.row == 0) {
         textEncodingField.text = [[CHMDocument CurrentDocument] getPrefForKey:@"text_encoding" withDefault:@"Default"];
@@ -97,11 +100,12 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     TextEncodingController *controller = [[TextEncodingController alloc] initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:controller animated:YES];
+    controller.settingController = self;
     [controller release];
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    [aTableView deselectRowAtIndexPath:indexPath animated:NO];
     // Navigation logic may go here. Create and push another view controller.
 	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
 	// [self.navigationController pushViewController:anotherViewController];
@@ -147,7 +151,12 @@
     return YES;
 }
 */
-
+- (void)settingChanged:(id)sender
+{
+    if (nil != delegate)
+        [delegate settingSaved];
+    [(UITableView*)self.view reloadData];
+}
 
 - (void)dealloc {
     [super dealloc];

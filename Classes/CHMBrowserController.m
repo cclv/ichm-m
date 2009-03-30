@@ -178,6 +178,10 @@
     [webView reload];
 }
 
+- (void)settingSaved
+{
+    [webView reload];
+}
 #pragma mark load page
 - (void)loadPath:(NSString *)path
 {
@@ -188,9 +192,7 @@
 - (void)loadURL:(NSURL *)url
 {
 	if( url ) {
-		CHMDocument *doc = [CHMDocument CurrentDocument];
-		NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
-		[req setEncodingName:[doc currentEncodingName]];
+		NSURLRequest *req = [NSURLRequest requestWithURL:url];
 		[webView loadRequest:req];
 	}
 }
@@ -398,6 +400,7 @@
     DocumentSettingController *controller = [[DocumentSettingController alloc]
                                              initWithNibName:@"DocumentSetting" bundle:nil];
     [self.navigationController pushViewController:controller animated:YES];
+    controller.delegate = self;
     [controller release];
 }
 #pragma mark dealloc

@@ -37,7 +37,7 @@
 {
     NSURL *url = [[self request] URL];
 	CHMDocument *doc = [CHMDocument CurrentDocument];
-	NSString *encoding = [[self request] encodingName];
+	NSString *encoding = [doc currentEncodingName];
 	
 	if( !doc ) {
 		[[self client] URLProtocol:self didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:0 userInfo:nil]];
@@ -81,22 +81,4 @@
     [response release];	
 }
 
-@end
-
-@implementation NSURLRequest (SpecialProtocol)
-
-- (NSString *)encodingName
-{
-	return [NSURLProtocol propertyForKey:@"encoding" inRequest:self];
-}
-@end
-
-
-
-@implementation NSMutableURLRequest (SpecialProtocol)
-
-- (void)setEncodingName:(NSString *)name
-{
-	[NSURLProtocol setProperty:name forKey:@"encoding" inRequest:self];
-}
 @end

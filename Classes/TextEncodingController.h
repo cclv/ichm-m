@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class DocumentSettingController;
 
 @interface TextEncodingController : UITableViewController {
     NSArray *encodingNames;
+    DocumentSettingController *settingController;
 }
 
+@property (nonatomic, assign) DocumentSettingController * settingController;
 @end

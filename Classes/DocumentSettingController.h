@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class CHMBrowserController;
 
 @interface DocumentSettingController : UITableViewController {
     IBOutlet UITableViewCell    *textEncodingCell;
-    
     IBOutlet UITextField        *textEncodingField;
+    
+    CHMBrowserController *delegate;
 }
 
+@property (nonatomic, assign) CHMBrowserController *delegate;
+
+- (void)settingChanged:(id)sender;
 @end

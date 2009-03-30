@@ -41,6 +41,8 @@
 - (void)navToTOC:(id)sender;
 - (void)navToIDX:(id)sender;
 
+- (void)settingSaved;
+
 - (IBAction)toggleFullScreen:(id)sender;
 - (IBAction)toggleScaleToFit:(id)sender;
 - (IBAction)goHome:(id)sender;
