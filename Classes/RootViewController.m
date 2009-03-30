@@ -239,6 +239,7 @@
 		[self launchBrowserForFile:filename];
 	}
 	[defaults removeObjectForKey:key];
+	self.navigationController.navigationBar.topItem.title = NSLocalizedString(@"iChm", @"iChm");
 }
 /*
 - (void)viewWillDisappear:(BOOL)animated {

@@ -49,4 +49,5 @@
 - (IBAction)zoom:(id)sender;
 - (IBAction)zoomIn:(id)sender;
 - (IBAction)zoomOut:(id)sender;
+- (IBAction)openSettings:(id)sender;
 @end

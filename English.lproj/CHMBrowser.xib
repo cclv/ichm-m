@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
+			<integer value="15"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -145,6 +145,17 @@
 									<string key="NSResourceName">fullscreen.png</string>
 								</object>
 								<float key="IBUIWidth">3.200000e+01</float>
+								<reference key="IBUIToolbar" ref="241411469"/>
+							</object>
+							<object class="IBUIBarButtonItem" id="1068126399">
+								<int key="IBUISystemItemIdentifier">5</int>
+								<reference key="IBUIToolbar" ref="241411469"/>
+							</object>
+							<object class="IBUIBarButtonItem" id="2356769">
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">option.png</string>
+								</object>
 								<reference key="IBUIToolbar" ref="241411469"/>
 							</object>
 						</object>
@@ -368,6 +379,14 @@
 					</object>
 					<int key="connectionID">48</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">openSettings:</string>
+						<reference key="source" ref="2356769"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">59</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -431,6 +450,8 @@
 							<reference ref="23537271"/>
 							<reference ref="113258795"/>
 							<reference ref="628367794"/>
+							<reference ref="2356769"/>
+							<reference ref="1068126399"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -504,6 +525,16 @@
 						<reference key="object" ref="628367794"/>
 						<reference key="parent" ref="241411469"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">56</int>
+						<reference key="object" ref="2356769"/>
+						<reference key="parent" ref="241411469"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">57</int>
+						<reference key="object" ref="1068126399"/>
+						<reference key="parent" ref="241411469"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -532,14 +563,18 @@
 					<string>52.IBPluginDependency</string>
 					<string>53.IBPluginDependency</string>
 					<string>54.IBPluginDependency</string>
+					<string>56.IBPluginDependency</string>
+					<string>57.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>CHMBrowserController</string>
 					<string>UIResponder</string>
-					<string>{{387, 534}, {320, 480}}</string>
+					<string>{{466, 565}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{605, 930}, {37, 37}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -579,7 +614,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">55</int>
+			<int key="maxID">59</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -596,11 +631,19 @@
 							<string>goPrevPage:</string>
 							<string>navToIDX:</string>
 							<string>navToTOC:</string>
+							<string>openSettings:</string>
 							<string>toggleFullScreen:</string>
 							<string>toggleScaleToFit:</string>
+							<string>zoom:</string>
+							<string>zoomIn:</string>
+							<string>zoomOut:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

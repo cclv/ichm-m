@@ -10,6 +10,7 @@
 #import "ITSSProtocol.h"
 #import "CHMDocument.h"
 #import "TableOfContentController.h"
+#import "DocumentSettingController.h"
 #import "IndexController.h"
 #import "CHMTableOfContent.h"
 #import "iChmAppDelegate.h"
@@ -390,6 +391,14 @@
 	NSString *value = webView.scalesPageToFit ? @"YES" : @"NO";
 	[[CHMDocument CurrentDocument] setPref:value forKey:@"scale to fit"];
 	[webView reload];
+}
+
+- (IBAction)openSettings:(id)sender
+{
+    DocumentSettingController *controller = [[DocumentSettingController alloc]
+                                             initWithNibName:@"DocumentSetting" bundle:nil];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 #pragma mark dealloc
 - (void)dealloc {
