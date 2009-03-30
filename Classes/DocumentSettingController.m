@@ -92,6 +92,9 @@
 
     if (indexPath.row == 0) {
         textEncodingField.text = [[CHMDocument CurrentDocument] getPrefForKey:@"text_encoding" withDefault:@"Default"];
+        if ([textEncodingField.text length] == 0) {
+            textEncodingField.text = @"Default";
+        }
         return textEncodingCell;
     }
     // Set up the cell...

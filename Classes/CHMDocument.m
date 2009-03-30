@@ -474,9 +474,7 @@ static CHMDocument *currentDocument = nil;
 			{
 				unsigned int lcid = readLong(systemData, offset + 4);
 				NSLog(@"SYSTEM LCID: %d", lcid);
-                if (nil == encodingName || [encodingName length] == 0) {
-                    encodingName = LCIDtoEncodingName(lcid);
-                }
+                encodingName = LCIDtoEncodingName(lcid);
 				NSLog(@"SYSTEM encoding: %@", encodingName);
 			}
 				break;
