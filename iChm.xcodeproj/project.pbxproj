@@ -833,6 +833,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Robin Lu";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robin Lu";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -840,6 +841,7 @@
 				INFOPLIST_FILE = Info.plist;
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = iChm;
+				PROVISIONING_PROFILE = "E2D7C15A-21C7-41C7-908A-800E93EE262F";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E2D7C15A-21C7-41C7-908A-800E93EE262F";
 			};
 			name = Distribution;
