@@ -25,6 +25,7 @@
 - (void)stopLoadingIndicator;
 - (void)setCurrentItem;
 - (void)tocLoadFinished;
+- (void)indexReady;
 @end
 
 @implementation CHMBrowserController
@@ -39,7 +40,7 @@
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(tocLoadFinished) name:CHMDocumentTOCReady object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(updateTOCButton) name:CHMDocumentIDXReady object:nil];
+												 selector:@selector(indexReady) name:CHMDocumentIDXReady object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(willTerminate) name:UIApplicationWillTerminateNotification object:nil];
 		rightBarControl = nil;
@@ -55,6 +56,10 @@
 - (void)loadView {
 }
  */
+
+- (void)indexReady {
+	[self performSelectorOnMainThread:@selector(updateTOCButton) withObject:nil waitUntilDone:NO];
+}
 
 - (void) updateTOCButton {
     if (!rightBarControl)
