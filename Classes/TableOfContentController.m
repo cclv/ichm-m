@@ -94,6 +94,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	LinkItem *item = [rootItem childAtIndex:indexPath.row];
+    if ([item path] == nil && [item numberOfChildren] > 0) {
+        [self tableView:tableView accessoryButtonTappedForRowWithIndexPath:indexPath];
+        return;
+    }
 	[browserController loadPath:[item path]];
 	[self.navigationController popToViewController:browserController animated:NO];
 }
